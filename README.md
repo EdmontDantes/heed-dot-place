@@ -1,10 +1,10 @@
 # heed-dot-place
-
-Project&#39;s Name: heed.place
+![heed.place logo](logo.png)
+# Project&#39;s Name: heed.place
 
 Description: a web app that utilizes pomodoro technique timer functionality with task management. Users will be able to utilize the web app for their needs of recording their tasks and using provided pomodoro technique timer to complete said tasks. Tasks will be created with Categories(in this case app will call it projects), full CRUD for Projects and it&#39;s corresponding tasks will be implemented. Each user will have their own data recording separate from others. Non registered users will be only able to utilize pomodoro timer with adding simple task name that will live in their cookies , once cookies are cleared their data is cleared as well, only registered users will have ability to record their data in the apps database.
 
-Technologies to be used:
+# Technologies to be used:
 
 - Bootstrap frontend framework - [https://getbootstrap.com/](https://getbootstrap.com/)
 - Nodje.js javascript runtime - [https://nodejs.org/](https://nodejs.org/)
@@ -25,9 +25,9 @@ Technologies to be used:
 - Momentjs for converting unixTimeStamps to Human-Readable time - [https://momentjs.com/](https://momentjs.com/)
 - Method-override npm package to stay faithful to Restful API specification of GET, POST, PUT, DELETE http verbs - [https://www.npmjs.com/package/method-override](https://www.npmjs.com/package/method-override)
 
-General Planned out Structure for the project :
+# General Planned out Structure for the project :
 
-Express routes:
+## Express routes:
 
 1. Base route &#39;/&#39; - renders main/index
 2. Base route &#39;/api/users&#39;
@@ -51,17 +51,17 @@ Express routes:
 20. &#39;/update-task&#39; put
 21. &#39;/delete-task&#39; delete
 
-Total routes excluding base routes: 17
+### Total routes excluding base routes: 17
 
-DataBase Models:
+## DataBase Models:
 
 1. Users
 2. Projects
 3. Tasks
 
-Total models referenced to each other: 3
+### Total models referenced to each other: 3
 
-TimeTable for completing the project in 14 days:
+# TimeTable for completing the project in 14 days:
 
 Day 1. Scaffolding the project, with setting up all the files, building models, and basic route functionality.
 
