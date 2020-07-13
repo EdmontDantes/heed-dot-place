@@ -25,6 +25,9 @@ Description: a web app that utilizes pomodoro technique timer functionality with
 - Momentjs for converting unixTimeStamps to Human-Readable time - [https://momentjs.com/](https://momentjs.com/)
 - Method-override npm package to stay faithful to Restful API specification of GET, POST, PUT, DELETE http verbs - [https://www.npmjs.com/package/method-override](https://www.npmjs.com/package/method-override)
 
+# Assets Used:
+musical alert ringtones for end of pomodoro, short and long break sounds are generously created and provided by Wolf Asylum artist - https://wolfasylum.com/
+
 # General Planned out Structure for the project :
 
 ## Express routes:
@@ -77,7 +80,7 @@ Day 6. Build front-end for projects and tasks
 
 Day 7. Build tasks routes.
 
-Day 8-10. Test extensively and focus on front-end functionality
+Day 8-10. Test extensively and focus on front-end functionality including aler
 
 Day 11-12. Start working on implementing a new Reports feature inside of front-end and backend for using Chart.js visual representation of data of users.
 
