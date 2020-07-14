@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<%- include('../partials/head.ejs') %> 
+<link href="/css/loginAndRegisterCustom.css" rel="stylesheet">
+    <title>Edit Profile Heed.place</title>
+  </head>
+
+  <body>
+<%- include ('../partials/navbar.ejs') %>
+<main role="main" class="col-md-9 mx-sm-auto col-lg-10">
+<div class="text-center card-body">
+  <div class=”row”>
+    <div class=”col-6 align-self-center”>
+      <div class=”card card-block”>
+        <% if (messages.length) { %>
+          <div class="alert alert-success alert-dismissable">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              alert-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <%= messages %> 
+          </div>
+          <% } %>
+          <% if (errors.length) { %>
+            <div class="alert alert-danger alert-dismissable">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                alert-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <%= errors %> 
+            </div>
+            <% } %>
+        <form class="form-signin" role="form" method="POST" action="/api/users/update-profile?_method=PUT">
+          <h1 class="h3 mb-3 font-weight-normal">Please Edit Your Information Below</h1>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <br />
+          <input type="text" id="inputName" name="text" class="form-control" placeholder="Change name here">
+          <br />
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Change Email address here">
+          <br />
+          <label for="InputAboutMe" class="sr-only">About Me:</label>
+          <textarea type="text" id="InputAboutMe" name="aboutme" class="form-control" placeholder="Change About Me here" rows="6"></textarea>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div class="checkbox mb-3">
+            <!-- <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label> -->
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile Data</button>
+          <!-- <p class="mt-5 mb-3 text-muted"><a href="https://github.com/EdmontDantes/heed-dot-place" class="text-dark">github  </a><p>&copy; 2020 <span class="text-success"> Bogdan Kowaltchook</span></p></p> -->
+        </form>
+      </div>
+      </div> 
+      </div>
+      </div> 
+    </main>
+      <%- include ('../partials/footer.ejs') %>
+</body>
+</html>

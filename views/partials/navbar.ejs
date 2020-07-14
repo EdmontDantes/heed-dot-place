@@ -28,7 +28,9 @@
               <a class="nav-link" href="/api/users/login">Login</a>
             </li>
           <% }  else  { %>
-            
+            <li class="nav-item">
+              <a class="nav-link btn-success" href="/api/users/profile"><%= user.profile.name %></a>
+            </li>
             <li class="nav-item text-nowrap">
               <a class="nav-link" href="/api/users/logout">Log out</a>
             </li>

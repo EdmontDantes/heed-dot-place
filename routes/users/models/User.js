@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   profile: {
     name: { type: String, required:true },
     picture: { type: String, default: '' },
-    about: { type: String, default: ''}
+    about: { type: String, default: 'Write Something about yourself'}
   },
   timestamp: {
     type: String,

@@ -3,7 +3,7 @@ const User = require('./models/User');
 const passport = require('passport');
 const { registerValidation, registerVerify } = require('./utils/registerValidation');
 const { loginValidation, loginVerify } = require('./utils/loginValidation');
-
+const isThereAuth = require('./utils/isThereAuth');
 
 router.get('/', (req, res) => {
   return res.redirect('/');
@@ -23,7 +23,7 @@ router.get('/login', (req, res) => {
   return res.render('auth/login');
 });
 
-router.post('/login', passport.authenticate('local-login',{
+router.post('/login', loginValidation, loginVerify, passport.authenticate('local-login',{
   successRedirect:'/',
   failureRedirect:'/api/users/login',
   failureFlash:true
@@ -50,13 +50,8 @@ router.post('/register', registerValidation, registerVerify, async (req, res) =>
     user = await new User({  profile: { name }, email, password });
 
     await user.save();
-    await req.logIn(user, (err) => {
-      if(err) {
-        return res.status(400).json({ confirmation: false, message: err });
-      } else {
-        next ()
-      }
-    })
+    await req.flash('messages', 'You have successfully registered please login using your credentials')
+    await res.redirect('/api/users/login');
   } catch (error) {
     return res.status(500).json({ message: 'failed', error });
   }
@@ -64,19 +59,25 @@ router.post('/register', registerValidation, registerVerify, async (req, res) =>
 
 
 router.get('/profile', (req, res) => {
-  // console.log(req.user);
   if (req.isAuthenticated()) {
     return res.render('auth/profile');
-    
   } else {
     return res.render('auth/unAuthorizedPage');
   }
 });
 
+router.get('/update-profile', (req, res) => {
+  if(req.isAuthenticated()) {
+    return res.render('auth/update-profile');
+  } else {
+    return res.render('auth/unAuthorizedPage');
+  }
+})
+
 router.get('/logout',(req,res)=>{
   req.logout();
 
-  req.session.destroy()
+  req.session.destroy();
   return res.redirect('/')
 });
 module.exports = router
