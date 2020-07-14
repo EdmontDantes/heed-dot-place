@@ -1,6 +1,7 @@
 // bring all the packages via 
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -54,6 +55,9 @@ app.use(express.json());
 app.use(express.urlencoded(
   { extended: false }
 ));
+
+// bring in cookie parser
+app.use(cookieParser());
 
 // use public dir via path
 app.use(express.static(path.join(__dirname, 'public')));

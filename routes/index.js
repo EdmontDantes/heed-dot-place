@@ -1,17 +1,14 @@
 const router = require('express').Router();
-
+const { Timer } = require('easytimer.js');
+const timer = new Timer();
 
 router.get('/', function(req, res, next) {
-  // res.render('index', { title: 'Express' });
-  // console.log('user', req.user);
-  // console.log(req.session);
-  if(req.user) {
-    // res.send('Authorized Page');
-    paginate(req, res, next);
-    return;
-  }
-  res.render('main/home')
+  // console.log(timer);
+  let timerstart = timer.start({startValues: [0,0,0,0,0]});
+  console.log(timerstart)
+  res.render('main/home', { timer });
 });
+
 
 
 module.exports = router

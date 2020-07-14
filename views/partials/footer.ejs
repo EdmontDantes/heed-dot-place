@@ -1,0 +1,61 @@
+    <!-- footer -->
+    <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-10 col-lg-9 col-md-8 mx-auto">
+            <div class="row border-top pt-3">
+              <div class="col-lg-6 text-center">
+                <ul class="list-inline">
+                  <li class="list-inline-item mr-2">
+                    <a href="https://github.com/EdmontDantes/heed-dot-place" class="text-dark">github</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6 text-center">
+                <p>&copy; 2020 <span class="text-success"> Bogdan Kowaltchook</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end of footer -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+
+    <!-- Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          datasets: [{
+            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: false
+              }
+            }]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+    </script>

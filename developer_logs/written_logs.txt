@@ -1,0 +1,43 @@
+Day 1, Tue 14-07-2020 @ 0022
+I have been working on implementing passportjs and login and 
+register routes for users. ran into issue where sometimes 
+I have to clear the history due to reg.login or req.logout 
+doesn't work and the main index route '/' isn't letting me 
+to use in navbar register and login links to /api/users/register,
+/api/users/login or in browser url input. It seems that the session didn't get 
+destroyed and constantly redirecting me to '/' which is ubiquitous 
+in all checks for logged in user in all my user routes, 
+that's my suspicion. For now this issues is fixable via 
+completely removing the history with history clear function in 
+chrome browser. Also there seems to be an issue with 
+cookie-parser that I initially didn't want to use but opted in 
+for usage due to this issue. The idea is to investigate further 
+when time permits is to do more research into clearing 
+the cookies or modifying them more rigidly to signify login 
+and logout at this time however the main focus is on the functionality 
+of the project. The skeleton of of partials components for ejs is 
+starting to be somewhat decent. The three models are built and user 
+creation in database is working, perhaps there's too or not enough fields 
+for future or current but that's just a hunch since I've spent at least 6 
+hours to think about the models and build them on paper. So far three models 
+are created, one main one - User which has many extra fields for profile and 
+it's corresponding settings for the main functionality of pomodoro timer, 
+even included for future a theme for the frontend. Two remaining models 
+Projects and Tasks are having an owner property that connects to logged in 
+user that will create them via front-end. Task have ref to Projects and Projects
+model has in turn an array of tasks ref Task which seems to be an overkill in 
+turns of optimization for now though I'm thinking that this many referencing will 
+ensure complete rigidity of the database, however for deleting or updating will
+have a big impact of removing tasks ids from Projects Model will make programming
+software a bit more complex and I worry about race conditions when removing a task id
+from Projects Model. One more thing I need to mention about Task Model, I've included
+separate pomodoro array for each pomodoro done and its corresponding Breaks to keep 
+track of assigning them each a random id using uuid package for security purposes, but
+I rely on created array index to make sure the order of created pomodoros set(either with 
+long or short break) are properly recorded for displaying in the regular front-end records
+of the parent Task in the usage of pomodoro and also in Chart.js reports once and if I'll 
+have time to implement such a feature. Now since register and login works and front end for
+these are done next step is to build public pomodoro timer utilizing Easytimer.js for countdown
+first step is to rebuild home.ejs with wrapped inside main tag a front-end page with at least
+pomodoro timer where the user has an ability to start, pause, reset the timer, and ability to change
+how long the pomodoro will last from drop down menu.
