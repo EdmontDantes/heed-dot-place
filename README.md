@@ -14,7 +14,7 @@ Description: a web app that utilizes pomodoro technique timer functionality with
   - Passport-local Strategy - [https://github.com/jaredhanson/passport-local](https://github.com/jaredhanson/passport-local)
 
 - Bcryptjs for hashing/salting password for security - [https://github.com/dcodeIO/bcrypt.js/](https://github.com/dcodeIO/bcrypt.js/)
-- Easytimer.js library for countdown/timer - [https://github.com/albert-gonzalez/easytimer.js](https://github.com/albert-gonzalez/easytimer.js)
+- codepen by Serjobas of a javascript/css timer - https://codepen.io/Serjobas/pen/GvrKRB
 - Chart.js for displaying progress reports to users via visual representation of data - [https://www.chartjs.org/](https://www.chartjs.org/)
 - MongoDB document-based database - [https://www.mongodb.com/](https://www.mongodb.com/)
 - Mongoose - elegant Mongodb object modeling for Node.js - [https://mongoosejs.com/](https://mongoosejs.com/)

@@ -3,8 +3,7 @@ const User = require('./models/User');
 const passport = require('passport');
 const { registerValidation, registerVerify } = require('./utils/registerValidation');
 const { loginValidation, loginVerify } = require('./utils/loginValidation');
-const { Timer } = require('easytimer.js');
-const timerInstance = new Timer();
+
 
 router.get('/', (req, res) => {
   return res.redirect('/');
@@ -63,11 +62,21 @@ router.post('/register', registerValidation, registerVerify, async (req, res) =>
   }
 });
 
-router.get('/logout',(req,res)=>{
-    req.logout();
-  
-    req.session.destroy()
-    return res.redirect('/')
+
+router.get('/profile', (req, res) => {
+  // console.log(req.user);
+  if (req.isAuthenticated()) {
+    return res.render('auth/profile');
+    
+  } else {
+    return res.render('auth/unAuthorizedPage');
+  }
 });
 
+router.get('/logout',(req,res)=>{
+  req.logout();
+
+  req.session.destroy()
+  return res.redirect('/')
+});
 module.exports = router
