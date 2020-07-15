@@ -22,8 +22,8 @@ module.exports = {
             req.flash('messages', 'You have successfully created your project')
             return res.redirect(301, '/') // this needs to change once task creation is introduced
           }).catch((error) => {
-            req.flash('errors', 'Something is wrong on our end please contact developer');
-            res.redirect(301, '/');
+            req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+            res.redirect(301, '/api/users/projects/create-project');
           });
           
         } else if (!currUser) {
@@ -33,7 +33,8 @@ module.exports = {
 
 
       } catch (error) {
-        return res.status(500).json({ message: 'failed', error });
+        req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+        res.redirect(301, '/api/users/projects/create-project');
       }
     }
 }
