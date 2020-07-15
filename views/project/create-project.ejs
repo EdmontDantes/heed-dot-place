@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<%- include('../partials/head.ejs') %> 
+<link href="/css/loginAndRegisterCustom.css" rel="stylesheet">
+<!-- font awesome css -->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+    <title>Edit Profile Heed.place</title>
+  </head>
+
+  <body>
+<%- include ('../partials/navbar.ejs') %>
+<main role="main" class="col-md-9 mx-sm-auto col-lg-10">
+  <section>
+    <div class="container-fluid">
+<div class="text-center card-body">
+  <div class=”row”>
+    <div class=”col-6 align-self-center”>
+      <div class=”card card-block”>
+<%- include('../partials/flashMessagesAndErrors.ejs') %>
+        <form class="form-signin" role="form" method="POST" action="/api/users/projects/create-project">
+          <h1 class="h3 mb-3 font-weight-normal">Create you project to make tasks and record pomodoro timers</h1>
+          <label for="inputProjectName" class="sr-only">Name of Your project</label>
+          <br />
+          <input type="text" id="inputProjectName" name="projectName" class="form-control" placeholder="Name of Your project">
+          <br />
+          <label for="inputProjectIcon" class="sr-only">Choose Project Icon</label>
+          <div class="card-body">
+            <i class="fa fa-university" aria-hidden="true">&nbsp;university</i>&nbsp;&nbsp;
+            <i class="fa fa-hourglass-start" aria-hidden="true">&nbsp;hourglass-start</i>&nbsp;&nbsp;
+            <i class="fa fa-trophy" aria-hidden="true">&nbsp;trophy</i>&nbsp;&nbsp;
+            <i class="fa fa-deaf" aria-hidden="true">&nbsp;deaf</i>&nbsp;&nbsp;
+            <i class="fa fa-heartbeat" aria-hidden="true">&nbsp;heartbeat</i>&nbsp;&nbsp;
+            <i class="fa fa-file-excel-o" aria-hidden="true">&nbsp;file-excel-o</i>&nbsp;&nbsp;
+            <i class="fa fa-magic" aria-hidden="true">&nbsp;magic</i>&nbsp;&nbsp;
+            <i class="fa fa-object-group" aria-hidden="true">&nbsp;object-group</i>&nbsp;&nbsp;
+            <i class="fa fa-paint-brush" aria-hidden="true">&nbsp;paint-brush</i>&nbsp;&nbsp;
+            <i class="fa fa-random" aria-hidden="true">&nbsp;random</i>&nbsp;&nbsp;
+            <i class="fa fa-search-plus" aria-hidden="true">&nbsp;search-plus</i>&nbsp;&nbsp;
+            <i class="fa fa-signal" aria-hidden="true">&nbsp;signal</i>&nbsp;&nbsp;
+            <i class="fa fa-tachometer" aria-hidden="true">&nbsp;tachometer</i>&nbsp;&nbsp;
+            <i class="fa fa-user-secret" aria-hidden="true">&nbsp;user-secret</i>&nbsp;&nbsp;
+            <i class="fa fa-wrench" aria-hidden="true">&nbsp;wrench</i>&nbsp;&nbsp;
+            <i class="fa fa-handshake-o" aria-hidden="true">&nbsp;handshake-o</i>&nbsp;&nbsp;
+            <i class="fa fa-gamepad" aria-hidden="true">&nbsp;gamepad</i>&nbsp;&nbsp;
+            <i class="fa fa-fire" aria-hidden="true">&nbsp;fire</i>&nbsp;&nbsp;
+            <i class="fa fa-eye" aria-hidden="true">&nbsp;eye</i>&nbsp;&nbsp;
+            <i class="fa fa-exclamation-circle" aria-hidden="true">&nbsp;exclamation-circle</i>&nbsp;&nbsp;
+            <i class="fa fa-coffee" aria-hidden="true">&nbsp;coffee</i>&nbsp;&nbsp;
+            <i class="fa fa-cogs" aria-hidden="true">&nbsp;cogs</i>&nbsp;&nbsp;
+            <br />
+          </div>
+          <input type="text" id="inputProjectIcon" name="projectIcon" class="form-control" placeholder="name of icon to display">
+          <br />
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
+        </form>
+      </div>
+      </div> 
+      </div>
+      </div>
+      </div>
+      </section> 
+    </main>
+      <%- include ('../partials/footer.ejs') %>
+</body>
+</html>

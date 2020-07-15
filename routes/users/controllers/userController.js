@@ -19,7 +19,8 @@ module.exports = {
       await req.flash('messages', 'You have successfully registered please login using your credentials')
       await res.redirect('/api/users/login');
     } catch (error) {
-      return res.status(500).json({ message: 'failed', error });
+      req.flash('errors', 'We are sorry we couldn\'t register you at this moment please contact developer if error persists')
+      return res.redirect(301, '/api/users/register');
     }
   },
   updateProfile: async (req, res) => {

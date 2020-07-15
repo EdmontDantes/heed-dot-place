@@ -3,7 +3,7 @@ const moment = require('moment');
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new mongoose.Schema({
-  projectName: { type: String, required: true, default: 'Default'},
+  projectName: { type: String, required: true, unique: true},
   projectIcon: { type: String },
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   tasks: [{
