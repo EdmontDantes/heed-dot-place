@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createProject, oneProjectByName } = require('./controllers/projectController');
+const { createProject, editOneProjectByNameGET, editOneProjectByNamePUT } = require('./controllers/projectController');
 const { isThereAuth } = require('../utils/isThereAuth');
 
 router.get('/create-project', isThereAuth, (req, res) => {
@@ -13,7 +13,6 @@ router.get('/all-projects', isThereAuth, (req, res) => {
   return res.render('project/project-home')
 });
 
-router.get('/one-project/:name', isThereAuth, oneProjectByName)
-
-
+router.get('/edit-project/:name', isThereAuth, editOneProjectByNameGET)
+router.put('/edit-project/:name', isThereAuth, editOneProjectByNamePUT)
 module.exports = router

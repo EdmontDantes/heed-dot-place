@@ -14,6 +14,9 @@
 
         <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
           <%- include('../partials/flashMessagesAndErrors.ejs') %>
+          
+          <div class="container">
+            
           <div class="card-deck">
             <% for( let t = 0; t < projects.length; t++ ) { %>
               <div class="card">
@@ -30,12 +33,13 @@
                   </p>
                 </div>
                 <div class="card-footer">
-                  <a href="#" class="btn btn-primary">Edit Project</a>
+                  <a href="/api/users/projects/edit-project/<%= projects[t].projectName %>" class="btn btn-primary">Edit Project</a>
                   <a href="#" class="btn btn-info">Add Task</a>
                 </div>
               </div>
             <% } %>
           </div>
+        </div>
         </main>
       </div>
     </div>
