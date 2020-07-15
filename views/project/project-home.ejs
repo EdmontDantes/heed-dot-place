@@ -1,0 +1,45 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+<%- include('../partials/head.ejs') %> 
+<!-- <script src="/js/timerJSDOM.js"></script> -->
+<!-- font awesome css -->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+    <title>Project Home Heed.place home</title>
+    
+  </head>
+  <body>
+    <%- include ('../partials/navbar.ejs') %>
+
+        <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
+          <%- include('../partials/flashMessagesAndErrors.ejs') %>
+          <div class="card-deck">
+            <% for( let t = 0; t < projects.length; t++ ) { %>
+              <div class="card">
+                <div class="d-flex justify-content-around"><i class="fa fa-<%= projects[t].projectIcon %> fa-5x" aria-hidden="true"></i></div>
+                
+                <div class="card-body">
+                  <h5 class="card-title"><%= projects[t].projectName %></h5>
+                  <p class="card-text">
+                    <% for( let q = 0; q < projects[t].tasks; q++ ) { %>
+                      <i class="fa fa-calendar" aria-hidden="true">&nbsp;
+                        <a style="color: cornflowerblue; text-decoration: none;" href="#"><%= projects[t].tasks[q] %></a>
+                      </i>
+                    <% } %>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary">Edit Project</a>
+                  <a href="#" class="btn btn-info">Add Task</a>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </main>
+      </div>
+    </div>
+    <%- include ('../partials/footer.ejs') %>
+    <script src="/js/timerJSDOM.js"></script>
+  </body>
+</html>

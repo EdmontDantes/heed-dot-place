@@ -36,5 +36,11 @@ module.exports = {
         req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
         res.redirect(301, '/api/users/projects/create-project');
       }
+    },
+    oneProjectByName: (req, res) => {
+      Project.findOne({ projectName: req.param.projectName }).then((foundProject) => {
+        console.log(foundProject);
+        return res.render('project/one-project-home', {project: foundProject});
+      });
     }
 }
