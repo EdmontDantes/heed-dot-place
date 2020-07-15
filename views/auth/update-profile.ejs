@@ -9,6 +9,8 @@
   <body>
 <%- include ('../partials/navbar.ejs') %>
 <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
+  <section>
+    <div class="container-fluid">
 <div class="text-center card-body">
   <div class=”row”>
     <div class=”col-6 align-self-center”>
@@ -43,33 +45,28 @@
           <h1 class="h3 mb-3 font-weight-normal">Please Edit Your Information Below</h1>
           <label for="inputEmail" class="sr-only">Email address</label>
           <br />
-          <input type="text" id="inputName" name="text" class="form-control" placeholder="Change name here">
+          <input type="text" id="inputName" name="name" class="form-control" placeholder="<%= user.profile.name %>">
           <br />
           <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Change Email address here">
+          <input type="email" id="inputEmail" name="email" class="form-control" placeholder="<%= user.email %>">
           <br />
           <label for="InputAboutMe" class="sr-only">About Me:</label>
-          <textarea type="text" id="InputAboutMe" name="aboutme" class="form-control" placeholder="Change About Me here" rows="6"></textarea>
+          <textarea type="text" id="InputAboutMe" name="aboutme" class="form-control" placeholder="<%= user.profile.about %>" rows="6"></textarea>
           <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile Data</button>
           <div class="checkbox mb-3">
             <!-- <label>
               <input type="checkbox" value="remember-me"> Remember me
             </label> -->
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile Data</button>
           <!-- <p class="mt-5 mb-3 text-muted"><a href="https://github.com/EdmontDantes/heed-dot-place" class="text-dark">github  </a><p>&copy; 2020 <span class="text-success"> Bogdan Kowaltchook</span></p></p> -->
         </form>
       </div>
       </div> 
       </div>
-      </div> 
+      </div>
+      </div>
+      </section> 
     </main>
       <%- include ('../partials/footer.ejs') %>
 </body>

@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const User = require('./models/User');
 const passport = require('passport');
+const { register, updateProfile, updatePassword } = require('./controllers/userController');
 const { registerValidation, registerVerify } = require('./utils/registerValidation');
 const { loginValidation, loginVerify } = require('./utils/loginValidation');
-const isThereAuth = require('./utils/isThereAuth');
+const { isThereAuth } = require('./utils/isThereAuth');
 
 router.get('/', (req, res) => {
   return res.redirect('/');
@@ -37,42 +38,20 @@ router.get('/register', (req, res) => {
   return res.render('auth/register');
 });
 
-router.post('/register', registerValidation, registerVerify, async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    let user = await User.findOne( { email });
+router.post('/register', registerValidation, registerVerify, register);
 
-    if(user) {
-      req.flash('errors', 'User Already Exists');
-      return res.redirect('/api/users/register');
-    }
 
-    user = await new User({  profile: { name }, email, password });
-
-    await user.save();
-    await req.flash('messages', 'You have successfully registered please login using your credentials')
-    await res.redirect('/api/users/login');
-  } catch (error) {
-    return res.status(500).json({ message: 'failed', error });
-  }
+router.get('/profile', isThereAuth, (req, res) => {
+  return res.render('auth/profile');
 });
 
-
-router.get('/profile', (req, res) => {
-  if (req.isAuthenticated()) {
-    return res.render('auth/profile');
-  } else {
-    return res.render('auth/unAuthorizedPage');
-  }
+router.get('/update-profile', isThereAuth, (req, res) => {
+  return res.render('auth/update-profile');
 });
 
-router.get('/update-profile', (req, res) => {
-  if(req.isAuthenticated()) {
-    return res.render('auth/update-profile');
-  } else {
-    return res.render('auth/unAuthorizedPage');
-  }
-})
+router.put('/update-profile', isThereAuth, updateProfile);
+
+
 
 router.get('/logout',(req,res)=>{
   req.logout();
