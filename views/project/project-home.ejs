@@ -16,10 +16,10 @@
           <%- include('../partials/flashMessagesAndErrors.ejs') %>
           
           <div class="container">
-            
-          <div class="card-deck">
-            <% for( let t = 0; t < projects.length; t++ ) { %>
-              <div class="card">
+            <div class="row">
+              <% for( let t = 0; t < projects.length; t++ ) { %>
+                <div class="col-md-4" style="margin-bottom: 30px;">
+              <div class="card" style="border-radius: 0;">
                 <div class="d-flex justify-content-around"><i class="fa fa-<%= projects[t].projectIcon %> fa-5x" aria-hidden="true"></i></div>
                 
                 <div class="card-body">
@@ -32,14 +32,15 @@
                     <% } %>
                   </p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-around">
                   <a href="/api/users/projects/edit-project/<%= projects[t].projectName %>" class="btn btn-primary">Edit Project</a>
-                  <a href="#" class="btn btn-info">Add Task</a>
+                  <a href="/api/users/projects/tasks/create-task/<%= projects[t].projectName %>" class="btn btn-info">Add Task</a>
                 </div>
               </div>
+            </div>
             <% } %>
-          </div>
         </div>
+      </div>
         </main>
       </div>
     </div>

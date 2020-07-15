@@ -20,9 +20,7 @@ require('dotenv').config();
 // declare fallback port or use env port first
 const port = process.env.PORT || 3000;
 
-//get all Projects by bringing Project Model and utils middleware
-const Project = require('./routes/projects/models/Project'); // this one is extra line that is just in case if our middleware fails to look model in it from itself
-const { getAllProjects } = require('./routes/projects/utils/getAllProjects');
+
 
 // connect to mongoDB via mongoose
 mongoose
@@ -40,7 +38,7 @@ mongoose
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users/userRoutes');
 const usersProjectsRouter = require('./routes/projects/projectRoutes');
-const usersTasksRouter = require('./routes/tasks/taskRoutes');
+const usersTasksRouter = require('./routes/tasksPomodoro/taskRoutes');
 
 
 
@@ -71,8 +69,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use method-override package to modify use of http verbs in html forms
 app.use(methodOverride('_method'));
 
-// use getAllProjects utils middleware declared above
-app.use(getAllProjects);
 
 // use session setup here
 app.use(
@@ -112,7 +108,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/users/projects', usersProjectsRouter);
-app.use('api/users/projects/tasks', usersTasksRouter);
+app.use('/api/users/projects/tasks', usersTasksRouter);
 
 // app.use((req, res, next) => {
 //   if(req.accepts('html')) {

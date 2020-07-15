@@ -1,26 +1,38 @@
 const Project = require('../models/Project');
-const User = require('../../users/models/User')
+const User = require('../../users/models/User');
 module.exports = {
     createProject: async (req, res) => {
       try {
         const { projectName, projectIcon } = req.body;
-        let comparingProjectName = await Project.findOne({ projectName: projectName });
-        if(comparingProjectName) {
-          req.flash('errors', 'Project name provided already exists please use another name');
-          return res.redirect(301, 'project/create-project');
-        }
+        console.log(projectName, projectIcon)
+        //commented code is legacy code when projectName designed to be unique left for later, not needed anymore
+            // let comparingProjectNameCreate = await Project.findOne({ projectName: projectName });
+            // // console.log('1', comparingProjectNameCreate);
+            // if(comparingProjectNameCreate) {
+            //   req.flash('errors', 'Project name provided already exists please use another name');
+            //   return res.redirect(301, '/api/users/projects/create-project');
+            // }
+          if (!projectName) {
+            req.flash('errors', 'Please provide project name this field is required');
+            return res.redirect(301, '/api/users/projects/create-project');
+          }
         let currUser = await User.findOne({ _id: req.user._id});
+        console.log('2', currUser);
         if(currUser) {
+          if(!projectName && !projectIcon) {
+            req.flash('errors', 'Your Project has not been created because you didn\'t provide any input please try again');
+            res.redirect(301, '/api/users/projects/create-project');
+          }
           let newProject = await new Project();
-  
+
           if(projectName) newProject.projectName = projectName;
           if(projectIcon) newProject.projectIcon = projectIcon;
           newProject.owner = currUser._id;
 
           await newProject.save().then((createdProject) => {
-            console.log(createdProject);
+            // console.log(createdProject);
             req.flash('messages', 'You have successfully created your project')
-            return res.redirect(301, '/') // this needs to change once task creation is introduced
+            return res.redirect(301, '/api/users/projects/all-projects') 
           }).catch((error) => {
             req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
             res.redirect(301, '/api/users/projects/create-project');
@@ -33,10 +45,26 @@ module.exports = {
 
 
       } catch (error) {
-        req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+        req.flash('errors', 'Catch ERrror We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
         res.redirect(301, '/api/users/projects/create-project');
       }
     },
+
+    allProjects: async (req, res) => {
+      
+      let currUser = await User.findOne({ _id: req.user._id});
+      if(currUser) {
+        await Project.find({ owner: currUser._id }, function(err, projects) {
+          if (err) {
+            req.flash('errors', 'We can\'t find your Projects in our database some error occurred contact developer')
+            return res.redirect(301, '/');
+          } else {
+            return res.render('project/project-home', { projects: projects });
+          }
+        });
+      }
+    },
+
     editOneProjectByNameGET: (req, res) => {
       Project.findOne({ projectName: req.params.name }).then((foundProject) => {
         // console.log(foundProject);
@@ -47,18 +75,20 @@ module.exports = {
         res.redirect(301, '/');
       });
     },
+
     editOneProjectByNamePUT: async (req, res) => {
       try {
         const { projectName, projectIcon } = req.body;
-        console.log('0', req.body);
-        console.log('1', projectName, projectIcon);
-        let comparingProjectName = await Project.findOne({ projectName: projectName });
-        console.log('2', comparingProjectName);
-        if(comparingProjectName && (comparingProjectName.projectName === projectName)) {
-          req.flash('errors', 'Project name provided already exists please use another name');
-          return res.redirect(301, `/api/users/projects/edit-project/${req.params.name}`);
-        } else {
-          console.log('2.a')
+        //commented code is legacy code when projectName designed to be unique left for later, not needed anymore
+        // console.log('0', req.body);
+        // console.log('1', projectName, projectIcon);
+        // let comparingProjectName = await Project.findOne({ projectName: projectName });
+        // console.log('2', comparingProjectName);
+        // if(comparingProjectName && (comparingProjectName.projectName === projectName)) {
+        //   req.flash('errors', 'Project name provided already exists please use another name');
+        //   return res.redirect(301, `/api/users/projects/edit-project/${req.params.name}`);
+        // } else { }
+        // console.log('2.a')
           let currUser = await User.findOne({ _id: req.user._id});
           console.log('3', currUser);
           if(currUser) {
@@ -88,8 +118,9 @@ module.exports = {
 
 
 
-        }
-      // return res.redirect('/');
+        
+      req.flash('errors', 'Nothing edited please contact developer')
+      return res.redirect('/');
 
     } catch (error) {
       // console.log('try catch error from async EditOnePRoject:', error)
