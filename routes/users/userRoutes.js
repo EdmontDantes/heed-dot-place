@@ -4,7 +4,7 @@ const passport = require('passport');
 const { register, updateProfile, updatePassword } = require('./controllers/userController');
 const { registerValidation, registerVerify } = require('./utils/registerValidation');
 const { loginValidation, loginVerify } = require('./utils/loginValidation');
-const { isThereAuth } = require('./utils/isThereAuth');
+const { isThereAuth } = require('../utils/isThereAuth');
 
 router.get('/', (req, res) => {
   return res.redirect('/');
@@ -51,7 +51,7 @@ router.get('/update-profile', isThereAuth, (req, res) => {
 
 router.put('/update-profile', isThereAuth, updateProfile);
 
-
+router.put('/update-password', isThereAuth, updatePassword);
 
 router.get('/logout',(req,res)=>{
   req.logout();

@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+
 
 module.exports = {
   register: async (req, res) => {
@@ -54,5 +56,53 @@ module.exports = {
       return res.redirect(301, '/api/users/update-profile');
       // return res.status(500).json({ message: 'failed', error });
     }
+    },
+
+  updatePassword: async (req, res) => {
+
+    try {
+
+      const { currPassword, newPassword, verifyNewPassword } = req.body;
+      await User.findOne({ _id: req.user._id }).then((userToUpdatePW) => {
+        if( !currPassword || !newPassword || !verifyNewPassword) {
+          req.flash('errors', 'If you want to update your Password Plese provide your current password and input twice the new one');
+          return res.redirect(301, '/api/users/update-profile');
+        } else if (newPassword !== verifyNewPassword) {
+          req.flash('errors', 'Your new password doesn\'t match with second verification repeat one');
+          return res.redirect(301, '/api/users/update-profile');
+        } else {
+          bcrypt
+            .compare(currPassword, userToUpdatePW.password)
+            .then((match) => {
+              if (!match) {
+                req.flash('errors', 'You have inputted incorrect current password please try again');
+                return res.redirect(301, '/api/users/update-profile');
+              } else {
+                userToUpdatePW.password = newPassword;
+                userToUpdatePW.save()
+                              .then((userWUpdatedPW) => {
+                                req.flash('messages', 'You have successfully updated your password please keep it safe');
+                                return res.redirect(301, '/api/users/update-profile');
+                              })
+                              .catch((error) => {
+                                console.log('this is save error', error)
+                                req.flash('errors', 'Oh no something is wrong on our please contact the developer');
+                                return res.redirect(301, '/api/users/update-profile');
+                              });
+              }
+            })
+            .catch((error) => {
+              console.log('this is bcrypt catch error:', error)
+              req.flash('errors', 'Oh no something is wrong on our end, we can\'t update your password at the moment, please contact the developer');
+              return res.redirect(301, '/api/users/update-profile');
+            });
+        }
+      })
+    } catch (error) {
+      console.log('try catch error:', error)
+      req.flash('errors', 'Oh no something is wrong on our end, we can\'t update your password at the moment, please contact the developer');
+      return res.redirect(301, '/api/users/update-profile');
     }
+  }
+  
 }

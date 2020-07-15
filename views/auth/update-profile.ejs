@@ -15,32 +15,7 @@
   <div class=”row”>
     <div class=”col-6 align-self-center”>
       <div class=”card card-block”>
-        <% if (messages.length) { %>
-          <div class="alert alert-success alert-dismissable">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert"
-              alert-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <%= messages %> 
-          </div>
-          <% } %>
-          <% if (errors.length) { %>
-            <div class="alert alert-danger alert-dismissable">
-              <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                alert-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <%= errors %> 
-            </div>
-            <% } %>
+<%- include('../partials/flashMessagesAndErrors.ejs') %>
         <form class="form-signin" role="form" method="POST" action="/api/users/update-profile?_method=PUT">
           <h1 class="h3 mb-3 font-weight-normal">Please Edit Your Information Below</h1>
           <label for="inputEmail" class="sr-only">Email address</label>
@@ -54,12 +29,20 @@
           <textarea type="text" id="InputAboutMe" name="aboutme" class="form-control" placeholder="<%= user.profile.about %>" rows="6"></textarea>
           <br />
           <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile Data</button>
-          <div class="checkbox mb-3">
-            <!-- <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label> -->
-          </div>
-          <!-- <p class="mt-5 mb-3 text-muted"><a href="https://github.com/EdmontDantes/heed-dot-place" class="text-dark">github  </a><p>&copy; 2020 <span class="text-success"> Bogdan Kowaltchook</span></p></p> -->
+        </form>
+        <form class="form-signin" role="form" method="POST" action="/api/users/update-password?_method=PUT">
+          <h1 class="h3 mb-3 font-weight-normal">Please Edit Your Information Below</h1>
+          <label for="inputCurrPassword" class="sr-only">Current Password</label>
+          <br />
+          <input type="password" id="inputCurrPassword" name="currPassword" class="form-control" placeholder="Current Password">
+          <br />
+          <label for="inputNewPassword" class="sr-only">New Password</label>
+          <input type="password" id="inputNewPassword" name="newPassword" class="form-control" placeholder="New Password">
+          <br />
+          <label for="InputVerifyNewPassword" class="sr-only">Verify New Password</label>
+          <input type="password" id="InputVerifyNewPassword" name="verifyNewPassword" class="form-control" placeholder="Verify New Password"></input>
+          <br />
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile Password</button>
         </form>
       </div>
       </div> 

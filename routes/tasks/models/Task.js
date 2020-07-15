@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
+const Schema = mongoose.Schema;
 
 const TaskSchema = new mongoose.Schema({
   TaskName: { type: String, required: true, default: 'Pomodoro Rocks'},
@@ -12,6 +13,7 @@ const TaskSchema = new mongoose.Schema({
     pomodorosDone: { type: Number, default: 0},
     pomodoroShortBreakDone: { type: Number, default: 0},
     pomodooroLongBreakDone: { Type: Number, default: 0},
+    notes: { type: String, default: ''},
     timestamp: {
       type: String,
       default: () => moment().format('MMMM Do YYYY, h:mm:ss a'),
@@ -24,4 +26,4 @@ const TaskSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Task', UserSchema);
+module.exports = mongoose.model('Task', TaskSchema);

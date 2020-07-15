@@ -1,5 +1,14 @@
 body { padding-top: 70px; }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
 
 button[data-setter] {
@@ -105,15 +114,6 @@ button[data-setter]:hover {
 /* Sticky footer styles
 -------------------------------------------------- */
 
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 75px; /* Set the fixed height of the footer here */
-  line-height: 15px; 
-  background-color: #f5f5f5;
-}
 
 
 /* Custom page CSS

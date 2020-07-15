@@ -105,6 +105,13 @@ app.use('/api/users', usersRouter);
 app.use('/api/users/projects', usersProjectsRouter);
 app.use('api/users/projects/tasks', usersTasksRouter);
 
+app.use((req, res, next) => {
+  if(req.accepts('html')) {
+    return res.render('main/404page')
+  }
+  next()
+});
+
 // log out the listening port on which app is running
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
