@@ -53,37 +53,18 @@ module.exports = {
     },
 
     allProjects: async (req, res) => {
-      try {
-              let currUser = await User.findOne({ _id: req.user._id});
-              if(currUser) {
-                  await Project.find({ owner: currUser._id }).populate('tasks.task').exec((err, results) => {
-                    if (err) {
-                      // console.log('AAA',err);
-                    } else {
-                      // console.log(results[0].tasks)
-                      // return res.json({results});
-                      return res.render('project/project-home', { projects: results });
-
-                    }
-
-                  })
-              }
-
-      } catch (error) {
-        req.flash('errors', ' We couldn\'t Get your Projects Something is wrong on our end please contact developer or try again');
-        res.redirect(301, '/');
+      
+      let currUser = await User.findOne({ _id: req.user._id});
+      if(currUser) {
+        await Project.find({ owner: currUser._id }, function(err, projects) {
+          if (err) {
+            req.flash('errors', 'We can\'t find your Projects in our database some error occurred contact developer')
+            return res.redirect(301, '/');
+          } else {
+            return res.render('project/project-home', { projects: projects });
+          }
+        });
       }
-      // let currUser = await User.findOne({ _id: req.user._id});
-      // if(currUser) {
-      //   await Project.find({ owner: currUser._id }, function(err, projects) {
-      //     if (err) {
-      //       req.flash('errors', 'We can\'t find your Projects in our database some error occurred contact developer')
-      //       return res.redirect(301, '/');
-      //     } else {
-      //       return res.render('project/project-home', { projects: projects });
-      //     }
-      //   });
-      // }
     },
     // allProjects: async (req, res) => {
     //   try {

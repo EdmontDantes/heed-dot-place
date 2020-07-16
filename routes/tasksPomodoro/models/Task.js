@@ -9,17 +9,10 @@ const TaskSchema = new mongoose.Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   taskProjectBelongsTo: { type: Schema.Types.ObjectId, ref: 'Project' },
   image: { type: String, default: ''},
-  pomodoro: [{ 
-    id: { type: String, default: uuidv4()},
-    pomodorosDone: { type: Number, default: 0},
-    pomodoroShortBreakDone: { type: Number, default: 0},
-    pomodooroLongBreakDone: { Type: Number, default: 0},
-    notes: { type: String, default: ''},
-    timestamp: {
-      type: String,
-      default: () => moment().format('MMMM Do YYYY, h:mm:ss a'),
-    }
-  }],
+  pomodorosDone: { type: Number, default: 0},
+  pomodoroShortBreakDone: { type: Number, default: 0},
+  pomodooroLongBreakDone: { Type: Number, default: 0},
+  notes: { type: String, default: ''},
   project: { type: Schema.Types.ObjectId, ref: 'Project'},
   timestamp: {
     type: String,

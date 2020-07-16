@@ -29,19 +29,22 @@ module.exports = {
         newTask.taskProjectBelongsTo = currProject._id;
   
         await newTask.save().then((savedTask) => {
+          
           currProject.tasks.push({ task: savedTask._id});
+          
           currProject.save().then((savedProject) => {
-            console.log('0', savedProject)
           }).catch((err) => console.log(err));
+            // console.log('0', savedProject)
           // console.log('1', currProject.tasks);
           // console.log('2', savedTask)
           return savedTask;
 
         }).then((savedTask) => {
+          // console.log(savedTask)
           req.flash('messages', 'Your Task has been created successfully, we have redirected you to the task timer page, to find this task again use all projects then pick your Project and click on the task name you want to do');
           // return res.render('task/task-home', { projects: currProject, savedTask: savedTask }); 
           // return res.json({ confirmation: 'Success'})
-          res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.project}`);
+          res.redirect(301, `/api/users/projects/tasks/task-home/${savedTask._id}`);
         }).catch((error) => {
             req.flash('errors', 'We cannot save your provided Task at this moment please contact developer');
             res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.project}`);
@@ -54,5 +57,18 @@ module.exports = {
     }
     
     
+  },
+
+  taskHomeGet: (req, res) => {
+    Task.findOne({ _id: req.params.TaskId }).then((foundTask) => {
+      console.log(foundTask);
+      return res.render('task/task-home', { foundTaskToView: foundTask });
+    }).catch((error) => {
+      console.log('Task Home Catch:',error);
+      req.flash('errors', 'We cannot get to Task Timer page at this moment please contact developer');
+      res.redirect(301, '/');
+    });
+    // let taskParamName = req.params.TaskId;
+    // return res.render('task/task-home', {taskParamName: taskParamName});
   }
 }

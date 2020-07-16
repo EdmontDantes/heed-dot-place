@@ -7,6 +7,7 @@ const ProjectSchema = new mongoose.Schema({
   projectIcon: { type: String },
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   tasks: [{
+    _id: false,
     task: { type: Schema.Types.ObjectId, ref: 'Task'}
   }],
   timestamp: {

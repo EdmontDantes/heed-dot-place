@@ -26,10 +26,17 @@
                   <h5 class="card-title"><%= projects[t].projectName %></h5>
                   <p class="card-text">
                     <% for( let q = 0; q < projects[t].tasks.length; q++ ) { %>
+                      <div class="row"><span >
+                        
+                        <a style="color: cornflowerblue; text-decoration: none;" href="/api/users/projects/tasks/task-home/<%= projects[t].tasks[q].task._id %>"><i class="fa fa-tasks" aria-hidden="true">&nbsp;</i><%= projects[t].tasks[q].task.taskName %></a>
+                          
+                          
+                          <span style="font-size:1.2em;color:rgb(117, 10, 10);padding-right:10px;"><%= projects[t].tasks[q].task.pomodorosDone %></span>
+                        
+                </span></div>
                       
-                      <i class="fa fa-tasks" aria-hidden="true">&nbsp;<a style="color: cornflowerblue; text-decoration: none;" href="#"><%= projects[t].tasks[q] %></a></i>
 
-                      </i>
+                    
                     <% } %>
                   </p>
                 </div>
