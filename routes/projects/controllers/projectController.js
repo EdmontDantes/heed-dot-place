@@ -1,5 +1,7 @@
+
 const Project = require('../models/Project');
 const User = require('../../users/models/User');
+const Task = require('../../tasksPomodoro/models/Task');
 module.exports = {
     createProject: async (req, res) => {
       try {
@@ -45,7 +47,7 @@ module.exports = {
 
 
       } catch (error) {
-        req.flash('errors', 'Catch ERrror We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+        req.flash('errors', ' We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
         res.redirect(301, '/api/users/projects/create-project');
       }
     },
@@ -64,6 +66,79 @@ module.exports = {
         });
       }
     },
+    // allProjects: async (req, res) => {
+    //   try {
+
+    //     let currUser = await User.findOne({ _id: req.user._id});
+    //     if(currUser) {
+    //       await Project.find({ owner: currUser._id }).populate('tasks').exec((err, tasksPopulated) => {
+    //         if (err) {
+    //           req.flash('errors', 'Populate We can\'t find your Projects in our database some error occurred contact developer')
+    //           // return res.redirect(301, '/');
+    //           return res.send('failed')
+    //         } else {
+    //           console.log(tasksPopulated);
+    //           // return res.json({ tasksPopulated: tasksPopulated });
+    //           return res.render('project/project-home', { projects: tasksPopulated });
+    //         }
+    //       })
+        // function(err, projects) {
+        //     if (err) {
+        //       req.flash('errors', 'We can\'t find your Projects in our database some error occurred contact developer')
+        //       return res.redirect(301, '/');
+        //     } else {
+        //       // console.log(projects);
+        //       // let foundAllProjectsIds = [];
+
+        //       // projects.forEach((element) => {
+        //       //   foundAllProjectsIds.push(element._id)
+        //       // });
+        //       // console.log(foundAllProjectsIds);
+        //       // for (let i = 0; i < foundAllProjectsIds.length; i++) {
+                
+        //       // }
+        //       // let populatedArrayFromProjectIds = [];
+        //       // for(const id of foundAllProjectsIds) {
+        //       //   Task.findOne({ taskProjectBelongsTo: id }).then((foundTask) => {
+        //       //     console.log(foundTask)
+        //       //     populatedArrayFromProjectIds.push({ foundTask });
+        //       //   }).catch(err => console.log(err));
+        //       // }
+        //       // console.log(populatedArrayFromProjectIds);
+        //       // console.log(populatedArrayFromProjectIds);
+
+        //       // console.log(projects)
+        //       // Task.find({ owner: projects._id }, function(err, tasksToFindOwner) {
+        //       //   if (err) {
+        //       //     req.flash('errors', 'Populate We can\'t find your Projects in our database some error occurred contact developer')
+        //       //     return res.redirect(301, '/');
+        //       //   } else {
+        //       //     console.log(tasksToFindOwner);
+        //       //   }
+                
+        //       // }).populate('Task').exec((err, populatedTasks) => {
+        //       //   if (err) {
+        //       //     req.flash('errors', 'Populate We can\'t find your Projects in our database some error occurred contact developer')
+        //       //     return res.redirect(301, '/');
+        //       //   } else {
+        //       //     console.log(tasksToFindOwner);
+        //           // console.log(populatedTasks);
+  
+                  // return res.render('project/project-home', { projects: projects });
+        //         }
+                
+        //       });
+        //       req.flash('errors', ' We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+        //       res.redirect(301, '/');
+
+        // }
+      
+  //     }
+  //   } catch (error) {
+  //     req.flash('errors', ' We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+  //           res.redirect(301, '/');
+  //   }
+  // },
 
     editOneProjectByNameGET: (req, res) => {
       Project.findOne({ projectName: req.params.name }).then((foundProject) => {

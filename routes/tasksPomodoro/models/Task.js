@@ -4,9 +4,10 @@ const { v4: uuidv4 } = require('uuid');
 const Schema = mongoose.Schema;
 
 const TaskSchema = new mongoose.Schema({
-  TaskName: { type: String, required: true, default: 'Pomodoro Rocks'},
-  description: { type: String, default: ''},
+  taskName: { type: String, required: true, default: 'Pomodoro Rocks'},
+  taskDescription: { type: String, default: ''},
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
+  taskProjectBelongsTo: { type: Schema.Types.ObjectId, ref: 'Project' },
   image: { type: String, default: ''},
   pomodoro: [{ 
     id: { type: String, default: uuidv4()},
