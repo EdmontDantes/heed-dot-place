@@ -194,8 +194,8 @@ module.exports = {
 
 
         
-      req.flash('errors', 'Nothing edited please contact developer')
-      return res.redirect('/');
+      // req.flash('errors', 'Nothing edited please contact developer')
+      // return res.redirect('/');
 
     } catch (error) {
       // console.log('try catch error from async EditOnePRoject:', error)

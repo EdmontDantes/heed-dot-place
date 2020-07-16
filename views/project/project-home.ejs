@@ -25,12 +25,12 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= projects[t].projectName %></h5>
                   <p class="card-text">
-                    <%# for( let q = 0; q < projects[t].tasks.length; q++ ) { %>
+                    <% for( let q = 0; q < projects[t].tasks.length; q++ ) { %>
                       
-                      <!-- <i class="fa fa-tasks" aria-hidden="true">&nbsp;<a style="color: cornflowerblue; text-decoration: none;" href="#"><%# projects[t].tasks[q] %></a></i>
+                      <i class="fa fa-tasks" aria-hidden="true">&nbsp;<a style="color: cornflowerblue; text-decoration: none;" href="#"><%= projects[t].tasks[q] %></a></i>
 
-                      </i> -->
-                    <%# } %>
+                      </i>
+                    <% } %>
                   </p>
                 </div>
                 <div class="card-footer d-flex justify-content-around">
