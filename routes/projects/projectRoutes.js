@@ -11,6 +11,7 @@ router.post('/create-project', isThereAuth, createProject);
 
 router.get('/all-projects', isThereAuth, allProjects);
 
-router.get('/edit-project/:name', isThereAuth, editOneProjectByNameGET)
-router.put('/edit-project/:name', isThereAuth, editOneProjectByNamePUT)
+router.get('/edit-project/:name', isThereAuth, editOneProjectByNameGET);
+router.put('/edit-project/:name', isThereAuth, editOneProjectByNamePUT);
+
 module.exports = router
