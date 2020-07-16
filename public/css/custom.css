@@ -9,6 +9,14 @@ body {
   flex-direction: column;
 }
 
+
+/* card styles */
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
 
 /* Pomodoro Styles */

@@ -8,23 +8,24 @@
       <div class="collapse navbar-collapse" id="navbarsTogglerMobile">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link btn-secondary" style="text-align: center; color:azure" href="/">Home</a>
           </li>
           <% if (user) { %>
-            <li class="nav-item dropdown">
+          
               <!-- <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a> -->
               
-            
-                <button type="button" class="btn btn-secondary"> <a style="color: lightgreen; text-decoration: none; text-transform: uppercase;" href="/api/users/projects/all-projects">All Projects</a></button>
+              <li class="nav-item">
+              
+                <a class="nav-link btn-success" style="text-align: center; color:azure" href="/api/users/projects/all-projects">All Projects</a>
+              </li>
             
               
-            </li>
+            
             <li class="nav-item">
-              <a class="nav-link" href="/api/users/projects/create-project">Create Project</a>
+              <a class="nav-link btn-secondary" style="text-align: center; color:azure" href="/api/users/projects/create-project">Create Project</a>
             </li>
           <% } %>
         </ul>
-      </div>
         <ul class="navbar-nav px-3">
           <% if (!user) { %>
             <li class="nav-item text-nowrap">
@@ -33,15 +34,16 @@
             <li class="nav-item text-nowrap">
               <a class="nav-link" href="/api/users/login">Login</a>
             </li>
-          <% }  else  { %>
+            <% }  else  { %>
             <li class="nav-item">
-              <a class="nav-link btn-success" href="/api/users/profile"><%= user.profile.name %></a>
+              <a class="nav-link btn-info" style="text-align: center; color:azure" href="/api/users/profile"><%= user.profile.name %></a>
             </li>
             <li class="nav-item text-nowrap">
               <a class="nav-link" href="/api/users/logout">Log out</a>
             </li>
-
-          <% } %>
-        </ul>
-      </div>
+            
+            <% } %>
+          </ul>
+          
+        </div>
     </nav>

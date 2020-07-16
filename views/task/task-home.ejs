@@ -12,26 +12,30 @@
   <body>
     <%- include ('../partials/navbar.ejs') %>
 
-        <main role="main" class="col-md-9 mx-sm-auto col-lg-10 mx-auto">
+        <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
           <%- include('../partials/flashMessagesAndErrors.ejs') %>
 
         
-          <div class="container mx-auto">
-            <div class="row">
-              <div class="col-xs-12 mx-auto">
+          <div class="container">
+            <div class="row ">
+              <div class="col-md-12 mx-auto">
                 <nav>
                   <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
-                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
+                    
                   </div>
                 </nav>
-                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <div class="tab-content py-3" id="nav-tabContent">
                   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <!-- Pomodoro countdown -->
-            <div class="text-center card-body" id="pomodoro">
-              <div class="text-center cart-text">111111</div>
+                    
+
+            
+          <div class="card">
+            <div class="card-body" id="pomodoro">
+              <div class="text-center card-title">111111</div>
               <div class="container-timer">
                 <div class="setters">
                   <div class="minutes-set">
@@ -61,117 +65,35 @@
                     <button class="play" id="pause"></button>
                 </div>
               </div>
+
+              <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro/<%= foundTaskToView._id %>?_method=PUT">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile Data</button>
+              </form>
+
               </div>
+
+            </div>
+
+
+
             <!-- end of Pomodoro countdown -->
                   </div>
                   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <!-- Pomodoro countdown -->
-            <div class="text-center card-body" id="pomodoro">
-              <div class="text-center cart-text">22222</div>
-              <div class="container-timer">
-                <div class="setters">
-                  <div class="minutes-set">
-                    <button data-setter="minutes-plus">+</button>
-                    <button data-setter="minutes-minus">-</button>
-                  </div>
-                  <div class="seconds-set">
-                    <button data-setter="seconds-plus">+</button>
-                    <button data-setter="seconds-minus">-</button>
-                  </div>
-                </div>
-                <div class="circle">
-                    <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(110,110)">
-                          <circle r="100" class="e-c-base"/>
-                          <g transform="rotate(-90)">
-                            <circle r="100" class="e-c-progress"/>
-                            <g id="e-pointer">
-                                <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
-                            </g>
-                          </g>
-                      </g>
-                    </svg>
-                </div>
-                <div class="controlls">
-                    <div class="display-remain-time">00:30</div>
-                    <button class="play" id="pause"></button>
-                </div>
-              </div>
-              </div>
-            <!-- end of Pomodoro countdown -->
+
+
+
+
+
                   </div>
                   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-              <!-- Pomodoro countdown -->
-            <div class="text-center card-body" id="pomodoro">
-              <div class="text-center cart-text">333333</div>
-              <div class="container-timer">
-                <div class="setters">
-                  <div class="minutes-set">
-                    <button data-setter="minutes-plus">+</button>
-                    <button data-setter="minutes-minus">-</button>
+          
+
+
+
+
+
                   </div>
-                  <div class="seconds-set">
-                    <button data-setter="seconds-plus">+</button>
-                    <button data-setter="seconds-minus">-</button>
-                  </div>
-                </div>
-                <div class="circle">
-                    <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(110,110)">
-                          <circle r="100" class="e-c-base"/>
-                          <g transform="rotate(-90)">
-                            <circle r="100" class="e-c-progress"/>
-                            <g id="e-pointer">
-                                <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
-                            </g>
-                          </g>
-                      </g>
-                    </svg>
-                </div>
-                <div class="controlls">
-                    <div class="display-remain-time">00:30</div>
-                    <button class="play" id="pause"></button>
-                </div>
-              </div>
-              </div>
-            <!-- end of Pomodoro countdown -->
-                  </div>
-                  <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                    <!-- Pomodoro countdown -->
-            <div class="text-center card-body" id="pomodoro">
-              <div class="text-center cart-text">444444444</div>
-              <div class="container-timer">
-                <div class="setters">
-                  <div class="minutes-set">
-                    <button data-setter="minutes-plus">+</button>
-                    <button data-setter="minutes-minus">-</button>
-                  </div>
-                  <div class="seconds-set">
-                    <button data-setter="seconds-plus">+</button>
-                    <button data-setter="seconds-minus">-</button>
-                  </div>
-                </div>
-                <div class="circle">
-                    <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(110,110)">
-                          <circle r="100" class="e-c-base"/>
-                          <g transform="rotate(-90)">
-                            <circle r="100" class="e-c-progress"/>
-                            <g id="e-pointer">
-                                <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
-                            </g>
-                          </g>
-                      </g>
-                    </svg>
-                </div>
-                <div class="controlls">
-                    <div class="display-remain-time">00:30</div>
-                    <button class="play" id="pause"></button>
-                </div>
-              </div>
-              </div>
-            <!-- end of Pomodoro countdown -->
-                  </div>
+
                 </div>
               
               </div>

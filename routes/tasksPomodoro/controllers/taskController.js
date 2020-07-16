@@ -64,11 +64,30 @@ module.exports = {
       console.log(foundTask);
       return res.render('task/task-home', { foundTaskToView: foundTask });
     }).catch((error) => {
-      console.log('Task Home Catch:',error);
+      // console.log('Task Home Catch:',error);
       req.flash('errors', 'We cannot get to Task Timer page at this moment please contact developer');
       res.redirect(301, '/');
     });
     // let taskParamName = req.params.TaskId;
     // return res.render('task/task-home', {taskParamName: taskParamName});
+  },
+
+  taskHomePutOnePlusPomodoro: async (req, res) => {
+
+    try {
+      let currTask = await Task.findOne({ _id: req.params.TaskId });
+      let currUser = await User.findOne({ _id: req.user._id});
+      if(currTask.owner.toString() === currUser._id.toString()) {
+        currTask.pomodorosDone += 1;
+        await currTask.save().then((savedCurrTask) => {
+          req.flash('messages', 'You have saved your progress of your pomodoro in your user records successfully');
+          res.redirect(301, `/api/users/projects/tasks/task-home/${req.params.TaskId}`);
+        })
+      }
+    } catch (error) {
+      req.flash('errors', 'We cannot get to Task Timer page at this moment please contact developer');
+      res.redirect(301, '/');
+
+    }
   }
 }
