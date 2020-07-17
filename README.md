@@ -1,4 +1,7 @@
 # heed-dot-place
+
+
+
 ![heed.place logo](logo.png)
 # Project&#39;s Name: heed.place
 
