@@ -7,7 +7,7 @@ let length = Math.PI * 2 * 100;
 progressBar.style.strokeDasharray = length;
 
 function update(value, timePercent) {
-	var offset = - length - length * value / (timePercent);
+	let offset = - length - length * value / (timePercent);
 	progressBar.style.strokeDashoffset = offset; 
 	pointer.style.transform = `rotate(${360 * value / (timePercent)}deg)`; 
 };
@@ -34,9 +34,9 @@ function changeWholeTime(seconds){
   }
 }
 
-for (var i = 0; i < setterBtns.length; i++) {
+for (let i = 0; i < setterBtns.length; i++) {
     setterBtns[i].addEventListener("click", function(event) {
-        var param = this.dataset.setter;
+        let param = this.dataset.setter;
         switch (param) {
             case 'minutes-plus':
                 changeWholeTime(1 * 60);

@@ -12,44 +12,59 @@
 
         <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
           <%- include('../partials/flashMessagesAndErrors.ejs') %>
-          <!-- Pomodoro countdown -->
-            <div class="text-center card-body" id="pomodoro">
-              <div class="text-center cart-text">Public Pomodoro Countdown</div>
-              <div class="container-timer">
-                <div class="setters">
-                  <div class="minutes-set">
-                    <button data-setter="minutes-plus">+</button>
-                    <button data-setter="minutes-minus">-</button>
-                  </div>
-                  <div class="seconds-set">
-                    <button data-setter="seconds-plus">+</button>
-                    <button data-setter="seconds-minus">-</button>
-                  </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="text-center card-title">public pomodoro countdown if you want extra feature please register and login</div>
+                <div class="text-center h1 card-text">
+                  <div id="pomodoroMain">
+                   
+                    <div class="values">00:25:00</div>
+                      <div>
+                          <button class="startButton">Start</button>
+                        
+                          <button class="stopButton">Stop</button>
+                   
+                      </div>
+                    </div>
                 </div>
-                <div class="circle">
-                    <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-                      <g transform="translate(110,110)">
-                          <circle r="100" class="e-c-base"/>
-                          <g transform="rotate(-90)">
-                            <circle r="100" class="e-c-progress"/>
-                            <g id="e-pointer">
-                                <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
-                            </g>
-                          </g>
-                      </g>
-                    </svg>
+                <div class="card-footer bg-transparent border-success">
+                  <br />
+                  <br />
+          
+                
                 </div>
-                <div class="controlls">
-                    <div class="display-remain-time">00:30</div>
-                    <button class="play" id="pause"></button>
-                </div>
-              </div>
-              </div>
-            <!-- end of Pomodoro countdown -->
+            </div>
+          </div>
         </main>
       </div>
     </div>
     <%- include ('../partials/footer.ejs') %>
-    <script src="/js/timerJSDOM.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
+    <script>
+            // Main Pomodoro
+            let timer = new Timer();
+            $('#pomodoroMain .startButton').click(function () {
+                timer.start({ startValues: [0,0,25,0,0], countdown: true, target: [0,0,0,0,0] });
+            });
+            
+            
+            $('#pomodoroMain .stopButton').click(function () {
+                timer.stop();
+            });
+      
+            timer.addEventListener('targetAchieved', function (e) {
+              let audio = new Audio('/assets/ringtones/Heed_ringtone_end_pomodoro.mp3');
+              audio.play();
+            });
+      
+            timer.addEventListener('secondsUpdated', function (e) {
+                $('#pomodoroMain .values').html(timer.getTimeValues().toString());
+            });
+            
+            timer.addEventListener('started', function (e) {
+                $('#pomodoroMain .values').html(timer.getTimeValues().toString());
+            });
+    </script>
   </body>
 </html>

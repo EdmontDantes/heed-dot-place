@@ -18,3 +18,146 @@
         </div>
       </div>
     </footer>
+    
+      timer.addEventListener('targetAchieved', function (e) {
+        let audio = new Audio('/assets/ringtones/Heed_ringtone_end_pomodoro.mp3');
+        audio.play();
+      });
+
+
+              <div class="container">
+            <div class="row ">
+              <div class="col-md-12 mx-auto">
+                <nav>
+                  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-pomodoro" data-toggle="tab" href="#nav-pomodoro" role="tab" aria-controls="nav-pomodoro" aria-selected="true">Pomodoro</a>
+                    <a class="nav-item nav-link" id="nav-short-break-pomodoro" data-toggle="tab" href="#nav-short-break-pomodoro" role="tab" aria-controls="nav-short-break-pomodoro" aria-selected="false">Short Break</a>
+                    <a class="nav-item nav-link" id="nav-long-break-pomodoro" data-toggle="tab" href="#nav-long-break-pomodoro" role="tab" aria-controls="nav-long-break-pomodoro" aria-selected="false">Long Break</a>
+                    
+                  </div>
+                </nav>
+                <div class="tab-content py-3" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-pomodoro" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <!-- Pomodoro countdown -->
+                    
+
+            
+          <div class="card">
+            <div class="card-body" id="pomodoro">
+              <div class="text-center card-title">111111</div>
+              <div class="container-timer">
+                <div class="setters">
+                  <div class="minutes-set">
+                    <button data-setter="minutes-plus">+</button>
+                    <button data-setter="minutes-minus">-</button>
+                  </div>
+                  <div class="seconds-set">
+                    <button data-setter="seconds-plus">+</button>
+                    <button data-setter="seconds-minus">-</button>
+                  </div>
+                </div>
+                <div class="circle">
+                    <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                      <g transform="translate(110,110)">
+                          <circle r="100" class="e-c-base"/>
+                          <g transform="rotate(-90)">
+                            <circle r="100" class="e-c-progress"/>
+                            <g id="e-pointer">
+                                <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
+                            </g>
+                          </g>
+                      </g>
+                    </svg>
+                </div>
+                <div class="controlls">
+                    <div class="display-remain-time">00:30</div>
+                    <button class="play" id="pause"></button>
+                </div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div class="card-footer bg-transparent border-success">
+                <br />
+                <br />
+
+              <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro/<%= foundTaskToView._id %>?_method=PUT">
+                <button class="btn btn-lg btn-danger btn-block" type="submit">Update Profile Data</button>
+              </form>
+              </div>
+              </div>
+
+            </div>
+
+
+
+            <!-- end of Pomodoro countdown -->
+                
+                  <div class="tab-pane fade" id="nav-short-break-pomodoro" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+
+                    <div class="card">
+                      <div class="card-body" id="pomodoro">
+                        <div class="text-center card-title">111111</div>
+                        <div class="container-timer">
+                          <div class="setters">
+                            <div class="minutes-set">
+                              <button data-setter="minutes-plus">+</button>
+                              <button data-setter="minutes-minus">-</button>
+                            </div>
+                            <div class="seconds-set">
+                              <button data-setter="seconds-plus">+</button>
+                              <button data-setter="seconds-minus">-</button>
+                            </div>
+                          </div>
+                          <div class="circle">
+                              <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(110,110)">
+                                    <circle r="100" class="e-c-base"/>
+                                    <g transform="rotate(-90)">
+                                      <circle r="100" class="e-c-progress"/>
+                                      <g id="e-pointer">
+                                          <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
+                                      </g>
+                                    </g>
+                                </g>
+                              </svg>
+                          </div>
+                          <div class="controlls">
+                              <div class="display-remain-time">00:30</div>
+                              <button class="play" id="pause"></button>
+                          </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="card-footer bg-transparent border-success">
+                          <br />
+                          <br />
+          
+                        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro/<%= foundTaskToView._id %>?_method=PUT">
+                          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile Data</button>
+                        </form>
+                        </div>
+                        </div>
+          
+                      </div>
+
+
+                  </div>
+                  <div class="tab-pane fade" id="nav-long-break-pomodoro" role="tabpanel" aria-labelledby="nav-contact-tab">
+          
+
+
+
+
+
+                  </div>
+
+                </div>
+              
+              </div>
+            </div>
+      </div>

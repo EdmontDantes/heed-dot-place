@@ -124,7 +124,7 @@ button[data-setter]:hover {
 /* END Pomodoro Styles */
 
 /* Short Break Styles */
-button[data-setter] {
+button[data-setter1] {
   outline: none;
   background: transparent;
   border: none;
@@ -136,15 +136,49 @@ button[data-setter] {
   color: #F7958E;
   cursor: pointer;
 }
-
-.display-remain-time {
+button[data-setter1]:hover {
+  opacity: 0.5;
+}
+.container-timer1 {
+  position: relative;
+  top: 30px;
+  width: 300px;
+  margin: 0 auto;
+}
+.setters1 {
+  position: absolute;
+  left: 85px;
+  top: 75px;
+}
+.minutes-set1 {
+  float: left;
+  margin-right: 28px;
+}
+.seconds-set1 {
+  float: right;
+}
+.controlls1 {
+  position: absolute;
+  left: 75px;
+  top: 105px;
+  text-align: center;
+}
+.display-remain-time1 {
   font-family: 'Roboto';
   font-weight: 100;
   font-size: 65px;
   color: #F7958E;
 }
-
-.play::before {
+#pause1 {
+  outline: none;
+  background: transparent;
+  border: none;
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.play1::before {
   display: block;
   content: "";
   position: absolute;
@@ -154,7 +188,7 @@ button[data-setter] {
   border-bottom: 15px solid transparent;
   border-left: 22px solid #F7958E;
 }
-.pause::after {
+.pause1::after {
   content: "";
   position: absolute;
   top: 8px;
@@ -167,6 +201,29 @@ button[data-setter] {
   border-top: none;
   border-bottom: none;
 }
+#pause1:hover {
+  opacity: 0.8;
+}
+.e-c-base1 {
+  fill: none;
+  stroke: #B6B6B6;
+  stroke-width: 4px
+}
+.e-c-progress1 {
+  fill: none;
+  stroke: #F7958E;
+  stroke-width: 4px;
+  transition: stroke-dashoffset 0.7s;
+}
+.e-c-pointer1 {
+  fill: #FFF;
+  stroke: #F7958E;
+  stroke-width: 2px;
+}
+#e-pointer1 {
+  transition: transform 0.7s;
+}
+
 /* End Short Break Styles */
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -179,3 +236,4 @@ button[data-setter] {
 
 /* fa custom badge */
 
+/* custom easytimer styles */

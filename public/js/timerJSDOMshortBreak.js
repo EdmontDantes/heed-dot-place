@@ -1,113 +1,113 @@
 //circle start
-let progressBar = document.querySelector('.e-c-progress');
-let indicator = document.getElementById('e-indicator');
-let pointer = document.getElementById('e-pointer');
-let length = Math.PI * 2 * 100;
+let progressBar1 = document.querySelector('.e-c-progress1');
+let indicator1 = document.getElementById('e-indicator1');
+let pointer1 = document.getElementById('e-pointer1');
+let length1 = Math.PI * 2 * 100;
 
-progressBar.style.strokeDasharray = length;
+progressBar1.style.strokeDasharray = length1;
 
-function update(value, timePercent) {
-	var offset = - length - length * value / (timePercent);
-	progressBar.style.strokeDashoffset = offset; 
-	pointer.style.transform = `rotate(${360 * value / (timePercent)}deg)`; 
+function update1(value, timePercent) {
+	let offset1 = - length1 - length1 * value / (timePercent);
+	progressBar1.style.strokeDashoffset = offset; 
+	pointer1.style.transform = `rotate(${360 * value / (timePercent)}deg)`; 
 };
 
 //circle ends
-const displayOutput = document.querySelector('.display-remain-time')
-const pauseBtn = document.getElementById('pause');
-const setterBtns = document.querySelectorAll('button[data-setter]');
+const displayOutput1 = document.querySelector('.display-remain-time1')
+const pauseBtn1 = document.getElementById('pause1');
+const setterBtns1 = document.querySelectorAll('button[data-setter1]');
 
-let intervalTimer;
-let timeLeft;
-let wholeTime = 5 * 60; // manage this to set the whole time 
-let isPaused = false;
-let isStarted = false;
+let intervalTimer1;
+let timeLeft1;
+let wholeTime1 = 5 * 60; // manage this to set the whole time 
+let isPaused1 = false;
+let isStarted1 = false;
 
 
-update(wholeTime,wholeTime); //refreshes progress bar
-displayTimeLeft(wholeTime);
+update1(wholeTime1,wholeTime1); //refreshes progress bar
+displayTimeLeft1(wholeTime1);
 
-function changeWholeTime(seconds){
-  if ((wholeTime + seconds) > 0){
-    wholeTime += seconds;
-    update(wholeTime,wholeTime);
+function changeWholeTime1(seconds){
+  if ((wholeTime1 + seconds) > 0){
+    wholeTime1 += seconds;
+    update1(wholeTime1,wholeTime1);
   }
 }
 
-for (var i = 0; i < setterBtns.length; i++) {
-    setterBtns[i].addEventListener("click", function(event) {
-        var param = this.dataset.setter;
-        switch (param) {
-            case 'minutes-plus':
-                changeWholeTime(1 * 60);
+for (let i = 0; i < setterBtns1.length; i++) {
+    setterBtns1[i].addEventListener("click", function(event) {
+        let param1 = this.dataset.setter;
+        switch (param1) {
+            case 'minutes-plus1':
+                changeWholeTime1(1 * 60);
                 break;
-            case 'minutes-minus':
-                changeWholeTime(-1 * 60);
+            case 'minutes-minus1':
+                changeWholeTime1(-1 * 60);
                 break;
-            case 'seconds-plus':
-                changeWholeTime(1);
+            case 'seconds-plus1':
+                changeWholeTime1(1);
                 break;
-            case 'seconds-minus':
-                changeWholeTime(-1);
+            case 'seconds-minus1':
+                changeWholeTime1(-1);
                 break;
         }
-      displayTimeLeft(wholeTime);
+      displayTimeLeft1(wholeTime1);
     });
 }
 
-function timer (seconds){ //counts time, takes seconds
-  let remainTime = Date.now() + (seconds * 1000);
-  displayTimeLeft(seconds);
+function timer1 (seconds){ //counts time, takes seconds
+  let remainTime1 = Date.now() + (seconds * 1000);
+  displayTimeLeft1(seconds);
   
-  intervalTimer = setInterval(function(){
-    timeLeft = Math.round((remainTime - Date.now()) / 1000);
-    if(timeLeft < 0){
-      clearInterval(intervalTimer);
-      isStarted = false;
-      setterBtns.forEach(function(btn){
+  intervalTimer1 = setInterval(function(){
+    timeLeft1 = Math.round((remainTime1 - Date.now()) / 1000);
+    if(timeLeft1 < 0){
+      clearInterval(intervalTimer1);
+      isStarted1 = false;
+      setterBtns1.forEach(function(btn){
         btn.disabled = false;
         btn.style.opacity = 1;
       });
-      displayTimeLeft(wholeTime);
-      pauseBtn.classList.remove('pause');
-      pauseBtn.classList.add('play');
+      displayTimeLeft1(wholeTime1);
+      pauseBtn1.classList.remove('pause1');
+      pauseBtn1.classList.add('play1');
       return ;
     }
-    displayTimeLeft(timeLeft);
+    displayTimeLeft(timeLeft1);
   }, 1000);
 }
-function pauseTimer(event){
-  if(isStarted === false){
-    timer(wholeTime);
-    isStarted = true;
-    this.classList.remove('play');
-    this.classList.add('pause');
+function pauseTimer1(event){
+  if(isStarted1 === false){
+    timer1(wholeTime1);
+    isStarted1 = true;
+    this.classList.remove('play1');
+    this.classList.add('pause1');
     
-    setterBtns.forEach(function(btn){
+    setterBtns1.forEach(function(btn){
       btn.disabled = true;
       btn.style.opacity = 0.5;
     });
 
-  }else if(isPaused){
-    this.classList.remove('play');
-    this.classList.add('pause');
-    timer(timeLeft);
-    isPaused = isPaused ? false : true
+  }else if(isPaused1){
+    this.classList.remove('play1');
+    this.classList.add('pause1');
+    timer(timeLeft1);
+    isPaused1 = isPaused1 ? false : true
   }else{
-    this.classList.remove('pause');
-    this.classList.add('play');
-    clearInterval(intervalTimer);
-    isPaused = isPaused ? false : true ;
+    this.classList.remove('pause1');
+    this.classList.add('play1');
+    clearInterval(intervalTimer1);
+    isPaused1 = isPaused1 ? false : true ;
   }
 }
 
-function displayTimeLeft (timeLeft){ //displays time on the input
-  let minutes = Math.floor(timeLeft / 60);
-  let seconds = timeLeft % 60;
-  let displayString = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  displayOutput.textContent = displayString;
-  update(timeLeft, wholeTime);
+function displayTimeLeft1 (timeLeft){ //displays time on the input
+  let minutes1 = Math.floor(timeLeft / 60);
+  let seconds1 = timeLeft % 60;
+  let displayString1 = `${minutes1 < 10 ? '0' : ''}${minutes1}:${seconds1 < 10 ? '0' : ''}${seconds1}`;
+  displayOutput1.textContent = displayString1;
+  update1(timeLeft, wholeTime1);
 }
 
-pauseBtn.addEventListener('click',pauseTimer);
+pauseBtn1.addEventListener('click',pauseTimer1);
 
