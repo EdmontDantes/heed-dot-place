@@ -17,7 +17,7 @@ Description: a web app that utilizes pomodoro technique timer functionality with
   - Passport-local Strategy - [https://github.com/jaredhanson/passport-local](https://github.com/jaredhanson/passport-local)
 
 - Bcryptjs for hashing/salting password for security - [https://github.com/dcodeIO/bcrypt.js/](https://github.com/dcodeIO/bcrypt.js/)
-- codepen by Serjobas of a javascript/css timer - https://codepen.io/Serjobas/pen/GvrKRB
+- easytimer.js library for countdown functionality - [https://github.com/albert-gonzalez/easytimer.js/]](https://github.com/albert-gonzalez/easytimer.js/)
 - Chart.js for displaying progress reports to users via visual representation of data - [https://www.chartjs.org/](https://www.chartjs.org/)
 - MongoDB document-based database - [https://www.mongodb.com/](https://www.mongodb.com/)
 - Mongoose - elegant Mongodb object modeling for Node.js - [https://mongoosejs.com/](https://mongoosejs.com/)
@@ -27,7 +27,7 @@ Description: a web app that utilizes pomodoro technique timer functionality with
 - Express-session session middleware for cookies - [https://www.npmjs.com/package/express-session](https://www.npmjs.com/package/express-session)
 - Momentjs for converting unixTimeStamps to Human-Readable time - [https://momentjs.com/](https://momentjs.com/)
 - Method-override npm package to stay faithful to Restful API specification of GET, POST, PUT, DELETE http verbs - [https://www.npmjs.com/package/method-override](https://www.npmjs.com/package/method-override)
-- uuid package - https://www.npmjs.com/package/uuid
+
 
 # Assets Used:
 musical alert ringtones for end of pomodoro, short and long break sounds are generously created and provided by Wolf Asylum artist - https://wolfasylum.com/
