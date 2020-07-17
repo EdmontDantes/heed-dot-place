@@ -1,21 +1,19 @@
 const router = require('express').Router();
 const User = require('./models/User');
 const passport = require('passport');
-const { register, updateProfile, updatePassword } = require('./controllers/userController');
+const { register, updateProfile, updatePassword, reportsHome } = require('./controllers/userController');
 const { registerValidation, registerVerify } = require('./utils/registerValidation');
 const { loginValidation, loginVerify } = require('./utils/loginValidation');
 const { isThereAuth } = require('../utils/isThereAuth');
 
 router.get('/', (req, res) => {
-  return res.redirect('/');
+  if(req.isAuthenticated()) {
+    return res.redirect(301, '/reports-home');
+  }
+
 });
 
-router.get('/', (req, res) => {
-  if(req.isAuthenticated()) {
-    return res.redirect(301, '/');
-  }
-  return res.render('auth/register');
-});
+router.get('/reports-home', isThereAuth, reportsHome);
 
 router.get('/login', (req, res) => {
   if(req.isAuthenticated()) {
@@ -55,6 +53,12 @@ router.put('/update-password', isThereAuth, updatePassword);
 
 router.get('/logout',(req,res)=>{
   req.logout();
+  res.clearCookie('connect.sid', {
+    path: '/',
+    httpOnly: true,
+    secure: false,
+    maxAge: null
+  });
 
   req.session.destroy();
   return res.redirect('/')

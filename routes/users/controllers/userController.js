@@ -1,5 +1,8 @@
-const User = require('../models/User');
+const Project = require('../../projects/models/Project');
+const User = require('../../users/models/User');
+const Task = require('../../tasksPomodoro/models/Task');
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
 
 
 module.exports = {
@@ -104,6 +107,21 @@ module.exports = {
       req.flash('errors', 'Oh no something is wrong on our end, we can\'t update your password at the moment, please contact the developer');
       return res.redirect(301, '/api/users/update-profile');
     }
+  },
+
+  reportsHome: async (req, res) => {
+    let currUser = await User.findOne( { _id: req.user._id });
+    await Project.find({ owner: currUser._id }).populate('tasks.task').exec((err, results) => {
+      if (err) {
+        console.log('AAA',err);
+      } else {
+        // console.log(results[0].tasks)
+        // return res.json({results});
+        return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment });
+  
+      }
+  
+    })
   }
   
 }

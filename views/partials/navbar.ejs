@@ -8,7 +8,12 @@
       <div class="collapse navbar-collapse" id="navbarsTogglerMobile">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link btn-secondary" style="text-align: center; color:azure" href="/">Home</a>
+            <a class="nav-link btn-secondary" style="text-align: center; color:azure" href="/">Home
+            <% if (user) { %>
+             / Reports
+            <% } %>
+            
+            </a>
           </li>
           <% if (user) { %>
           
