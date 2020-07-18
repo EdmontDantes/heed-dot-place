@@ -11,7 +11,7 @@ const TaskSchema = new mongoose.Schema({
   image: { type: String, default: ''},
   pomodorosDone: { type: Number, default: 0},
   pomodoroShortBreakDone: { type: Number, default: 0},
-  pomodooroLongBreakDone: { Type: Number, default: 0},
+  pomodoroLongBreakDone: { type: Number, default: 0},
   notes: { type: String, default: ''},
   project: { type: Schema.Types.ObjectId, ref: 'Project'},
   timestamp: {

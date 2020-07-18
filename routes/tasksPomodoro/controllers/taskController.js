@@ -18,7 +18,7 @@ module.exports = {
       let currProject = await Project.findOne({ projectName: req.params.project });
       let currUser = await User.findOne({ _id: req.user._id});
       if(currProject.owner.toString() === currUser._id.toString()) {
-        let newTask = new Task();
+        let newTask = await new Task();
         if(!taskName && !taskDescription) {
           req.flash('errors', 'Your Project\'s Task has not been created because you didn\'t provide any input please try again');
           res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.project}`);
@@ -27,7 +27,7 @@ module.exports = {
         if(taskDescription) newTask.taskDescription = taskDescription;
         newTask.owner = currUser._id;
         newTask.taskProjectBelongsTo = currProject._id;
-  
+        console.log(newTask);
         await newTask.save().then((savedTask) => {
           
           currProject.tasks.push({ task: savedTask._id});
