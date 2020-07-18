@@ -16,6 +16,7 @@
           <%- include('../partials/flashMessagesAndErrors.ejs') %>
 
 
+
           <div class="card">
             <div class="card-body">
               <div class="card text-center">
@@ -74,9 +75,36 @@
         <br />
         <br />
 
-      <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro/<%= foundTaskToView._id %>?_method=PUT">
-        <button class="btn btn-lg btn-danger btn-block" type="submit">Update Pomodoro Data</button>
-      </form>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-lg btn-danger btn-block" data-toggle="modal" data-target="#SavePomodoro">
+  Save Pomodoro
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="SavePomodoro" tabindex="-1" role="dialog" aria-labelledby="UpdatePomodoroData" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UpdatePomodoroData">Save Progress</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you did your pomodoro if yes then click save changes
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro/<%= foundTaskToView._id %>?_method=PUT">
+          <button type="submit" class="btn btn-success">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      
       </div>
   </div>
 </div>
@@ -89,13 +117,13 @@
                       <div class="text-center card-title"> Short Pomodoro counter Once the Counter is zero press Update button</div>
                         <div class="text-center h1 card-text">
                           <div id="pomodoroShortBreak">
-                           
+                          
                             <div class="valuesShortBreak">00:05:00</div>
                               <div>
                                   <button class="startButtonShortBreak">Start</button>
                                 
                                   <button class="stopButtonShortBreak">Stop</button>
-                           
+                          
                               </div>
                             </div>
                         </div>
@@ -103,9 +131,36 @@
                           <br />
                           <br />
                   
-                        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro-short-break/<%= foundTaskToView._id %>?_method=PUT">
-                          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Pomodoro Short Break Data</button>
-                        </form>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#SavePomodoroShortBreak">
+  Save Pomodoro Short Break
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="SavePomodoroShortBreak" tabindex="-1" role="dialog" aria-labelledby="UpdatePomodoroDataShortBreak" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UpdatePomodoroDataShortBreak">Save Progress</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you did your pomodoro break if yes then click save changes
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro-short-break/<%= foundTaskToView._id %>?_method=PUT">
+          <button type="submit" class="btn btn-success">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
                         </div>
                     </div>
                   </div>
@@ -135,9 +190,38 @@
                           <br />
                           <br />
                   
-                        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro-long-break/<%= foundTaskToView._id %>?_method=PUT">
-                          <button class="btn btn-lg btn-success btn-block" type="submit">Update Pomodoro Long Break Data</button>
-                        </form>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#SavePomodoroLongBreak">
+  Save Pomodoro Long Break
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="SavePomodoroLongBreak" tabindex="-1" role="dialog" aria-labelledby="UpdatePomodoroDataLongBreak" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UpdatePomodoroDataLongBreak">Save Progress</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you did your pomodoro break if yes then click save changes
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro-long-break/<%= foundTaskToView._id %>?_method=PUT">
+          <button type="submit" class="btn btn-success">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
                         </div>
                     </div>
                   </div>
@@ -152,7 +236,7 @@
     </main>
     
     <%- include ('../partials/footer.ejs') %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
    <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
     <!-- <script src="/js/timerJSDOM.js"></script>
     <script src="/js/timerJSDOMshortBreak.js"></script> -->
@@ -172,6 +256,7 @@
 
       timer.addEventListener('targetAchieved', function (e) {
         let audio = new Audio('/assets/ringtones/Heed_ringtone_end_pomodoro.mp3');
+        $(window).blur(audio.play());
         audio.play();
       });
 
@@ -201,6 +286,7 @@
 
       timerShortBreak.addEventListener('targetAchieved', function (e) {
         let audio = new Audio('/assets/ringtones/Heed_ringtone_end_short_break.mp3');
+        $(window).blur(audio.play());
         audio.play();
       });
 
@@ -229,6 +315,7 @@
 
       timerLongBreak.addEventListener('targetAchieved', function (e) {
         let audio = new Audio('/assets/ringtones/Heed_ringtone_end_long_break.mp3');
+        $(window).blur(audio.play());
         audio.play();
       });
 
@@ -243,12 +330,5 @@
 
     </script>
 
-    <!-- <script>
-      var timer = new Timer();
-      timer.start();
-      timer.addEventListener('secondsUpdated', function(e) {
-          $('#basicUsage').html(timer.getTimeValues().toString());
-      });
-    </script> -->
   </body>
 </html>
