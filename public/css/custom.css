@@ -16,7 +16,10 @@ body {
   float: none; /* Added */
   margin-bottom: 10px; /* Added */
 }
-
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #BED558;
+  background-color: #6D545D;
+}
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
 
 
