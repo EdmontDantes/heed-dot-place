@@ -54,6 +54,36 @@
           <br />
           <button class="btn btn-lg btn-primary btn-block" type="submit">Update Edited Project</button>
         </form>
+
+        <br />
+        <br />
+<!-- Button trigger modal -->
+<button class="btn btn-sm btn-outline-danger btn-block form-signin" data-toggle="modal" data-target="#DeleteProject">DANGER Delete Project and its tasks</button>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="DeleteProject" tabindex="-1" role="dialog" aria-labelledby="DeleteProject" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="DeleteProject">Save Progress</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete your project and all its tasks this cannot be undone
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form role="form" method="POST" action="/api/users/projects/delete-project/<%= foundProjectToView.projectName %>?_method=PUT">
+          <button type="submit" class="btn btn-outline-danger">Carefully delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
       </div>
       </div> 
       </div>
