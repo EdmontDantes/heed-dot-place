@@ -76,7 +76,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form role="form" method="POST" action="/api/users/projects/delete-project/<%= foundProjectToView.projectName %>?_method=PUT">
+        <form role="form" method="POST" action="/api/users/projects/delete-project/<%= foundProjectToView._id %>?_method=DELETE">
           <button type="submit" class="btn btn-outline-danger">Carefully delete</button>
         </form>
       </div>

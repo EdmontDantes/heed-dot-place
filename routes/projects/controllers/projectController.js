@@ -73,7 +73,7 @@ module.exports = {
             if(currUser && (itemInFoundProjects.owner.toString() === currUser._id.toString())) { 
               return res.render('project/edit-project', { foundProjectToView: itemInFoundProjects });
             }
-          }) 
+          })
 
         }).catch((error) => {
 
@@ -125,8 +125,36 @@ module.exports = {
         })
       }
     } catch (error) {
-        req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+        req.flash('errors', 'We couldn\'t edit your Project Something is wrong on our end please contact developer or try again');
         res.redirect(301, `/api/users/projects/edit-project/${req.params.name}`);
+    }
+  },
+
+  deleteOneProjectById: async(req, res) => {
+    try {
+      // return res.send('nerve wrecking experience')
+      let currUser = await User.findOne({ _id: req.user._id});
+console.log(currUser);
+      let currProject = await Project.find({ _id: req.params.projectId })
+      console.log(currProject);
+      // if(currUser && (currProject.owner === currUser._id))
+
+      // await Task.deleteMany($eq, { taskProjectBelongsTo: currProject._id });
+      // await Project.findOneAndDelete( { _id: currProject._id });
+
+      req.flash('errors', 'You have successfully deleted your project and its tasks')
+      return res.redirect(301, '/api/users/projects/all-projects');
+
+          if(currUser && (currProject.owner.toString() === currUser._id.toString())) { 
+            // console.log(foundProjects._id);
+          }
+
+
+     
+
+    } catch(error) {
+      req.flash('errors', 'We couldn\'t delete your Project Something is wrong on our end please contact developer or try again');
+      res.redirect(301, `/api/users/projects/all-projects`);
     }
   }
 }
