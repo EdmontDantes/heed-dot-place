@@ -12,7 +12,6 @@ module.exports = {
             return res.redirect(301, '/api/users/projects/create-project');
           }
         let currUser = await User.findOne({ _id: req.user._id});
-        console.log('2', currUser);
         if(currUser) {
           if(!projectName && !projectIcon) {
             req.flash('errors', 'Your Project has not been created because you didn\'t provide any input please try again');
@@ -25,7 +24,6 @@ module.exports = {
           newProject.owner = currUser._id;
 
           await newProject.save().then((createdProject) => {
-            // console.log(createdProject);
             req.flash('messages', 'You have successfully created your project')
             return res.redirect(301, '/api/users/projects/all-projects') 
           }).catch((error) => {
@@ -68,7 +66,6 @@ module.exports = {
 
         await Project.find({ projectName: req.params.name })
         .then((foundProjects) => {
-          // console.log(foundProjects)
           foundProjects.forEach((itemInFoundProjects) => {
             if(currUser && (itemInFoundProjects.owner.toString() === currUser._id.toString())) { 
               return res.render('project/edit-project', { foundProjectToView: itemInFoundProjects });
@@ -132,25 +129,14 @@ module.exports = {
 
   deleteOneProjectById: async(req, res) => {
     try {
-      // return res.send('nerve wrecking experience')
-      // console.log(currUser);
       let currUser = await User.findOne({ _id: req.user._id});
       let currProject = await Project.findOneAndRemove({ _id: req.params.projectId })
-      console.log(currProject);
       if(currUser && (currProject.owner.toString() === currUser._id.toString())) { 
-        // console.log(foundProjects._id);
         await Task.deleteMany({ taskProjectBelongsTo: currProject._id });
-        // await Project.findOneAndDelete( { _id: currProject._id });
         req.flash('errors', 'You have successfully deleted your project and its tasks')
         return res.redirect(301, '/api/users/projects/all-projects');
       }
-      // if(currUser && (currProject.owner === currUser._id))
 
-
-
-      
-
-     
 
     } catch(error) {
       req.flash('errors', 'We couldn\'t delete your Project Something is wrong on our end please contact developer or try again');

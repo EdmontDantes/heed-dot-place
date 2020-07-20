@@ -170,14 +170,11 @@ console.log(foundTask);
       if(currUser && (currTask.owner.toString() === currUser._id.toString())) { 
         await Project.findOne({ _id: currTask.taskProjectBelongsTo }).then((foundProject) => {
           for(let i = 0; i < foundProject.tasks.length; i++) {
-            // console.log(foundProject.tasks[i].task);
-            console.log(currTask.taskProjectBelongsTo);
             if(foundProject.tasks[i].task.toString() === currTask._id.toString()) {
               foundProject.tasks.splice(i, 1);
 
             }
           }
-          console.log(foundProject.tasks);
           foundProject.save();
         })
         req.flash('errors', 'You have successfully deleted your task and its tasks');
