@@ -1,334 +1,413 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-<%- include('../partials/head.ejs') %> 
-<!-- <script src="/js/timerJSDOM.js"></script> -->
-<!-- font awesome css -->
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-    <title>Project Home Heed.place home</title>
-    
-  </head>
-  <body>
-    <%- include ('../partials/navbar.ejs') %>
+	<head>
+		<%- include('../partials/head.ejs') %>
+		<!-- <script src="/js/timerJSDOM.js"></script> -->
+		<!-- font awesome css -->
+		<link rel="stylesheet" href="/css/font-awesome.min.css" />
+		<title>Project Home Heed.place home</title>
+	</head>
+	<body>
+		<%- include ('../partials/navbar.ejs') %>
 
-        <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
-          <%- include('../partials/flashMessagesAndErrors.ejs') %>
+		<main role="main" class="col-md-9 mx-sm-auto col-lg-10">
+			<%- include('../partials/flashMessagesAndErrors.ejs') %>
 
-
-
-          <div class="card">
-            <div class="card-body">
-              <div class="card text-center">
-                <div class="card-header">
-                </div>
-                <div class="card-body">
-                  <% if (user) { %>
-                    <h5 class="card-title">
-                      <%= foundTaskToView.taskName %>
-                  </h5>
-                  <p class="card-text"><%= foundTaskToView.taskDescription %></p>
-                  
-                    <a href="/api/users/projects/tasks/edit-task/<%= foundTaskToView._id %> " class="btn btn-outline-info" type="submit">Edit Task Information</a>
-                  
-                </div>
-                <div class="card-footer text-muted">
-                  created on: <%= foundTaskToView.timestamp %>
-                </div>
-                <% } %>
-              </div>
-            </div>
-          </div>
-          
+      <% if (user) { %>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/api/users/reports-home">Home</a></li>
+            <li class="breadcrumb-item"><a href="/api/users/projects/all-projects">All Projects</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Task: <%= foundTaskToView.taskName %></li>
+          </ol>
+        </nav>
         
-        
-              <ul class="nav nav-pills nav-justified " id="pills-tab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Pomodoro</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Short Break</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Long Break</a>
-                </li>
-              </ul>
-              <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">&nbsp;
-
-<div class="card">
-  <div class="card-body">
-    <div class="text-center card-title">Pomodoro counter Once the Counter is zero press Update button</div>
-      <div class="text-center h1 card-text">
-        <div id="pomodoroMain">
-         
-          <div class="values">00:25:00</div>
-            <div>
-                <button class="startButton">Start</button>
-              
-                <button class="stopButton">Stop</button>
-         
-            </div>
-          </div>
-      </div>
-      <div class="card-footer bg-transparent border-success">
-        <br />
-        <br />
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-lg btn-danger btn-block" data-toggle="modal" data-target="#SavePomodoro">
-  Save Pomodoro
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="SavePomodoro" tabindex="-1" role="dialog" aria-labelledby="UpdatePomodoroData" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="UpdatePomodoroData">Save Progress</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you did your pomodoro if yes then click save changes
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro/<%= foundTaskToView._id %>?_method=PUT">
-          <button type="submit" class="btn btn-success">Save changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+      <% } %>
 
 
-      
-      </div>
-  </div>
-</div>
+			<div class="card">
+				<div class="card-body">
+					<div class="card text-center">
+						<div class="card-header"></div>
+						<div class="card-body">
+							<% if (user) { %>
+							<h5 class="card-title">
+								<%= foundTaskToView.taskName %>
+							</h5>
+							<p class="card-text"><%= foundTaskToView.taskDescription %></p>
 
-                </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-contact-tab">&nbsp;
+							<a
+								href="/api/users/projects/tasks/edit-task/<%= foundTaskToView._id %> "
+								class="btn btn-outline-info"
+								type="submit"
+								>Edit Task Information</a
+							>
+						</div>
+						<div class="card-footer text-muted">
+							created on: <%= foundTaskToView.timestamp %>
+						</div>
+						<% } %>
+					</div>
+				</div>
+			</div>
 
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="text-center card-title"> Short Pomodoro counter Once the Counter is zero press Update button</div>
-                        <div class="text-center h1 card-text">
-                          <div id="pomodoroShortBreak">
-                          
-                            <div class="valuesShortBreak">00:05:00</div>
-                              <div>
-                                  <button class="startButtonShortBreak">Start</button>
-                                
-                                  <button class="stopButtonShortBreak">Stop</button>
-                          
-                              </div>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent border-success">
-                          <br />
-                          <br />
-                  
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#SavePomodoroShortBreak">
-  Save Pomodoro Short Break
-</button>
+			<ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
+				<li class="nav-item">
+					<a
+						class="nav-link active"
+						id="pills-home-tab"
+						data-toggle="pill"
+						href="#pills-home"
+						role="tab"
+						aria-controls="pills-home"
+						aria-selected="true"
+						>Pomodoro</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						id="pills-profile-tab"
+						data-toggle="pill"
+						href="#pills-profile"
+						role="tab"
+						aria-controls="pills-profile"
+						aria-selected="false"
+						>Short Break</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link"
+						id="pills-contact-tab"
+						data-toggle="pill"
+						href="#pills-contact"
+						role="tab"
+						aria-controls="pills-contact"
+						aria-selected="false"
+						>Long Break</a
+					>
+				</li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+					&nbsp;
 
-<!-- Modal -->
-<div class="modal fade" id="SavePomodoroShortBreak" tabindex="-1" role="dialog" aria-labelledby="UpdatePomodoroDataShortBreak" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="UpdatePomodoroDataShortBreak">Save Progress</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you did your pomodoro break if yes then click save changes
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro-short-break/<%= foundTaskToView._id %>?_method=PUT">
-          <button type="submit" class="btn btn-success">Save changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="text-center card-title">
+								Pomodoro counter Once the Counter is zero press Update button
+							</div>
+							<div class="text-center h1 card-text">
+								<div id="pomodoroMain">
+									<div class="values">00:25:00</div>
+									<div>
+										<button class="startButton">Start</button>
 
+										<button class="stopButton">Stop</button>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer bg-transparent border-success">
+								<br />
+								<br />
 
+								<!-- Button trigger modal -->
+								<button
+									type="button"
+									class="btn btn-lg btn-danger btn-block"
+									data-toggle="modal"
+									data-target="#SavePomodoro"
+								>
+									Save Pomodoro
+								</button>
 
-                        </div>
-                    </div>
-                  </div>
+								<!-- Modal -->
+								<div
+									class="modal fade"
+									id="SavePomodoro"
+									tabindex="-1"
+									role="dialog"
+									aria-labelledby="UpdatePomodoroData"
+									aria-hidden="true"
+								>
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="UpdatePomodoroData">Save Progress</h5>
+												<button
+													type="button"
+													class="close"
+													data-dismiss="modal"
+													aria-label="Close"
+												>
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Are you sure you did your pomodoro if yes then click save changes
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">
+													Close
+												</button>
+												<form
+													class="form-signin"
+													role="form"
+													method="POST"
+													action="/api/users/projects/tasks/add-pomodoro/<%= foundTaskToView._id %>?_method=PUT"
+												>
+													<button type="submit" class="btn btn-success">Save changes</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-contact-tab">
+					&nbsp;
 
+					<div class="card">
+						<div class="card-body">
+							<div class="text-center card-title">
+								Short Pomodoro counter Once the Counter is zero press Update button
+							</div>
+							<div class="text-center h1 card-text">
+								<div id="pomodoroShortBreak">
+									<div class="valuesShortBreak">00:05:00</div>
+									<div>
+										<button class="startButtonShortBreak">Start</button>
 
-                </div>
+										<button class="stopButtonShortBreak">Stop</button>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer bg-transparent border-success">
+								<br />
+								<br />
 
+								<!-- Button trigger modal -->
+								<button
+									type="button"
+									class="btn btn-lg btn-primary btn-block"
+									data-toggle="modal"
+									data-target="#SavePomodoroShortBreak"
+								>
+									Save Pomodoro Short Break
+								</button>
 
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">&nbsp;
+								<!-- Modal -->
+								<div
+									class="modal fade"
+									id="SavePomodoroShortBreak"
+									tabindex="-1"
+									role="dialog"
+									aria-labelledby="UpdatePomodoroDataShortBreak"
+									aria-hidden="true"
+								>
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="UpdatePomodoroDataShortBreak">
+													Save Progress
+												</h5>
+												<button
+													type="button"
+													class="close"
+													data-dismiss="modal"
+													aria-label="Close"
+												>
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Are you sure you did your pomodoro break if yes then click save changes
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">
+													Close
+												</button>
+												<form
+													class="form-signin"
+													role="form"
+													method="POST"
+													action="/api/users/projects/tasks/add-pomodoro-short-break/<%= foundTaskToView._id %>?_method=PUT"
+												>
+													<button type="submit" class="btn btn-success">Save changes</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="text-center card-title">After 4 Pomodoros allow yourself long break and press Update button once finished</div>
-                        <div class="text-center h1 card-text">
-                          <div id="pomodoroLongBreak">
-                           
-                            <div class="valuesLongBreak">00:15:00</div>
-                              <div>
-                                  <button class="startButtonLongBreak">Start</button>
-                                
-                                  <button class="stopButtonLongBreak">Stop</button>
-                           
-                              </div>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent border-success">
-                          <br />
-                          <br />
-                  
+				<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+					&nbsp;
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#SavePomodoroLongBreak">
-  Save Pomodoro Long Break
-</button>
+					<div class="card">
+						<div class="card-body">
+							<div class="text-center card-title">
+								After 4 Pomodoros allow yourself long break and press Update button once finished
+							</div>
+							<div class="text-center h1 card-text">
+								<div id="pomodoroLongBreak">
+									<div class="valuesLongBreak">00:15:00</div>
+									<div>
+										<button class="startButtonLongBreak">Start</button>
 
-<!-- Modal -->
-<div class="modal fade" id="SavePomodoroLongBreak" tabindex="-1" role="dialog" aria-labelledby="UpdatePomodoroDataLongBreak" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="UpdatePomodoroDataLongBreak">Save Progress</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you did your pomodoro break if yes then click save changes
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/add-pomodoro-long-break/<%= foundTaskToView._id %>?_method=PUT">
-          <button type="submit" class="btn btn-success">Save changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+										<button class="stopButtonLongBreak">Stop</button>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer bg-transparent border-success">
+								<br />
+								<br />
 
+								<!-- Button trigger modal -->
+								<button
+									type="button"
+									class="btn btn-lg btn-success btn-block"
+									data-toggle="modal"
+									data-target="#SavePomodoroLongBreak"
+								>
+									Save Pomodoro Long Break
+								</button>
 
+								<!-- Modal -->
+								<div
+									class="modal fade"
+									id="SavePomodoroLongBreak"
+									tabindex="-1"
+									role="dialog"
+									aria-labelledby="UpdatePomodoroDataLongBreak"
+									aria-hidden="true"
+								>
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="UpdatePomodoroDataLongBreak">
+													Save Progress
+												</h5>
+												<button
+													type="button"
+													class="close"
+													data-dismiss="modal"
+													aria-label="Close"
+												>
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Are you sure you did your pomodoro break if yes then click save changes
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">
+													Close
+												</button>
+												<form
+													class="form-signin"
+													role="form"
+													method="POST"
+													action="/api/users/projects/tasks/add-pomodoro-long-break/<%= foundTaskToView._id %>?_method=PUT"
+												>
+													<button type="submit" class="btn btn-success">Save changes</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
 
+		<%- include ('../partials/footer.ejs') %>
 
-                        </div>
-                    </div>
-                  </div>
-
-
-                </div>
-
-              </div>
-     
-    
-    
-    </main>
-    
-    <%- include ('../partials/footer.ejs') %>
-
-   <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
-    <!-- <script src="/js/timerJSDOM.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
+		<!-- <script src="/js/timerJSDOM.js"></script>
     <script src="/js/timerJSDOMshortBreak.js"></script> -->
-    <script src="/js/easytimer.min.js"></script>
+		<script src="/js/easytimer.min.js"></script>
 
-    <script>
-      // Main Pomodoro
-      let timer = new Timer();
-      $('#pomodoroMain .startButton').click(function () {
-          timer.start({ startValues: [0,0,25,0,0], countdown: true, target: [0,0,0,0,0] });
-      });
-      
-      
-      $('#pomodoroMain .stopButton').click(function () {
-          timer.stop();
-      });
+		<script>
+			// Main Pomodoro
+			let timer = new Timer();
+			$('#pomodoroMain .startButton').click(function () {
+				timer.start({ startValues: [0, 0, 25, 0, 0], countdown: true, target: [0, 0, 0, 0, 0] });
+			});
 
-      timer.addEventListener('targetAchieved', function (e) {
-        let audio = new Audio('/assets/ringtones/Heed_ringtone_end_pomodoro.mp3');
-        $(window).blur(audio.play());
-        audio.play();
-      });
+			$('#pomodoroMain .stopButton').click(function () {
+				timer.stop();
+			});
 
-      timer.addEventListener('secondsUpdated', function (e) {
-          $('#pomodoroMain .values').html(timer.getTimeValues().toString());
-      });
-      
-      timer.addEventListener('started', function (e) {
-          $('#pomodoroMain .values').html(timer.getTimeValues().toString());
-      });
+			timer.addEventListener('targetAchieved', function (e) {
+				let audio = new Audio('/assets/ringtones/Heed_ringtone_end_pomodoro.mp3');
+				$(window).blur(audio.play());
+				audio.play();
+			});
 
+			timer.addEventListener('secondsUpdated', function (e) {
+				$('#pomodoroMain .values').html(timer.getTimeValues().toString());
+			});
 
+			timer.addEventListener('started', function (e) {
+				$('#pomodoroMain .values').html(timer.getTimeValues().toString());
+			});
 
+			// short Break
+			let timerShortBreak = new Timer();
+			$('#pomodoroShortBreak .startButtonShortBreak').click(function () {
+				timerShortBreak.start({ startValues: [0, 0, 5, 0, 0], countdown: true, target: [0, 0, 0, 0, 0] });
+			});
 
+			$('#pomodoroShortBreak .stopButtonShortBreak').click(function () {
+				timerShortBreak.stop();
+			});
 
+			timerShortBreak.addEventListener('targetAchieved', function (e) {
+				let audio = new Audio('/assets/ringtones/Heed_ringtone_end_short_break.mp3');
+				$(window).blur(audio.play());
+				audio.play();
+			});
 
-      // short Break 
-      let timerShortBreak = new Timer();
-      $('#pomodoroShortBreak .startButtonShortBreak').click(function () {
-        timerShortBreak.start({ startValues: [0,0,5,0,0], countdown: true, target: [0,0,0,0,0] });
-      });
-      
-      
-      $('#pomodoroShortBreak .stopButtonShortBreak').click(function () {
-        timerShortBreak.stop();
-      });
+			timerShortBreak.addEventListener('secondsUpdated', function (e) {
+				$('#pomodoroShortBreak .valuesShortBreak').html(timerShortBreak.getTimeValues().toString());
+			});
 
-      timerShortBreak.addEventListener('targetAchieved', function (e) {
-        let audio = new Audio('/assets/ringtones/Heed_ringtone_end_short_break.mp3');
-        $(window).blur(audio.play());
-        audio.play();
-      });
+			timerShortBreak.addEventListener('started', function (e) {
+				$('#pomodoroShortBreak .valuesShortBreak').html(timerShortBreak.getTimeValues().toString());
+			});
 
-      timerShortBreak.addEventListener('secondsUpdated', function (e) {
-          $('#pomodoroShortBreak .valuesShortBreak').html(timerShortBreak.getTimeValues().toString());
-      });
-      
-      timerShortBreak.addEventListener('started', function (e) {
-          $('#pomodoroShortBreak .valuesShortBreak').html(timerShortBreak.getTimeValues().toString());
-      });
-      
+			// Long Break
+			let timerLongBreak = new Timer();
+			$('#pomodoroLongBreak .startButtonLongBreak').click(function () {
+				timerLongBreak.start({ startValues: [0, 0, 15, 0, 0], countdown: true, target: [0, 0, 0, 0, 0] });
+			});
 
+			$('#pomodoroLongBreak .stopButtonLongBreak').click(function () {
+				timerLongBreak.stop();
+			});
 
+			timerLongBreak.addEventListener('targetAchieved', function (e) {
+				let audio = new Audio('/assets/ringtones/Heed_ringtone_end_long_break.mp3');
+				$(window).blur(audio.play());
+				audio.play();
+			});
 
+			timerLongBreak.addEventListener('secondsUpdated', function (e) {
+				$('#pomodoroLongBreak .valuesLongBreak').html(timerLongBreak.getTimeValues().toString());
+			});
 
-      // Long Break 
-      let timerLongBreak = new Timer();
-      $('#pomodoroLongBreak .startButtonLongBreak').click(function () {
-        timerLongBreak.start({ startValues: [0,0,15,0,0], countdown: true, target: [0,0,0,0,0] });
-      });
-      
-      
-      $('#pomodoroLongBreak .stopButtonLongBreak').click(function () {
-        timerLongBreak.stop();
-      });
-
-      timerLongBreak.addEventListener('targetAchieved', function (e) {
-        let audio = new Audio('/assets/ringtones/Heed_ringtone_end_long_break.mp3');
-        $(window).blur(audio.play());
-        audio.play();
-      });
-
-      timerLongBreak.addEventListener('secondsUpdated', function (e) {
-          $('#pomodoroLongBreak .valuesLongBreak').html(timerLongBreak.getTimeValues().toString());
-      });
-      
-      timerLongBreak.addEventListener('started', function (e) {
-          $('#pomodoroLongBreak .valuesLongBreak').html(timerLongBreak.getTimeValues().toString());
-      });
-      
-
-    </script>
-
-  </body>
+			timerLongBreak.addEventListener('started', function (e) {
+				$('#pomodoroLongBreak .valuesLongBreak').html(timerLongBreak.getTimeValues().toString());
+			});
+		</script>
+	</body>
 </html>

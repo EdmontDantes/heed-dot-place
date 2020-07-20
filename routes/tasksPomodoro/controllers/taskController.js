@@ -59,15 +59,21 @@ module.exports = {
     }
   },
 
-  taskHomeGet: (req, res) => {
-    Task.findOne({ _id: req.params.TaskId }).then((foundTask) => {
-console.log(foundTask);
-      return res.render('task/task-home', { foundTaskToView: foundTask });
-    }).catch((error) => {
+  taskHomeGet: async (req, res) => {
+    try {
+      
+      await Task.findOne({ _id: req.params.TaskId }).then((foundTask) => {
+        return res.render('task/task-home', { foundTaskToView: foundTask });
+      }).catch((error) => {
+  
+        req.flash('errors', 'We cannot get to Task Timer page at this moment please contact developer');
+        res.redirect(301, '/');
+      });
 
+    } catch (error) {
       req.flash('errors', 'We cannot get to Task Timer page at this moment please contact developer');
       res.redirect(301, '/');
-    });
+    }
   },
 
   taskHomePutOnePlusPomodoro: async (req, res) => {
@@ -130,7 +136,8 @@ console.log(foundTask);
       let currTask = await Task.findOne({ _id: req.params.TaskId });
       let currUser = await User.findOne({ _id: req.user._id});
       if(currTask.owner.toString() === currUser._id.toString()) {
-            return res.render('task/edit-task', { foundTaskToEdit: currTask });
+      let currProject = await Project.findOne({ _id: currTask.taskProjectBelongsTo});
+            return res.render('task/edit-task', { foundTaskToEdit: currTask, foundTaskBelongsToProject: currProject});
       }
     } catch (error) {
       req.flash('errors', 'We cannot get to Task Edit page at this moment please contact developer');
