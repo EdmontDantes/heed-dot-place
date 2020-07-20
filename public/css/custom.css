@@ -23,17 +23,14 @@ body {
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
 
 
+/* circle for tab categories in all projects page*/
 
-/* End Short Break Styles */
-/* Sticky footer styles
--------------------------------------------------- */
-
-
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-/* fa custom badge */
-
-/* custom easytimer styles */
+.circle {
+  width:10px;
+  height:10px;
+  border-radius:50px;
+  font-size:20px;
+  color:#fff;
+  line-height:100px;
+  background: green;
+}

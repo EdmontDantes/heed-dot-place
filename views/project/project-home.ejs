@@ -15,6 +15,22 @@
         <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
           <%- include('../partials/flashMessagesAndErrors.ejs') %>
           
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"><span style="display: inline-block"><div class="circle"></div>Test vTest Text</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><span style="display: inline-block"><div class="circle"></div>Normal Text</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><span style="display: inline-block"><div class="circle"></div>Test Sorta Normal Text</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+
+<br />
           <div class="container">
             <div class="row">
               <% for( let t = 0; t < projects.length; t++ ) { %>
@@ -29,7 +45,7 @@
                       <% if ((projects[t].tasks[q].task !== null)) { %>
                         
                           <div class="row"><span >
-                           
+
                             <a style="color: cornflowerblue; text-decoration: none;" href="/api/users/projects/tasks/task-home/<%= projects[t].tasks[q].task._id %>"><i class="fa fa-tasks" aria-hidden="true">&nbsp;</i><%= projects[t].tasks[q].task.taskName %></a>
                               
                               
