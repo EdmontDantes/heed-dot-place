@@ -11,6 +11,17 @@
   <body>
 <%- include ('../partials/navbar.ejs') %>
 <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
+  <% if (user) { %>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/api/users/reports-home">Home</a></li>
+        <li class="breadcrumb-item"><a href="/api/users/projects/all-projects">All Projects</a></li>
+        <li class="breadcrumb-item"><a href="/api/users/projects/tasks/task-home/<%= foundTaskToEdit._id %>">Task Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Task: <%= foundTaskToEdit.taskName %></li>
+      </ol>
+    </nav>
+    
+  <% } %>
   <section>
     <div class="container-fluid">
 <div class="text-center card-body">
