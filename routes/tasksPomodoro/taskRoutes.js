@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createTaskGet, createTaskPost, taskHomeGet, taskHomePutOnePlusPomodoro, taskHomePutOnePlusPomodoroSBreak, taskHomePutOnePlusPomodoroLBreak, taskEditGet, taskEditPut } = require('./controllers/taskController')
+const { createTaskGet, createTaskPost, taskHomeGet, taskHomePutOnePlusPomodoro, taskHomePutOnePlusPomodoroSBreak, taskHomePutOnePlusPomodoroLBreak, taskEditGet, taskEditPut, deleteOneTaskById } = require('./controllers/taskController');
 const { isThereAuth } = require('../utils/isThereAuth');
 
 // router.get('/', (req, res) => {
@@ -22,5 +22,7 @@ router.get('/edit-task/:TaskId', isThereAuth, taskEditGet);
 
 router.put('/edit-task/:TaskId', isThereAuth, taskEditPut);
 
+
+router.delete('/delete-task/:TaskId', isThereAuth, deleteOneTaskById)
 
 module.exports = router;

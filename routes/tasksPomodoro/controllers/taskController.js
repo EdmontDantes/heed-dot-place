@@ -159,5 +159,34 @@ console.log(foundTask);
       req.flash('errors', 'We cannot get to Task Edit page at this moment please contact developer');
       res.redirect(301, '/');
     }
+  },
+
+  deleteOneTaskById: async(req, res) => {
+    try {
+
+      let currUser = await User.findOne({ _id: req.user._id});
+      let currTask = await Task.findOneAndRemove({ _id: req.params.TaskId });
+
+      if(currUser && (currTask.owner.toString() === currUser._id.toString())) { 
+        await Project.findOne({ _id: currTask.taskProjectBelongsTo }).then((foundProject) => {
+          for(let i = 0; i < foundProject.tasks.length; i++) {
+            // console.log(foundProject.tasks[i].task);
+            console.log(currTask.taskProjectBelongsTo);
+            if(foundProject.tasks[i].task.toString() === currTask._id.toString()) {
+              foundProject.tasks.splice(i, 1);
+
+            }
+          }
+          console.log(foundProject.tasks);
+          foundProject.save();
+        })
+        req.flash('errors', 'You have successfully deleted your task and its tasks');
+        return res.redirect(301, '/api/users/projects/all-projects');
+      }
+
+    } catch(error) {
+      req.flash('errors', 'We couldn\'t delete your Task Something is wrong on our end please contact developer or try again');
+      res.redirect(301, `/api/users/projects/all-projects`);
+    }
   }
 }

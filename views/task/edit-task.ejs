@@ -27,10 +27,41 @@
 
             <br />
           </div>
-          <textarea type="text" id="inputTaskDescription" name="taskDescription" class="form-control"  placeholder="<%= foundTaskToEdit.taskDescription %>" rows="6"></textarea>
+          <textarea type="text" id="inputTaskDescription" name="taskDescription" class="form-control form-signin"  placeholder="<%= foundTaskToEdit.taskDescription %>" rows="6"></textarea>
           <br />
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Update Edited Task</button>
+          <button class="btn btn-lg btn-primary btn-block form-signin" type="submit">Update Edited Task</button>
         </form>
+
+
+<!-- Button trigger modal -->
+<button class="btn btn-sm btn-outline-danger btn-block form-signin" data-toggle="modal" data-target="#DeleteTask">DANGER Delete</button>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="DeleteTask" tabindex="-1" role="dialog" aria-labelledby="DeleteTask" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="DeleteTask">Save Progress</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete your task
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form role="form" method="POST" action="/api/users/projects/tasks/delete-task/<%= foundTaskToEdit._id %>?_method=DELETE">
+          <button type="submit" class="btn btn-outline-danger">Carefully delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        
       </div>
       </div> 
       </div>
