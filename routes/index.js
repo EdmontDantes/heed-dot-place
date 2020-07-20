@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
   // console.log(timer);
   // let timerstart = timer.start({startValues: [0,0,0,0,0]});
   // console.log(timerstart)
+
+
   return res.render('main/home');
 });
 
