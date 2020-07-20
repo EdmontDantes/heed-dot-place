@@ -110,6 +110,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/users/projects', usersProjectsRouter);
 app.use('/api/users/projects/tasks', usersTasksRouter);
 
+// 404 page
 // app.use((req, res, next) => {
 //   if(req.accepts('html')) {
 //     return res.render('main/404page')

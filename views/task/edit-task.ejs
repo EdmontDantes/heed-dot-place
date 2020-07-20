@@ -19,7 +19,7 @@
       <div class=”card card-block”>
 <%- include('../partials/flashMessagesAndErrors.ejs') %>
         <form class="form-signin" role="form" method="POST" action="/api/users/projects/tasks/edit-task/<%= foundTaskToEdit._id %>?_method=PUT">
-          <h1 class="h3 mb-3 font-weight-normal">Edit Your Project Details</h1>
+          <h1 class="h3 mb-3 font-weight-normal">Edit Your Task Details</h1>
           <label for="inputProjectName" class="sr-only">Name of Your project</label>
           <br />
           <input type="text" id="inputTaskName" name="taskName" class="form-control" placeholder="<%= foundTaskToEdit.taskName %>">
