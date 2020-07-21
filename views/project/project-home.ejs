@@ -76,9 +76,50 @@
         <% for( let divC = 0; divC < categories.length; divC++ ) { %>
         
           <div class="tab-pane fade" id="category<%= categories[divC]._id %>" role="tabpanel" aria-labelledby="<%= categories[divC].categoryColor %>">
-          <p>HELLO</p>
+            <div class="row">
+          <% for( let cardCategoryDiv = 0; cardCategoryDiv < projects.length; cardCategoryDiv++ ) { %>
+            <% if (projects[cardCategoryDiv].category.toString() === categories[divC]._id.toString()) { %>
+
+              <div class="col-md-4" style="margin-bottom: 30px;">
+                <div class="card" style="border-radius: 0;">
+                  <div class="d-flex justify-content-around"><i class="fa fa-<%= projects[cardCategoryDiv].projectIcon %> fa-5x" aria-hidden="true"></i></div>
+                  
+                  <div class="card-body">
+                    <h5 class="card-title"><%= projects[cardCategoryDiv].projectName %></h5>
+                    <p class="card-text">
+                      <% for( let f = 0; f < projects[cardCategoryDiv].tasks.length; f++ ) { %>
+                        <% if ((projects[t].tasks[f].task !== null)) { %>
+                          
+                            <div class="row"><span >
+  
+                              <a style="color: cornflowerblue; text-decoration: none;" href="/api/users/projects/tasks/task-home/<%= projects[cardCategoryDiv].tasks[f].task._id %>"><i class="fa fa-tasks" aria-hidden="true">&nbsp;</i><%= projects[cardCategoryDiv].tasks[f].task.taskName %></a>
+                                
+                                
+                                <span style="font-size:1.2em;color:rgb(117, 10, 10);padding-right:10px;"><%= projects[cardCategoryDiv].tasks[f].task.pomodorosDone %></span>
+                              
+                      </span></div>
+                        
+  
+                      
+                      <% } %>
+                      <% } %>
+                    </p>
+                  </div>
+                  <div class="card-footer d-flex justify-content-around">
+                    <a href="/api/users/projects/edit-project/<%= projects[cardCategoryDiv].projectName %>" class="btn btn-outline-primary">Edit Project</a>
+                    <a href="/api/users/projects/tasks/create-task/<%= projects[cardCategoryDiv].projectName %>" class="btn btn-outline-info">Add Task</a>
+                  </div>
+                </div>
+              </div>
+
+
+              
+            <% } %>
+            <% } %>
           </div>
-        <% } %>
+          </div>
+          <% } %>
+
       </div>
       </div>
         </main>
