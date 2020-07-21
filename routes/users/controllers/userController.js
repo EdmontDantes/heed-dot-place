@@ -118,7 +118,7 @@ module.exports = {
         // console.log(results[0].tasks)
         // return res.json({results});
 
-        let someRandomVariable = true;
+        let someRandomVariable = 'true';
         let secondSomeRandomVariable = 'blah-blah';
         let thirdRandomVariable = 5;
         return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment, randomVar: someRandomVariable, scndRandomVar: secondSomeRandomVariable, thrdRandomVar: thirdRandomVariable });

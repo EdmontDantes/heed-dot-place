@@ -2,27 +2,62 @@
 const Project = require('../models/Project');
 const User = require('../../users/models/User');
 const Task = require('../../tasksPomodoro/models/Task');
+const Category = require('../../categories/models/Category');
 module.exports = {
-    createProject: async (req, res) => {
-      try {
-        const { projectName, projectIcon } = req.body;
+  createProjectGET: async (req, res) => {
+    try {
+      let allCategories = await Category.find({});
+      // console.log(allCategories)
+      return res.render('project/create-project', { categoriesToChooseFromThatExistAlready: allCategories });
+    } catch (error) {
+      req.flash('errors', 'Something is wrong');
+      res.redirect(301, '/api/users/projects/all-projects');
+    }
+  },
 
-          if (!projectName) {
-            req.flash('errors', 'Please provide project name this field is required');
+  createProjectPOST: async (req, res) => {
+      try {
+        const { projectName, projectIcon, categoryNameDropDown, categoryName, categoryColor } = req.body;
+        console.log('Category Dropdown', categoryNameDropDown);
+        console.log('Category Name', categoryName);
+        console.log('Category Color', categoryColor);
+        
+          if (!projectName || !categoryName || !categoryColor) {
+            req.flash('errors', 'Please provide project name and category with color these fields are required');
             return res.redirect(301, '/api/users/projects/create-project');
           }
         let currUser = await User.findOne({ _id: req.user._id});
         if(currUser) {
-          if(!projectName && !projectIcon) {
-            req.flash('errors', 'Your Project has not been created because you didn\'t provide any input please try again');
+          if(!projectName && !categoryName && !categoryColor) {
+            req.flash('errors', 'Your Project has not been created because you didn\'t provide data in all fields');
             res.redirect(301, '/api/users/projects/create-project');
           }
+          let allCategoriesFindAndCompareName = await Category.findOne({ categoryName: categoryName }).catch((error) => console.log(error));
+          let allCategoriesFindAndCompareColor = await Category.findOne({ categoryColor: categoryColor }).catch((error) => console.log(error));
+          console.log('11111111111.2322');
+          // console.log(allCategoriesFindAndCompare)
+
           let newProject = await new Project();
 
           if(projectName) newProject.projectName = projectName;
           if(projectIcon) newProject.projectIcon = projectIcon;
           newProject.owner = currUser._id;
+          if(allCategoriesFindAndCompareName) {
+            newProject.category = allCategoriesFindAndCompareName._id;
 
+            
+          } else {
+            let newCategory = await new Category();
+            if(categoryName) newCategory.categoryName = categoryName;
+            if(categoryColor) newCategory.categoryColor = categoryColor;
+            if(currUser) newCategory.owner = currUser._id;
+            await newCategory.save().then((savedCategory) => {
+              newProject.category = savedCategory._id;
+            }).catch((error) => {
+              req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+              res.redirect(301, '/api/users/projects/create-project');
+            });
+          }
           await newProject.save().then((createdProject) => {
             req.flash('messages', 'You have successfully created your project')
             return res.redirect(301, '/api/users/projects/all-projects') 
@@ -37,8 +72,9 @@ module.exports = {
         }
 
       } catch (error) {
+        console.log('catch try error')
         req.flash('errors', ' We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
-        res.redirect(301, '/api/users/projects/create-project');
+        res.redirect(301, '/api/users/projects/all-project');
       }
     },
 

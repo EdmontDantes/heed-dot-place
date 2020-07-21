@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const ProjectSchema = new mongoose.Schema({
   projectName: { type: String, required: true},
   projectIcon: { type: String },
+  category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   tasks: [{
     _id: false,

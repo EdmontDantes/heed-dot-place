@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
 <%- include('../partials/head.ejs') %> 
-<!-- <script src="/js/timerJSDOM.js"></script> -->
     <title>Heed.place home</title>
     
   </head>
@@ -16,26 +15,25 @@
             <div id="canvas-holder" style="width:100%">
               <canvas id="chart-area"></canvas>
             </div>
-            <button id="randomizeData"><%= randomVar %></button>
+            <button id="randomizeData">Randomize Data<% randomVar %></button>
             <button id="addDataset">Add Dataset</button>
             <button id="removeDataset">Remove Dataset</button>
             <button id="addData">Add Data</button>
             <button id="removeData">Remove Data</button>
             <button id="changeCircleSize">Semi/Full Circle</button>
-            <script>
 
-              
-              if (randomVar === true) {
+            <script>
+              let randomVar = '<%- randomVar %>'
+              if (randomVar === 'true') {
                 let newRandomizeDataButton = document.getElementById("randomizeData")
                 newRandomizeDataButton.addEventListener("mouseover", (e) => {
-  
+              
                   newRandomizeDataButton.classList.add("btn-primary")
                 });
                 
               }
 
             </script>
-
           <% } else if(!user)  { %>
           <div class="card">
             <div class="card-body">

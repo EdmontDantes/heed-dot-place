@@ -1,12 +1,10 @@
 const router = require('express').Router();
-const { createProject, allProjects,  editOneProjectByNameGET, editOneProjectByNamePUT, deleteOneProjectById } = require('./controllers/projectController');
+const { createProjectGET, createProjectPOST, allProjects,  editOneProjectByNameGET, editOneProjectByNamePUT, deleteOneProjectById } = require('./controllers/projectController');
 const { isThereAuth } = require('../utils/isThereAuth');
 
-router.get('/create-project', isThereAuth, (req, res) => {
-  return res.render('project/create-project');
-});
+router.get('/create-project', isThereAuth, createProjectGET);
 
-router.post('/create-project', isThereAuth, createProject);
+router.post('/create-project', isThereAuth, createProjectPOST);
 
 
 router.get('/all-projects', isThereAuth, allProjects);
