@@ -39,7 +39,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users/userRoutes');
 const usersProjectsRouter = require('./routes/projects/projectRoutes');
 const usersTasksRouter = require('./routes/tasksPomodoro/taskRoutes');
-
+const usersCategoryRouter = require('./routes/categories/CategoryRoutes');
 
 
 
@@ -109,6 +109,7 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/users/projects', usersProjectsRouter);
 app.use('/api/users/projects/tasks', usersTasksRouter);
+app.use('/api/users/projects/categories', usersCategoryRouter)
 
 // 404 page
 // app.use((req, res, next) => {

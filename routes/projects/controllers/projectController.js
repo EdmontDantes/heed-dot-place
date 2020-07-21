@@ -22,10 +22,11 @@ module.exports = {
         console.log('Category Name', categoryName);
         console.log('Category Color', categoryColor);
         
-          if (!projectName || !categoryName || !categoryColor) {
+          if (!projectName || !categoryNameDropDown) {
             req.flash('errors', 'Please provide project name and category with color these fields are required');
             return res.redirect(301, '/api/users/projects/create-project');
           }
+          
         let currUser = await User.findOne({ _id: req.user._id});
         if(currUser) {
           if(!projectName && !categoryName && !categoryColor) {
@@ -34,22 +35,22 @@ module.exports = {
           }
           let allCategoriesFindAndCompareName = await Category.findOne({ categoryName: categoryName }).catch((error) => console.log(error));
           let allCategoriesFindAndCompareColor = await Category.findOne({ categoryColor: categoryColor }).catch((error) => console.log(error));
-          console.log('11111111111.2322');
-          // console.log(allCategoriesFindAndCompare)
+          let existingCategory = await Category.findOne({ categoryNameDropDown }).catch((error) => console.log(error));
 
           let newProject = await new Project();
 
           if(projectName) newProject.projectName = projectName;
           if(projectIcon) newProject.projectIcon = projectIcon;
           newProject.owner = currUser._id;
-          if(allCategoriesFindAndCompareName) {
-            newProject.category = allCategoriesFindAndCompareName._id;
+          if(allCategoriesFindAndCompareName || existingCategory) {
+            newProject.category = allCategoriesFindAndCompareName._id || existingCategory._id;
 
             
           } else {
             let newCategory = await new Category();
             if(categoryName) newCategory.categoryName = categoryName;
             if(categoryColor) newCategory.categoryColor = categoryColor;
+            
             if(currUser) newCategory.owner = currUser._id;
             await newCategory.save().then((savedCategory) => {
               newProject.category = savedCategory._id;
@@ -82,11 +83,12 @@ module.exports = {
       try {
               let currUser = await User.findOne({ _id: req.user._id});
               if(currUser) {
+                  let allCategories = await Category.find({});
                   await Project.find({ owner: currUser._id }).populate('tasks.task').exec((err, results) => {
                     if (err) {
                       console.log(err);
                     } else {
-                      return res.render('project/project-home', { projects: results });
+                      return res.render('project/project-home', { projects: results, categories: allCategories });
                     }
                   })
               }
@@ -114,7 +116,7 @@ module.exports = {
           res.redirect(301, '/');
         });
 
-      }catch (error) {
+      } catch (error) {
 
         req.flash('errors', 'We cannot get to edit-project page at this moment please contact developer');
         res.redirect(301, '/');

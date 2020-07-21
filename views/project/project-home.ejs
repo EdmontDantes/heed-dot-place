@@ -14,24 +14,29 @@
 
         <main role="main" class="col-md-9 mx-sm-auto col-lg-10">
           <%- include('../partials/flashMessagesAndErrors.ejs') %>
-          
-          <ul class="nav nav-tabs">
+          <ul class="nav nav-tabs" id="project-category-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" href="#"><span style="display: inline-block"><div class="circle"></div>Test vTest Text</span></a>
+              <a class="nav-link active" data-toggle="tab" href="#all-projects-home" role="tab" aria-controls="home"><span style="display: inline-block"><div class="circle"></div>All Projects</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><span style="display: inline-block"><div class="circle"></div>Normal Text</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><span style="display: inline-block"><div class="circle"></div>Test Sorta Normal Text</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+            <% if (user && categories.length) { %>
+              
+              <% for( let ulC = 0; ulC < categories.length; ulC++ ) { %>
+              
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#<%= categories[ulC].categoryName %>" role="tab" aria-controls="<%= categories[ulC].categoryName %>"><span style="display: inline-block"><div class="circle" style="background-color: <%= categories[ulC].categoryColor %>;"></div><%= categories[ulC].categoryName %></span></a>
+                </li>
+                
+              <% } %>
+            <% } %>
           </ul>
-
+          <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-outline-success btn-sm">New Category</button>
+          <button type="button" class="btn btn-outline-primary btn-sm">Edit Category</button>
+        </div>
 <br />
           <div class="container">
+            <div class="tab-content" id="nav-tabContent-ProjectCategory">
+              <div class="tab-pane fade show active" id="all-projects-home" role="tabpanel" aria-labelledby="all-project-home-tab">
             <div class="row">
               <% for( let t = 0; t < projects.length; t++ ) { %>
                 <div class="col-md-4" style="margin-bottom: 30px;">
@@ -68,9 +73,16 @@
             <% } %>
         </div>
       </div>
-        </main>
+        <% for( let divC = 0; divC < categories.length; divC++ ) { %>
+        
+          <div class="tab-pane fade" id="<%= categories[divC].categoryName %>" role="tabpanel" aria-labelledby="<%= categories[divC].categoryName %>">
+          <p>HELLO</p>
+          </div>
+        <% } %>
       </div>
-    </div>
+      </div>
+        </main>
+
     <%- include ('../partials/footer.ejs') %>
     <script src="/js/timerJSDOM.js"></script>
   </body>
