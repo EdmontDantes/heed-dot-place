@@ -6,9 +6,9 @@ const { isThereAuth } = require('../utils/isThereAuth');
 //   return res.json({ confirmation: 'Success'});
 // })
 
-router.get('/create-task/:project', isThereAuth, createTaskGet);
+router.get('/create-task/:projectId', isThereAuth, createTaskGet);
 
-router.post('/create-task/:project', isThereAuth, createTaskPost);
+router.post('/create-task/:projectId', isThereAuth, createTaskPost);
 
 router.get('/task-home/:TaskId', isThereAuth, taskHomeGet);
 

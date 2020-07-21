@@ -103,7 +103,7 @@ module.exports = {
       try {
         let currUser = await User.findOne({ _id: req.user._id});
 
-        await Project.find({ projectName: req.params.name })
+        await Project.find({ _id: req.params.projectId, owner: currUser._id })
         .then((foundProjects) => {
           foundProjects.forEach((itemInFoundProjects) => {
             if(currUser && (itemInFoundProjects.owner.toString() === currUser._id.toString())) { 
@@ -132,7 +132,7 @@ module.exports = {
 
           if(currUser) {
 
-            await Project.find({ projectName: req.params.name })
+            await Project.find({ _id: req.params.projectId })
             .then((foundProjects) => {
               foundProjects.forEach((foundProject) => {
 

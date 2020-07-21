@@ -9,8 +9,8 @@ router.post('/create-project', isThereAuth, createProjectPOST);
 
 router.get('/all-projects', isThereAuth, allProjects);
 
-router.get('/edit-project/:name', isThereAuth, editOneProjectByNameGET);
-router.put('/edit-project/:name', isThereAuth, editOneProjectByNamePUT);
+router.get('/edit-project/:projectId', isThereAuth, editOneProjectByNameGET);
+router.put('/edit-project/:projectId', isThereAuth, editOneProjectByNamePUT);
 
 router.delete('/delete-project/:projectId', isThereAuth, deleteOneProjectById)
 

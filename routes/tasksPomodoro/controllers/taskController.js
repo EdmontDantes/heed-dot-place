@@ -4,9 +4,18 @@ const Task = require('../models/Task');
 
 module.exports = {
 
-  createTaskGet: (req, res) => {
-    const projectParam = req.params.project;
-    return res.render('task/create-task', { projectParam: projectParam });
+  createTaskGet: async (req, res) => {
+    
+    try {
+      const projectParam = req.params.projectId;
+      let projectName = await Project.findOne({ _id: projectParam })
+      return res.render('task/create-task', { projectParam: projectParam, projectName: projectName });
+
+    } catch(error) {
+      req.flash('errors', 'We cannot save your provided Task at this moment please contact developer');
+            res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.projectId}`);
+    }
+    
   },
 
   createTaskPost: async (req, res) => {
@@ -14,10 +23,10 @@ module.exports = {
       const { taskName, taskDescription } = req.body;
       if (!taskName) {
         req.flash('errors', 'Please provide Task\'s name this field is required');
-        return res.redirect(301, `/api/users/projects/create-task/${req.params.project}`);
+        return res.redirect(301, `/api/users/projects/create-task/${req.params.projectId}`);
       }
 
-      let currProject = await Project.findOne({ projectName: req.params.project });
+      let currProject = await Project.findOne({ _id: req.params.projectId });
       let currUser = await User.findOne({ _id: req.user._id});
 
       if(currProject.owner.toString() === currUser._id.toString()) {
@@ -26,7 +35,7 @@ module.exports = {
 
         if(!taskName && !taskDescription) {
           req.flash('errors', 'Your Project\'s Task has not been created because you didn\'t provide any input please try again');
-          res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.project}`);
+          res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.projectId}`);
         }
 
         if(taskName) newTask.taskName = taskName;
@@ -49,13 +58,13 @@ module.exports = {
 
         }).catch((error) => {
             req.flash('errors', 'We cannot save your provided Task at this moment please contact developer');
-            res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.project}`);
+            res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.projectId}`);
         })
       }
 
     } catch(error) {
       req.flash('errors', ' We couldn\'t create your Project\'s Task, Something is wrong on our end please contact developer or try again');
-      res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.project}`);
+      res.redirect(301, `/api/users/projects/tasks/create-task/${req.params.projectId}`);
     }
   },
 
