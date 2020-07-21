@@ -23,15 +23,15 @@
               <% for( let ulC = 0; ulC < categories.length; ulC++ ) { %>
               
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#<%= categories[ulC].categoryName %>" role="tab" aria-controls="<%= categories[ulC].categoryName %>"><span style="display: inline-block"><div class="circle" style="background-color: <%= categories[ulC].categoryColor %>;"></div><%= categories[ulC].categoryName %></span></a>
+                  <a class="nav-link" data-toggle="tab" href="#category<%= categories._id %>" role="tab" aria-controls="<%= categories[ulC]._id %>"><span style="display: inline-block"><div class="circle" style="background-color: #<%= categories[ulC].categoryColor %>;"></div><%= categories[ulC].categoryName %></span></a>
                 </li>
                 
               <% } %>
             <% } %>
           </ul>
           <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-outline-success btn-sm">New Category</button>
-          <button type="button" class="btn btn-outline-primary btn-sm">Edit Category</button>
+          <a type="button" class="btn btn-outline-success btn-sm" href="/api/users/projects/categories/new-category">New Category</a>
+          <a type="button" class="btn btn-outline-primary btn-sm" href="/api/users/projects/categories/edit-category">Edit Category</a>
         </div>
 <br />
           <div class="container">
@@ -65,8 +65,8 @@
                   </p>
                 </div>
                 <div class="card-footer d-flex justify-content-around">
-                  <a href="/api/users/projects/edit-project/<%= projects[t].projectName %>" class="btn btn-primary">Edit Project</a>
-                  <a href="/api/users/projects/tasks/create-task/<%= projects[t].projectName %>" class="btn btn-info">Add Task</a>
+                  <a href="/api/users/projects/edit-project/<%= projects[t].projectName %>" class="btn btn-outline-primary">Edit Project</a>
+                  <a href="/api/users/projects/tasks/create-task/<%= projects[t].projectName %>" class="btn btn-outline-info">Add Task</a>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@
       </div>
         <% for( let divC = 0; divC < categories.length; divC++ ) { %>
         
-          <div class="tab-pane fade" id="<%= categories[divC].categoryName %>" role="tabpanel" aria-labelledby="<%= categories[divC].categoryName %>">
+          <div class="tab-pane fade" id="category<%= categories._id %>" role="tabpanel" aria-labelledby="<%= categories[divC].categoryColor %>">
           <p>HELLO</p>
           </div>
         <% } %>

@@ -3,8 +3,8 @@ const moment = require('moment');
 const Schema = mongoose.Schema;
 
 const CategorySchema = new mongoose.Schema({
-  categoryName: { type: String, unique: true },
-  categoryColor: { type: String, unique: true },
+  categoryName: { type: String },
+  categoryColor: { type: String },
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   timestamp: {
     type: String,

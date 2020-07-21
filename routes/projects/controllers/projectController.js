@@ -18,14 +18,8 @@ module.exports = {
   createProjectPOST: async (req, res) => {
       try {
         const { projectName, projectIcon, categoryNameDropDown, categoryName, categoryColor } = req.body;
-        console.log('Category Dropdown', categoryNameDropDown);
-        console.log('Category Name', categoryName);
-        console.log('Category Color', categoryColor);
-        
-          if (!projectName || !categoryNameDropDown) {
-            req.flash('errors', 'Please provide project name and category with color these fields are required');
-            return res.redirect(301, '/api/users/projects/create-project');
-          }
+
+
           
         let currUser = await User.findOne({ _id: req.user._id});
         if(currUser) {
@@ -33,8 +27,8 @@ module.exports = {
             req.flash('errors', 'Your Project has not been created because you didn\'t provide data in all fields');
             res.redirect(301, '/api/users/projects/create-project');
           }
-          let allCategoriesFindAndCompareName = await Category.findOne({ categoryName: categoryName }).catch((error) => console.log(error));
-          let allCategoriesFindAndCompareColor = await Category.findOne({ categoryColor: categoryColor }).catch((error) => console.log(error));
+          let allCategoriesFindAndCompareName = await Category.findOne({ categoryName: categoryName, owner: currUser._id  }).catch((error) => console.log(error));
+          let allCategoriesFindAndCompareColor = await Category.findOne({ categoryColor: categoryColor, owner: currUser._id }).catch((error) => console.log(error));
           let existingCategory = await Category.findOne({ categoryNameDropDown }).catch((error) => console.log(error));
 
           let newProject = await new Project();
