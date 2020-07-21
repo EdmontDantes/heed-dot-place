@@ -70,9 +70,17 @@ module.exports = {
 
   taskHomeGet: async (req, res) => {
     try {
-      
+    
       await Task.findOne({ _id: req.params.TaskId }).then((foundTask) => {
-        return res.render('task/task-home', { foundTaskToView: foundTask });
+        Project.findOne({ _id: foundTask.taskProjectBelongsTo }).then((foundProject) => {
+          
+          return res.render('task/task-home', { foundTaskToView: foundTask, taskToProjectBelongsTo: foundProject });
+        }).catch((error) => {
+  
+          req.flash('errors', 'We cannot get to Task Timer page at this moment please contact developer');
+          res.redirect(301, '/');
+        });
+
       }).catch((error) => {
   
         req.flash('errors', 'We cannot get to Task Timer page at this moment please contact developer');

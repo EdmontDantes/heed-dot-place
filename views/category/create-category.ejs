@@ -3,6 +3,7 @@
   <head>
 <%- include('../partials/head.ejs') %> 
 <link href="/css/loginAndRegisterCustom.css" rel="stylesheet">
+<link href="/css/jquery.minicolors.css" rel="stylesheet">
 <!-- font awesome css -->
 <link rel="stylesheet" href="/css/font-awesome.min.css">
     <title>Create Project Heed.place</title>
@@ -34,8 +35,17 @@
           <br />
           <input type="text" id="InputCategoryName" name="categoryName" class="form-control" placeholder="Name of Your Category" required>
           <br />
-          <label for="InputCategoryColor" class="sr-only">Color of Your New Category input color name or HEX WITHOUT # character code:</label>
-          <input type="text" id="InputCategoryColor" name="categoryColor" class="form-control" placeholder="name of category color">
+
+
+
+
+				  <div class="form-group">
+					  <label for="wheel-demo">Color of Your New Category input HEX WITH # character code:</label>
+					  <input type="text" id="InputCategoryColor" name="categoryColor" class="form-control demo" data-control="wheel" value="#ff99ee">
+				  </div>
+
+
+
           <br />
 
           <button class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
@@ -48,5 +58,39 @@
       </section> 
     </main>
       <%- include ('../partials/footer.ejs') %>
+      <script src="/js/jquery-1.10.2.min.js"></script>
+      <script src="/js/jquery.minicolors.min.js"></script>
+
+      <script type="text/javascript">
+        $(function(){
+          var colpick = $('.demo').each( function() {
+            $(this).minicolors({
+              control: $(this).attr('data-control') || 'hue',
+              inline: $(this).attr('data-inline') === 'true',
+              letterCase: 'lowercase',
+              opacity: false,
+              change: function(hex, opacity) {
+                if(!hex) return;
+                if(opacity) hex += ', ' + opacity;
+                try {
+                  console.log(hex);
+                } catch(e) {}
+                $(this).select();
+              },
+              theme: 'bootstrap'
+            });
+          });
+          
+          var $inlinehex = $('#inlinecolorhex h3 small');
+          $('#inlinecolors').minicolors({
+            inline: true,
+            theme: 'bootstrap',
+            change: function(hex) {
+              if(!hex) return;
+              $inlinehex.html(hex);
+            }
+          });
+        });
+        </script>
 </body>
 </html>

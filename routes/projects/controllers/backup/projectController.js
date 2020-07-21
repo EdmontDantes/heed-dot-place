@@ -204,3 +204,8 @@ module.exports = {
     }
   }
 }
+
+
+
+// <label for="InputCategoryColor" class="sr-only">Color of Your New Category input color name or HEX WITHOUT # character code:</label>
+// <input type="text" id="InputCategoryColor" name="categoryColor" class="form-control" placeholder="name of category color">
