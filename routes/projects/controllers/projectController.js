@@ -6,9 +6,13 @@ const Category = require('../../categories/models/Category');
 module.exports = {
   createProjectGET: async (req, res) => {
     try {
-      let allCategories = await Category.find({});
-      // console.log(allCategories)
-      return res.render('project/create-project', { categoriesToChooseFromThatExistAlready: allCategories });
+      let currUser = await User.findOne({ _id: req.user._id});
+      if(currUser) {
+
+        let allCategories = await Category.find({ owner: currUser._id });
+        // console.log(allCategories)
+        return res.render('project/create-project', { categoriesToChooseFromThatExistAlready: allCategories });
+      }
     } catch (error) {
       req.flash('errors', 'Something is wrong');
       res.redirect(301, '/api/users/projects/all-projects');
@@ -18,9 +22,9 @@ module.exports = {
   createProjectPOST: async (req, res) => {
       try {
         const { projectName, projectIcon, categoryNameDropDown, categoryName, categoryColor } = req.body;
-
-
-          
+        // let categoryNameDropDownSplit = categoryNameDropDown.split(',');
+        // let categoryNameDropDownSplitNameOnly = categoryNameDropDownSplit[0].toString();
+        // let categoryNameDropDownSplitColorOnly = categoryNameDropDownSplit[1].toString();
         let currUser = await User.findOne({ _id: req.user._id});
         if(currUser) {
           if(!projectName && !categoryName && !categoryColor) {
@@ -29,21 +33,24 @@ module.exports = {
           }
           let allCategoriesFindAndCompareName = await Category.findOne({ categoryName: categoryName, owner: currUser._id  }).catch((error) => console.log(error));
           let allCategoriesFindAndCompareColor = await Category.findOne({ categoryColor: categoryColor, owner: currUser._id }).catch((error) => console.log(error));
-          let existingCategory = await Category.findOne({ categoryNameDropDown }).catch((error) => console.log(error));
-
+          let existingCategory = await Category.findOne({ categoryName: categoryNameDropDown, owner: currUser._id }).catch((error) => console.log(error));
+          
           let newProject = await new Project();
-
+          
           if(projectName) newProject.projectName = projectName;
           if(projectIcon) newProject.projectIcon = projectIcon;
           newProject.owner = currUser._id;
-          if(allCategoriesFindAndCompareName || existingCategory) {
-            newProject.category = allCategoriesFindAndCompareName._id || existingCategory._id;
+          if(existingCategory) {
+            newProject.category = existingCategory._id;
+ 
 
             
           } else {
             let newCategory = await new Category();
             if(categoryName) newCategory.categoryName = categoryName;
+
             if(categoryColor) newCategory.categoryColor = categoryColor;
+
             
             if(currUser) newCategory.owner = currUser._id;
             await newCategory.save().then((savedCategory) => {
@@ -77,7 +84,7 @@ module.exports = {
       try {
               let currUser = await User.findOne({ _id: req.user._id});
               if(currUser) {
-                  let allCategories = await Category.find({});
+                  let allCategories = await Category.find({ owner: currUser._id });
                   await Project.find({ owner: currUser._id }).populate('tasks.task').exec((err, results) => {
                     if (err) {
                       console.log(err);

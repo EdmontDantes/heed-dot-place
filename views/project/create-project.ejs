@@ -68,7 +68,7 @@
             <label for="CategoriesDropDown">Choose already created Category:</label>
               <select name="categoryNameDropDown">
                 <% for( let c = 0; c < categoriesToChooseFromThatExistAlready.length; c++ ) { %>
-                  <option value="<%= categoriesToChooseFromThatExistAlready[c].categoryName %>" style="background-color: <%= categoriesToChooseFromThatExistAlready[c].categoryColor %>"><span><%= categoriesToChooseFromThatExistAlready[c].categoryName %></span></option>
+                  <option value="<%= categoriesToChooseFromThatExistAlready[c].categoryName %>" style="background-color: #<%= categoriesToChooseFromThatExistAlready[c].categoryColor %>"><span><%= categoriesToChooseFromThatExistAlready[c].categoryName %></span></option>
 
                 </select>
                 <% } %>

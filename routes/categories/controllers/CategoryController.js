@@ -27,10 +27,10 @@ module.exports = {
       let allCategoriesFindAndCompareColor = await Category.findOne({ categoryColor: categoryColor, owner: currUser._id }).catch((error) => console.log(error));
       
       if(allCategoriesFindAndCompareName) {
-        req.flash('errors', 'category name already exists please type another unqiue name');
+        req.flash('errors', 'category name already exists please type another unique name');
         return res.redirect(301, '/api/users/projects/categories/new-category');
       } else if (allCategoriesFindAndCompareColor) {
-        req.flash('errors', 'category color already exists please type another unqiue name');
+        req.flash('errors', 'category color already exists please type another unique color');
         return res.redirect(301, '/api/users/projects/categories/new-category');
       } else if (allCategoriesFindAndCompareName && allCategoriesFindAndCompareColor) {
         req.flash('errors', 'Please provide category name and category color combination that is unique from others that already exist');

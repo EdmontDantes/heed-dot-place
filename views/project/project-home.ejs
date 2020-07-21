@@ -23,7 +23,7 @@
               <% for( let ulC = 0; ulC < categories.length; ulC++ ) { %>
               
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#category<%= categories._id %>" role="tab" aria-controls="<%= categories[ulC]._id %>"><span style="display: inline-block"><div class="circle" style="background-color: #<%= categories[ulC].categoryColor %>;"></div><%= categories[ulC].categoryName %></span></a>
+                  <a class="nav-link" data-toggle="tab" href="#category<%= categories[ulC]._id %>" role="tab" aria-controls="<%= categories[ulC]._id %>"><span style="display: inline-block"><div class="circle" style="background-color: #<%= categories[ulC].categoryColor %>;"></div><%= categories[ulC].categoryName %></span></a>
                 </li>
                 
               <% } %>
@@ -75,7 +75,7 @@
       </div>
         <% for( let divC = 0; divC < categories.length; divC++ ) { %>
         
-          <div class="tab-pane fade" id="category<%= categories._id %>" role="tabpanel" aria-labelledby="<%= categories[divC].categoryColor %>">
+          <div class="tab-pane fade" id="category<%= categories[divC]._id %>" role="tabpanel" aria-labelledby="<%= categories[divC].categoryColor %>">
           <p>HELLO</p>
           </div>
         <% } %>
