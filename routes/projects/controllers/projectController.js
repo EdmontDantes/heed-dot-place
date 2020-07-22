@@ -22,17 +22,14 @@ module.exports = {
   createProjectPOST: async (req, res) => {
       try {
         const { projectName, projectIcon, categoryNameDropDown, categoryName, categoryColor } = req.body;
-        // let categoryNameDropDownSplit = categoryNameDropDown.split(',');
-        // let categoryNameDropDownSplitNameOnly = categoryNameDropDownSplit[0].toString();
-        // let categoryNameDropDownSplitColorOnly = categoryNameDropDownSplit[1].toString();
+
         let currUser = await User.findOne({ _id: req.user._id});
         if(currUser) {
           if(!projectName && !categoryName && !categoryColor) {
             req.flash('errors', 'Your Project has not been created because you didn\'t provide data in all fields');
             res.redirect(301, '/api/users/projects/create-project');
           }
-          let allCategoriesFindAndCompareName = await Category.findOne({ categoryName: categoryName, owner: currUser._id  }).catch((error) => console.log(error));
-          let allCategoriesFindAndCompareColor = await Category.findOne({ categoryColor: categoryColor, owner: currUser._id }).catch((error) => console.log(error));
+
           let existingCategory = await Category.findOne({ categoryName: categoryNameDropDown, owner: currUser._id }).catch((error) => console.log(error));
           
           let newProject = await new Project();
@@ -42,7 +39,7 @@ module.exports = {
           newProject.owner = currUser._id;
           if(existingCategory) {
             newProject.category = existingCategory._id;
- 
+
 
             
           } else {
@@ -149,7 +146,7 @@ module.exports = {
                 if(projectIcon) foundProject.projectIcon = projectIcon || foundProject.projectIcon;
                 if(existingCategory.categoryName) foundProject.category = existingCategory._id;
                 if(!projectName && !projectIcon) {
-                  req.flash('messages', 'Your Project has not been updated because you didn\'t provide anything to change');
+                  req.flash('messages', 'Your Project has not been updated because you didn\'t provide anything to change except category');
                   res.redirect(301, '/api/users/projects/all-projects');
                 }
 
