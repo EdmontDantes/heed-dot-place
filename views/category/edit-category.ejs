@@ -84,13 +84,22 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete your category and all its Projects this CANNOT be undone, if you want you can change some projects parent categories to save them in another category via edit Project functionality
+        <p>Are you sure you want to delete your category and all its Projects this CANNOT be undone, if you want you can change some projects parent categories to save them in another category via edit Project functionality</p>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form id="trickyFormForDeleteCategoryByUniqueName" role="form" method="POST" action="/api/users/projects/categories/delete-category/emptyBLEhDKLSNMCKLVKLSKLEUEENFIMDFHNDSKLJHsshkdfnvklnxcnmlDKJFGSHKDGsldkjlkcvxmxlkjdlfgkslgkhzlxckvbnmklzhgfklhd?_method=DELETE">
-          <button type="submit" class="btn btn-outline-danger">Carefully delete</button>
-        </form>
+          <label for="CategoriesDropDownToDELETE">Choose already created Category To Delete:</label>
+          <select id="ChoseCategoryTrickyForFormIDRequest" name="CategoriesDropDownToDELETE" onchange="getSelectedOption()">
+            <option value="empty"><span>CHOOSE A CATEGORY TO DELETE</span></option>
+            <% for( let c = 0; c < categoriesToChooseFromThatExistAlready.length; c++ ) { %>
+              <option value="<%= categoriesToChooseFromThatExistAlready[c].categoryName %>" style="background-color: <%= categoriesToChooseFromThatExistAlready[c].categoryColor %>"><span><%= categoriesToChooseFromThatExistAlready[c].categoryName %></span></option>
+              
+              <% } %>
+            </select>
+            <button type="submit" class="btn btn-outline-danger">Carefully delete</button>
+          </form>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -114,10 +123,8 @@
                         break;
                       }
                     }
-                
-                
-                
                   }
+                  
                 
                 </script>
       </section> 
