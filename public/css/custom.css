@@ -34,3 +34,13 @@ body {
   line-height:100px;
 
 }
+
+/* for select wrap text */
+
+select {
+  position: relative;
+  max-width: 100%;
+  white-space: break-spaces;
+  /* For Firefox: */
+  text-overflow: ellipsis;
+}

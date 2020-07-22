@@ -5,6 +5,7 @@
 <link href="/css/loginAndRegisterCustom.css" rel="stylesheet">
 <!-- font awesome css -->
 <link rel="stylesheet" href="/css/font-awesome.min.css">
+<link href="/css/jquery.minicolors.css" rel="stylesheet">
     <title>Create Project Heed.place</title>
   </head>
 
@@ -60,11 +61,11 @@
             <i class="fa fa-cogs" aria-hidden="true">&nbsp;cogs</i>&nbsp;&nbsp;
             <br />
           </div>
-          <input type="text" id="inputProjectIcon" name="projectIcon" class="form-control" placeholder="name of icon to display">
+          <input type="text" id="inputProjectIcon" name="projectIcon" class="form-control" placeholder="name of icon to display" required>
           <br />
-          <!-- <span><%# categoriesToChooseFromThatExistAlready %> </span> -->
+        
           <% if (categoriesToChooseFromThatExistAlready.length) { %>
-            
+            <div class="form-signin">
             <label for="CategoriesDropDown">Choose already created Category:</label>
               <select name="categoryNameDropDown">
                 <% for( let c = 0; c < categoriesToChooseFromThatExistAlready.length; c++ ) { %>
@@ -72,13 +73,16 @@
 
                   <% } %>
                 </select>
+              </div>
                 <% } else { %>
                   
                   <label for="inputCategoryName">Create New Category</label>
                   <input type="text" id="inputCategoryName" name="categoryName" class="form-control" placeholder=" new category name">
                   
-                  <label for="InputCategoryColor">Write Category Color name or HEX WITHOUT # character value:</label>
-                  <input type="text" id="InputCategoryColor" name="categoryColor" class="form-control" placeholder=" new category color">
+                  <div class="form-group">
+                    <label for="wheel-demo">Color of Your New Category input HEX WITH # character code:</label>
+                    <input type="text" id="InputCategoryColor" name="categoryColor" class="form-control demo" data-control="wheel" value="#ff99ee" required>
+                  </div>
                     <% } %>
 
           <button class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
@@ -91,5 +95,39 @@
       </section> 
     </main>
       <%- include ('../partials/footer.ejs') %>
+      <script src="/js/jquery-1.10.2.min.js"></script>
+      <script src="/js/jquery.minicolors.min.js"></script>
+
+      <script type="text/javascript">
+        $(function(){
+          var colpick = $('.demo').each( function() {
+            $(this).minicolors({
+              control: $(this).attr('data-control') || 'hue',
+              inline: $(this).attr('data-inline') === 'true',
+              letterCase: 'lowercase',
+              opacity: false,
+              change: function(hex, opacity) {
+                if(!hex) return;
+                if(opacity) hex += ', ' + opacity;
+                try {
+                  console.log(hex);
+                } catch(e) {}
+                $(this).select();
+              },
+              theme: 'bootstrap'
+            });
+          });
+          
+          var $inlinehex = $('#inlinecolorhex h3 small');
+          $('#inlinecolors').minicolors({
+            inline: true,
+            theme: 'bootstrap',
+            change: function(hex) {
+              if(!hex) return;
+              $inlinehex.html(hex);
+            }
+          });
+        });
+        </script>
 </body>
 </html>

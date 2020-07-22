@@ -99,15 +99,21 @@ module.exports = {
       }
     },
 
-    editOneProjectByNameGET: async (req, res) => {
+    editOneProjectByIdGET: async (req, res) => {
       try {
         let currUser = await User.findOne({ _id: req.user._id});
 
         await Project.find({ _id: req.params.projectId, owner: currUser._id })
         .then((foundProjects) => {
           foundProjects.forEach((itemInFoundProjects) => {
-            if(currUser && (itemInFoundProjects.owner.toString() === currUser._id.toString())) { 
-              return res.render('project/edit-project', { foundProjectToView: itemInFoundProjects });
+            if(currUser && (itemInFoundProjects.owner.toString() === currUser._id.toString())) {
+              Category.find({ owner: currUser._id }).then((foundAllCategories) => {
+                return res.render('project/edit-project', { foundProjectToView: itemInFoundProjects, categoriesToChooseFromThatExistAlready: foundAllCategories });
+
+              }).catch((error) => {
+                req.flash('errors', 'We cannot get to edit-project page at this moment please contact developer');
+                res.redirect(301, '/');
+              })
             }
           })
 
@@ -124,14 +130,14 @@ module.exports = {
       }
     },
 
-    editOneProjectByNamePUT: async (req, res) => {
+    editOneProjectByIdPUT: async (req, res) => {
       try {
-        const { projectName, projectIcon } = req.body;
+        const { projectName, projectIcon, categoryNameDropDown } = req.body;
 
           let currUser = await User.findOne({ _id: req.user._id});
 
           if(currUser) {
-
+            let existingCategory = await Category.findOne({ categoryName: categoryNameDropDown, owner: currUser._id }).catch((error) => console.log(error));
             await Project.find({ _id: req.params.projectId })
             .then((foundProjects) => {
               foundProjects.forEach((foundProject) => {
@@ -141,6 +147,7 @@ module.exports = {
 
                 if(projectName) foundProject.projectName = projectName || foundProject.projectName;
                 if(projectIcon) foundProject.projectIcon = projectIcon || foundProject.projectIcon;
+                if(existingCategory.categoryName) foundProject.category = existingCategory._id;
                 if(!projectName && !projectIcon) {
                   req.flash('messages', 'Your Project has not been updated because you didn\'t provide anything to change');
                   res.redirect(301, '/api/users/projects/all-projects');
