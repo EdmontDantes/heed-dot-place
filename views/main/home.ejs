@@ -15,25 +15,13 @@
             <div id="canvas-holder" style="width:100%">
               <canvas id="chart-area"></canvas>
             </div>
-            <button id="randomizeData">Randomize Data<% randomVar %></button>
+            <button id="randomizeData">Randomize Data</button>
             <button id="addDataset">Add Dataset</button>
             <button id="removeDataset">Remove Dataset</button>
             <button id="addData">Add Data</button>
             <button id="removeData">Remove Data</button>
             <button id="changeCircleSize">Semi/Full Circle</button>
 
-            <script>
-              let randomVar = '<%- randomVar %>'
-              if (randomVar === 'true') {
-                let newRandomizeDataButton = document.getElementById("randomizeData")
-                newRandomizeDataButton.addEventListener("mouseover", (e) => {
-              
-                  newRandomizeDataButton.classList.add("btn-primary")
-                });
-                
-              }
-
-            </script>
           <% } else if(!user)  { %>
           <div class="card">
             <div class="card-body">

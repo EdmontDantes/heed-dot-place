@@ -1,8 +1,10 @@
 const Project = require('../../projects/models/Project');
 const User = require('../../users/models/User');
 const Task = require('../../tasksPomodoro/models/Task');
+const Category = require('../../categories/models/Category');
 const bcrypt = require('bcryptjs');
 const moment = require('moment');
+const { populate } = require('../../projects/models/Project');
 
 
 module.exports = {
@@ -111,17 +113,13 @@ module.exports = {
 
   reportsHome: async (req, res) => {
     let currUser = await User.findOne( { _id: req.user._id });
-    await Project.find({ owner: currUser._id }).populate('tasks.task').exec((err, results) => {
+    await Project.find({ owner: currUser._id }).populate('category').populate('tasks.task').exec((err, results) => {
       if (err) {
         console.log('AAA',err);
       } else {
-        // console.log(results[0].tasks)
-        // return res.json({results});
-
-        let someRandomVariable = 'true';
-        let secondSomeRandomVariable = 'blah-blah';
-        let thirdRandomVariable = 5;
-        return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment, randomVar: someRandomVariable, scndRandomVar: secondSomeRandomVariable, thrdRandomVar: thirdRandomVariable });
+        console.log(results[0].category[0].categoryColor);
+        console.log(results[0].tasks)
+        return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment });
   
       }
   
