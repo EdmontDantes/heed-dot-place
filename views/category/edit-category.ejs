@@ -17,7 +17,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/api/users/reports-home">Home</a></li>
       <li class="breadcrumb-item"><a href="/api/users/projects/all-projects">All Projects</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Create Project</li>
+      <li class="breadcrumb-item active" aria-current="page">Edit Category</li>
     </ol>
   </nav>
 
@@ -29,7 +29,7 @@
     <div class=”col-6 align-self-center”>
       <div class=”card card-block”>
 <%- include('../partials/flashMessagesAndErrors.ejs') %>
-<form id="trickyForm" class="form-signin" role="form" method="POST" action="">
+<form id="trickyForm" class="form-signin" role="form" method="POST" action="/api/users/projects/categories/edit-category/emptyBLEhDKLSNMCKLVKLSKLEUEENFIMDFHNDSKLJHsshkdfnvklnxcnmlDKJFGSHKDGsldkjlkcvxmxlkjdlfgkslgkhzlxckvbnmklzhgfklhd?_method=PUT">
   
   
           <h1 class="h3 mb-3 font-weight-normal">Create you project to make tasks and record pomodoro timers</h1>
@@ -78,7 +78,7 @@
                       selectedOption = selectTag.options[a];
                       if(selectedOption.selected === true) {
                         let valueOfSelectedOption = selectedOption.text;
-                        document.getElementById('trickyForm').action = '/api/users/projects/categories/edit-project/' + valueOfSelectedOption + '?_method=PUT';
+                        document.getElementById('trickyForm').action = '/api/users/projects/categories/edit-category/' + valueOfSelectedOption + '?_method=PUT';
                         break;
                       }
                     }
