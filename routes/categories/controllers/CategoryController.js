@@ -1,6 +1,7 @@
 const Category = require('../models/Category');
 const User = require('../../users/models/User');
 const userController = require('../../users/controllers/userController');
+const Project = require('../../projects/models/Project');
 
 module.exports = {
   
@@ -129,5 +130,32 @@ module.exports = {
       req.flash('errors', 'We cannot get to Edit Category page at the moment please try again and contact developer');
       res.redirect(301, '/api/users/projects/all-projects');
     }   
+  },
+
+  deleteCategoryByUniqueName: async(req, res) => {
+    try {
+      const { toChangeCategoryNewName, categoryNameDropDown, toChangeCategoryNewColor } = req.body;
+      const paramsCategoryName = req.params.categoryName;
+  
+
+      let currUser = await User.findOne({ _id: req.user._id});
+      // console.log(currUser);
+      if(currUser) {
+        console.log(paramsCategoryName);
+        let removedCategory = await Category.findOneAndRemove({ categoryName: categoryNameDropDown, owner: currUser._id})
+        console.log(removedCategory._id);
+        await Project.deleteMany({ category: removedCategory._id});
+            
+            req.flash('messages', 'You have successfully deleted a category and its child projects');
+            return res.redirect(301, '/api/users/projects/all-projects');
+  
+
+        }
+        
+
+    } catch(error) {
+      req.flash('errors', 'We couldn\'t delete your Category Something is wrong on our end please contact developer or try again');
+      res.redirect(301, `/api/users/projects/all-projects`);
+    }
   }
 }

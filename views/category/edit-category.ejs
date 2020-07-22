@@ -6,7 +6,7 @@
 <link href="/css/jquery.minicolors.css" rel="stylesheet">
 <!-- font awesome css -->
 <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <title>Create Project Heed.place</title>
+    <title>Edit Category Heed.place</title>
   </head>
 
   <body>
@@ -32,7 +32,7 @@
 <form id="trickyForm" class="form-signin" role="form" method="POST" action="/api/users/projects/categories/edit-category/emptyBLEhDKLSNMCKLVKLSKLEUEENFIMDFHNDSKLJHsshkdfnvklnxcnmlDKJFGSHKDGsldkjlkcvxmxlkjdlfgkslgkhzlxckvbnmklzhgfklhd?_method=PUT">
   
   
-          <h1 class="h3 mb-3 font-weight-normal">Create you project to make tasks and record pomodoro timers</h1>
+          <h1 class="h3 mb-3 font-weight-normal">Edit your Category, please choose category to change from drop down and provide new data to change</h1>
           <label for="inputProjectName" class="sr-only">Name of Your project</label>
           <br />
           <input type="text" id="inputToChangeCategoryNewName" name="toChangeCategoryNewName" class="form-control" placeholder="New Name of Category to Edit">
@@ -62,14 +62,45 @@
               </div>
               
               
-              <button id="trickyFormSubmitButton" class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
+              <button id="trickyFormSubmitButton" class="btn btn-lg btn-primary btn-block" type="submit">Update Edit Category</button>
             </form>
           </div>
         </div>
       </div> 
     </div>
+
+<!-- Button trigger modal -->
+<button class="btn btn-sm btn-outline-danger btn-block form-signin" data-toggle="modal" data-target="#DeleteCategory">DANGER Delete Project and its tasks</button>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="DeleteCategory" tabindex="-1" role="dialog" aria-labelledby="DeleteCategory" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="DeleteCategory">Save Progress</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete your category and all its Projects this CANNOT be undone, if you want you can change some projects parent categories to save them in another category via edit Project functionality
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form id="trickyFormForDeleteCategoryByUniqueName" role="form" method="POST" action="/api/users/projects/categories/delete-category/emptyBLEhDKLSNMCKLVKLSKLEUEENFIMDFHNDSKLJHsshkdfnvklnxcnmlDKJFGSHKDGsldkjlkcvxmxlkjdlfgkslgkhzlxckvbnmklzhgfklhd?_method=DELETE">
+          <button type="submit" class="btn btn-outline-danger">Carefully delete</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
+  </div>
+
                 <script>
                   let selectTag = document.getElementById('ChoseCategoryTrickyForFormIDRequest');
                   function getSelectedOption() {
@@ -79,6 +110,7 @@
                       if(selectedOption.selected === true) {
                         let valueOfSelectedOption = selectedOption.text;
                         document.getElementById('trickyForm').action = '/api/users/projects/categories/edit-category/' + valueOfSelectedOption + '?_method=PUT';
+                        document.getElementById('trickyFormForDeleteCategoryByUniqueName').action = '/api/users/projects/categories/delete-category/' + valueOfSelectedOption + '?_method=DELETE';
                         break;
                       }
                     }
