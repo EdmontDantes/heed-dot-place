@@ -3,6 +3,7 @@
   <head>
 <%- include('../partials/head.ejs') %> 
 <link href="/css/loginAndRegisterCustom.css" rel="stylesheet">
+<link href="/css/jquery.minicolors.css" rel="stylesheet">
 <!-- font awesome css -->
 <link rel="stylesheet" href="/css/font-awesome.min.css">
     <title>Create Project Heed.place</title>
@@ -28,61 +29,46 @@
     <div class=”col-6 align-self-center”>
       <div class=”card card-block”>
 <%- include('../partials/flashMessagesAndErrors.ejs') %>
-        <form class="form-signin" role="form" method="POST" action="/api/users/projects/create-project">
+        <form class="form-signin" role="form" method="POST" action="/api/users/projects/categories/edit-project/
+                                                                                                                <% for( let b = 0; b < categoriesToChooseFromThatExistAlready.length; b++ ) { %>
+                                                                                                                  <% if (categoriesToChooseFromThatExistAlready[b]._id === categoryNameDropDown) { %>
+                                                                                                                    <%= categoriesToChooseFromThatExistAlready[b]._id %>
+                                                                                                                <% } %>
+                                                                                                                <% } %>?_method=PUT">
+
+
           <h1 class="h3 mb-3 font-weight-normal">Create you project to make tasks and record pomodoro timers</h1>
           <label for="inputProjectName" class="sr-only">Name of Your project</label>
           <br />
-          <input type="text" id="inputProjectName" name="projectName" class="form-control" placeholder="Name of Your project" required>
+          <input type="text" id="inputToChangeCategoryNewName" name="toChangeCategoryNewName" class="form-control" placeholder="New Name of Category to Edit">
+          
           <br />
-          <label for="inputProjectIcon" class="sr-only">Choose Project Icon</label>
-          <div class="card-body">
-            <i class="fa fa-university" aria-hidden="true">&nbsp;university</i>&nbsp;&nbsp;
-            <i class="fa fa-hourglass-start" aria-hidden="true">&nbsp;hourglass-start</i>&nbsp;&nbsp;
-            <i class="fa fa-trophy" aria-hidden="true">&nbsp;trophy</i>&nbsp;&nbsp;
-            <i class="fa fa-deaf" aria-hidden="true">&nbsp;deaf</i>&nbsp;&nbsp;
-            <i class="fa fa-heartbeat" aria-hidden="true">&nbsp;heartbeat</i>&nbsp;&nbsp;
-            <i class="fa fa-file-excel-o" aria-hidden="true">&nbsp;file-excel-o</i>&nbsp;&nbsp;
-            <i class="fa fa-magic" aria-hidden="true">&nbsp;magic</i>&nbsp;&nbsp;
-            <i class="fa fa-object-group" aria-hidden="true">&nbsp;object-group</i>&nbsp;&nbsp;
-            <i class="fa fa-paint-brush" aria-hidden="true">&nbsp;paint-brush</i>&nbsp;&nbsp;
-            <i class="fa fa-random" aria-hidden="true">&nbsp;random</i>&nbsp;&nbsp;
-            <i class="fa fa-search-plus" aria-hidden="true">&nbsp;search-plus</i>&nbsp;&nbsp;
-            <i class="fa fa-signal" aria-hidden="true">&nbsp;signal</i>&nbsp;&nbsp;
-            <i class="fa fa-tachometer" aria-hidden="true">&nbsp;tachometer</i>&nbsp;&nbsp;
-            <i class="fa fa-user-secret" aria-hidden="true">&nbsp;user-secret</i>&nbsp;&nbsp;
-            <i class="fa fa-wrench" aria-hidden="true">&nbsp;wrench</i>&nbsp;&nbsp;
-            <i class="fa fa-handshake-o" aria-hidden="true">&nbsp;handshake-o</i>&nbsp;&nbsp;
-            <i class="fa fa-gamepad" aria-hidden="true">&nbsp;gamepad</i>&nbsp;&nbsp;
-            <i class="fa fa-fire" aria-hidden="true">&nbsp;fire</i>&nbsp;&nbsp;
-            <i class="fa fa-eye" aria-hidden="true">&nbsp;eye</i>&nbsp;&nbsp;
-            <i class="fa fa-exclamation-circle" aria-hidden="true">&nbsp;exclamation-circle</i>&nbsp;&nbsp;
-            <i class="fa fa-coffee" aria-hidden="true">&nbsp;coffee</i>&nbsp;&nbsp;
-            <i class="fa fa-cogs" aria-hidden="true">&nbsp;cogs</i>&nbsp;&nbsp;
-            <br />
-          </div>
-          <input type="text" id="inputProjectIcon" name="projectIcon" class="form-control" placeholder="name of icon to display">
-          <br />
-          <!-- <span><%# categoriesToChooseFromThatExistAlready %> </span> -->
           <% if (categoriesToChooseFromThatExistAlready.length) { %>
-            
-            <label for="CategoriesDropDown">Choose already created Category:</label>
+            <div class="form-signin">
+              <label for="CategoriesDropDown">Choose already created Category:</label>
               <select name="categoryNameDropDown">
                 <% for( let c = 0; c < categoriesToChooseFromThatExistAlready.length; c++ ) { %>
                   <option value="<%= categoriesToChooseFromThatExistAlready[c].categoryName %>" style="background-color: <%= categoriesToChooseFromThatExistAlready[c].categoryColor %>"><span><%= categoriesToChooseFromThatExistAlready[c].categoryName %></span></option>
-
+                  
+                  <% } %>
                 </select>
-                <% } %>
-                <% } else { %>
+              </div>
+              <% } else { %>
                   
-                  <label for="inputCategoryName">Create New Category</label>
-                  <input type="text" id="inputCategoryName" name="categoryName" class="form-control" placeholder=" new category name">
-                  
-                  <label for="InputCategoryColor">Write Category Color name or HEX value:</label>
-                  <input type="text" id="InputCategoryColor" name="categoryColor" class="form-control" placeholder=" new category color">
-                    <% } %>
+                <label for="inputNewToCreateCategoryName">Create New Category</label>
+                <input type="text" id="inputNewToCreateCategoryName" name="newCategoryName" class="form-control" placeholder=" new category name">
+                
+                  <% } %>
 
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
-        </form>
+              <div class="form-group">
+                <label for="wheel-demo">Color of Your New Category Color input HEX WITH # character code:</label>
+                <input type="text" id="InputToChangeCategoryNewColor" name="toChangeCategoryNewColor" class="form-control demo" data-control="wheel" value="#ff99ee">
+              </div>
+
+
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
+            </form>
+          </div>
       </div>
       </div> 
       </div>
@@ -91,5 +77,39 @@
       </section> 
     </main>
       <%- include ('../partials/footer.ejs') %>
+      <script src="/js/jquery-1.10.2.min.js"></script>
+      <script src="/js/jquery.minicolors.min.js"></script>
+
+      <script type="text/javascript">
+        $(function(){
+          var colpick = $('.demo').each( function() {
+            $(this).minicolors({
+              control: $(this).attr('data-control') || 'hue',
+              inline: $(this).attr('data-inline') === 'true',
+              letterCase: 'lowercase',
+              opacity: false,
+              change: function(hex, opacity) {
+                if(!hex) return;
+                if(opacity) hex += ', ' + opacity;
+                try {
+                  console.log(hex);
+                } catch(e) {}
+                $(this).select();
+              },
+              theme: 'bootstrap'
+            });
+          });
+          
+          var $inlinehex = $('#inlinecolorhex h3 small');
+          $('#inlinecolors').minicolors({
+            inline: true,
+            theme: 'bootstrap',
+            change: function(hex) {
+              if(!hex) return;
+              $inlinehex.html(hex);
+            }
+          });
+        });
+        </script>
 </body>
 </html>
