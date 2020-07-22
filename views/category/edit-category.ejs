@@ -29,14 +29,9 @@
     <div class=”col-6 align-self-center”>
       <div class=”card card-block”>
 <%- include('../partials/flashMessagesAndErrors.ejs') %>
-        <form class="form-signin" role="form" method="POST" action="/api/users/projects/categories/edit-project/
-                                                                                                                <% for( let b = 0; b < categoriesToChooseFromThatExistAlready.length; b++ ) { %>
-                                                                                                                  <% if (categoriesToChooseFromThatExistAlready[b]._id === categoryNameDropDown) { %>
-                                                                                                                    <%= categoriesToChooseFromThatExistAlready[b]._id %>
-                                                                                                                <% } %>
-                                                                                                                <% } %>?_method=PUT">
-
-
+<form id="trickyForm" class="form-signin" role="form" method="POST" action="">
+  
+  
           <h1 class="h3 mb-3 font-weight-normal">Create you project to make tasks and record pomodoro timers</h1>
           <label for="inputProjectName" class="sr-only">Name of Your project</label>
           <br />
@@ -46,7 +41,8 @@
           <% if (categoriesToChooseFromThatExistAlready.length) { %>
             <div class="form-signin">
               <label for="CategoriesDropDown">Choose already created Category:</label>
-              <select name="categoryNameDropDown">
+              <select id="ChoseCategoryTrickyForFormIDRequest" name="categoryNameDropDown" onchange="getSelectedOption()">
+                <option value="empty"><span>CHOOSE A CATEGORY TO CHANGE</span></option>
                 <% for( let c = 0; c < categoriesToChooseFromThatExistAlready.length; c++ ) { %>
                   <option value="<%= categoriesToChooseFromThatExistAlready[c].categoryName %>" style="background-color: <%= categoriesToChooseFromThatExistAlready[c].categoryColor %>"><span><%= categoriesToChooseFromThatExistAlready[c].categoryName %></span></option>
                   
@@ -58,22 +54,40 @@
                 <label for="inputNewToCreateCategoryName">Create New Category</label>
                 <input type="text" id="inputNewToCreateCategoryName" name="newCategoryName" class="form-control" placeholder=" new category name">
                 
-                  <% } %>
+                <% } %>
 
               <div class="form-group">
                 <label for="wheel-demo">Color of Your New Category Color input HEX WITH # character code:</label>
                 <input type="text" id="InputToChangeCategoryNewColor" name="toChangeCategoryNewColor" class="form-control demo" data-control="wheel" value="#ff99ee">
               </div>
-
-
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
+              
+              
+              <button id="trickyFormSubmitButton" class="btn btn-lg btn-primary btn-block" type="submit">Create Project</button>
             </form>
           </div>
-      </div>
+        </div>
       </div> 
-      </div>
-      </div>
-      </div>
+    </div>
+  </div>
+</div>
+                <script>
+                  let selectTag = document.getElementById('ChoseCategoryTrickyForFormIDRequest');
+                  function getSelectedOption() {
+                    let selectedOption = selectTag;
+                    for (let a = 0; a < selectTag.options.length; a++ ) {
+                      selectedOption = selectTag.options[a];
+                      if(selectedOption.selected === true) {
+                        let valueOfSelectedOption = selectedOption.text;
+                        document.getElementById('trickyForm').action = '/api/users/projects/categories/edit-project/' + valueOfSelectedOption + '?_method=PUT';
+                        break;
+                      }
+                    }
+                
+                
+                
+                  }
+                
+                </script>
       </section> 
     </main>
       <%- include ('../partials/footer.ejs') %>
