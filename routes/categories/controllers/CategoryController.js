@@ -139,11 +139,8 @@ module.exports = {
   
 
       let currUser = await User.findOne({ _id: req.user._id});
-      // console.log(currUser);
       if(currUser) {
-        console.log(CategoriesDropDownToDELETE);
         let removedCategory = await Category.findOneAndRemove({ categoryName: CategoriesDropDownToDELETE, owner: currUser._id})
-        console.log(removedCategory._id);
         await Project.deleteMany({ category: removedCategory._id});
             
             req.flash('messages', 'You have successfully deleted a category and its child projects');
