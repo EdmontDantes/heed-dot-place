@@ -43,27 +43,39 @@ module.exports = {
 
             
           } else {
-            let newCategory = await new Category();
-            if(categoryName) newCategory.categoryName = categoryName;
+            if((!categoryName || !categoryColor) && ((categoryName === '') && (categoryColor === ''))) {
+              req.flash('errors', 'Your Project has not been created because you didn\'t provide data in all fields, please make sure that if there\'s category data');
+              res.redirect(301, '/api/users/projects/create-project');
+            } else {
 
-            if(categoryColor) newCategory.categoryColor = categoryColor;
+              let newCategory = await new Category();
+              newCategory.categoryName = categoryName;
+  
+              newCategory.categoryColor = categoryColor;
+  
+              
+              if(currUser) newCategory.owner = currUser._id;
+              await newCategory.save().then((savedCategory) => {
+                newProject.category = savedCategory._id;
+              }).catch((error) => {
+                req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
+                res.redirect(301, '/api/users/projects/create-project');
+              });
 
-            
-            if(currUser) newCategory.owner = currUser._id;
-            await newCategory.save().then((savedCategory) => {
-              newProject.category = savedCategory._id;
+
+            }
+          }
+          let checkforEmptyCategory = await Category.findOne({ _id: newProject.category})
+          if(checkforEmptyCategory.categoryName !== '' || existingCategory.categoryName !== '') {
+
+            await newProject.save().then((createdProject) => {
+              req.flash('messages', 'You have successfully created your project')
+              return res.redirect(301, '/api/users/projects/all-projects') 
             }).catch((error) => {
               req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
               res.redirect(301, '/api/users/projects/create-project');
             });
           }
-          await newProject.save().then((createdProject) => {
-            req.flash('messages', 'You have successfully created your project')
-            return res.redirect(301, '/api/users/projects/all-projects') 
-          }).catch((error) => {
-            req.flash('errors', 'We couldn\'t create your Project Something is wrong on our end please contact developer or try again');
-            res.redirect(301, '/api/users/projects/create-project');
-          });
           
         } else if (!currUser) {
           req.flash('errors', 'You are probably trying to do something that was not in design of the site please contact developer')

@@ -112,12 +112,12 @@ app.use('/api/users/projects/tasks', usersTasksRouter);
 app.use('/api/users/projects/categories', usersCategoryRouter)
 
 // 404 page
-// app.use((req, res, next) => {
-//   if(req.accepts('html')) {
-//     return res.render('main/404page')
-//   }
-//   next()
-// });
+app.use((req, res, next) => {
+  if(req.accepts('html')) {
+    return res.render('main/404page')
+  }
+  next()
+});
 
 // log out the listening port on which app is running
 app.listen(port, () => {
