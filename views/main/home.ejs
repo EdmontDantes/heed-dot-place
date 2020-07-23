@@ -49,7 +49,7 @@
             <% for( let catIndex = 0; catIndex < projectsForChartJsHomeReports.length; catIndex++ ) { %>
               <div style="display: none; visibility: hidden;">
                 <div id="categoryData<%- catIndex %>" style="display: none; visibility: hidden;">
-                  <div id="categoryName<%- catIndex %>" style="display: none; visibility: hidden;"><%= projectsForChartJsHomeReports[catIndex].category[0].categoryName %></div>
+                  <div id="categoryName<%- catIndex %>" style="display: none; visibility: hidden;"><%= projectsForChartJsHomeReports[catIndex].category[0].categoryName %> | <%= projectsForChartJsHomeReports[catIndex].projectName %></div>
                   <div id="categoryColor<%- catIndex %>" style="display: none; visibility: hidden;"><%= projectsForChartJsHomeReports[catIndex].category[0].categoryColor %></div>
                   <div id="categoryTaskTotalsForPomodoros<%- catIndex %>" style="display: none; visibility: hidden;"><% let totalPomodoroCountForGivenCategory = 0 %>
                     <% for( let countTaskPomdorosIndex = 0; countTaskPomdorosIndex < projectsForChartJsHomeReports[catIndex].tasks.length; countTaskPomdorosIndex++ ) { %>
