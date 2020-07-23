@@ -118,7 +118,7 @@ module.exports = {
         console.log('AAA',err);
       } else {
 
-      console.log(results[0].tasks[0].task.pomodorosDone)
+      // console.log(results[0].tasks[0].task.pomodorosDone)
 
 
         return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment });
