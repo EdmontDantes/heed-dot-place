@@ -113,7 +113,7 @@ module.exports = {
 
   reportsHome: async (req, res) => {
     let currUser = await User.findOne( { _id: req.user._id });
-    await Project.find({ owner: currUser._id }).populate('category').populate('tasks.task').exec((err, results) => {
+    await Project.find({ owner: currUser._id }).populate('category').populate('tasks.task').exec(async (err, results) => {
       if (err) {
         console.log('AAA',err);
       } else {
@@ -130,7 +130,7 @@ module.exports = {
         }
         return compareCategory;
       }
-      let newResults = results.sort(compareFuncForCategory)
+      let newResults = await results.sort(compareFuncForCategory)
 
 
         return res.render('main/home', { projectsForChartJsHomeReports: newResults, moment: moment });
