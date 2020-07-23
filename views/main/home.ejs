@@ -48,8 +48,20 @@
           </div>
           <% } %>
         </main>
-      </div>
-    </div>
+        <% for( let catIndex = 0; catIndex < projectsForChartJsHomeReports.length; catIndex++ ) { %>
+          <div style="display: none; visibility: hidden;">
+            <div id="categoryData<%- catIndex %>" style="display: none; visibility: hidden;">
+              <div id="categoryName<%- catIndex %>" style="display: none; visibility: hidden;"><%= projectsForChartJsHomeReports[catIndex].category[0].categoryName %></div>
+              <div id="categoryColor<%- catIndex %>" style="display: none; visibility: hidden;"><%= projectsForChartJsHomeReports[catIndex].category[0].categoryColor %></div>
+              <div id="categoryTaskTotalsForPomodoros<%- catIndex %>" style="display: none; visibility: hidden;"><% let totalPomodoroCountForGivenCategory = 0 %>
+                                                                                                                  <% for( let countTaskPomdorosIndex = 0; countTaskPomdorosIndex < projectsForChartJsHomeReports[catIndex].tasks.length; countTaskPomdorosIndex++ ) { %>
+                                                                                                                    <% totalPomodoroCountForGivenCategory += Number(projectsForChartJsHomeReports[catIndex].tasks[countTaskPomdorosIndex].task.pomodorosDone) %>
+                                                                                                                  <% } %>
+                                                                                                                  <%= totalPomodoroCountForGivenCategory %> 
+                                                                                                                  
+            </div>
+          </div>
+        <% } %>
     <%- include ('../partials/footer.ejs') %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
@@ -58,8 +70,8 @@
       'use strict';
 
       window.chartColors = {
-        red: 'rgb(255, 99, 132)',
-        orange: 'rgb(255, 159, 64)',
+        red: '#4dc9f6',
+        orange: '#f67019',
         yellow: 'rgb(255, 205, 86)',
         green: 'rgb(75, 192, 192)',
         blue: 'rgb(54, 162, 235)',

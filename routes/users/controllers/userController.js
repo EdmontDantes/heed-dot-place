@@ -117,8 +117,10 @@ module.exports = {
       if (err) {
         console.log('AAA',err);
       } else {
-        console.log(results[0].category[0].categoryColor);
-        console.log(results[0].tasks)
+
+      console.log(results[0].tasks[0].task.pomodorosDone)
+
+
         return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment });
   
       }
