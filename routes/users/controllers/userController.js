@@ -119,9 +119,30 @@ module.exports = {
       } else {
 
       // console.log(results[0].tasks[0].task.pomodorosDone)
+      let compareFuncForCategory = (a, b) => {
+        const categoryA = a.category[0].categoryName
+        const categoryB = b.category[0].categoryName
+        let compareCategory = 0;
+        if(categoryA > categoryB) {
+          compareCategory = 1;
+        } else if (categoryA < categoryB) {
+          compareCategory -1;
+        }
+        return compareCategory;
+      }
+      let newResults = results.sort(compareFuncForCategory)
+      
+      console.log(newResults[0].category)
 
+      // dataForChartJs = {
+      //   data: [{ 
+      //                 categoryNameForChartJs: ,
+      //                 categoryColorForChartJs: ,
+      //                 totalPomodorosForGivenCategoryForChartJs: ,
+      //         }]
+      // }
 
-        return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment });
+        return res.render('main/home', { projectsForChartJsHomeReports: newResults, moment: moment });
   
       }
   
