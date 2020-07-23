@@ -131,16 +131,7 @@ module.exports = {
         return compareCategory;
       }
       let newResults = results.sort(compareFuncForCategory)
-      
-      console.log(newResults[0].category)
 
-      // dataForChartJs = {
-      //   data: [{ 
-      //                 categoryNameForChartJs: ,
-      //                 categoryColorForChartJs: ,
-      //                 totalPomodorosForGivenCategoryForChartJs: ,
-      //         }]
-      // }
 
         return res.render('main/home', { projectsForChartJsHomeReports: newResults, moment: moment });
   
