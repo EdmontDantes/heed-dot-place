@@ -5,6 +5,8 @@
 ![heed.place logo](/README-assets/logo.png)
 # Project&#39;s Name: heed.place
 
+Description: a web app that utilizes task management and Pomodoro timer technique for better productivity. With Heed-dot-place app you are able to manage your tasks in organized manner and record your pomodoro focus progress and see said progress report in the app to better gauge where you are putting the most of your productive time. Happy focus time.
+
 # Visual representation of Pomodoro technique and how to use it:
 
 ![heed.place logo](/README-assets/How_to_use_pomodoro-technique.png)
