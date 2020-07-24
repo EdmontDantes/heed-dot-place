@@ -2,10 +2,12 @@
 
 
 
-![heed.place logo](logo.png)
+![heed.place logo](/README-assets/logo.png)
 # Project&#39;s Name: heed.place
 
-Description: a web app that utilizes pomodoro technique timer functionality with task management. Users will be able to utilize the web app for their needs of recording their tasks and using provided pomodoro technique timer to complete said tasks. Tasks will be created with Categories(in this case app will call it projects), full CRUD for Projects and it&#39;s corresponding tasks will be implemented. Each user will have their own data recording separate from others. Non registered users will be only able to utilize pomodoro timer with adding simple task name that will live in their cookies , once cookies are cleared their data is cleared as well, only registered users will have ability to record their data in the apps database.
+# Visual representation of Pomodoro technique and how to use it:
+
+![heed.place logo](/README-assets/How_to_use_pomodoro-technique.png)
 
 # Technologies to be used:
 
