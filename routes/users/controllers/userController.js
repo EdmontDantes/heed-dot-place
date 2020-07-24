@@ -122,20 +122,19 @@ module.exports = {
   
         // console.log(results[0].tasks[0].task.pomodorosDone)
         let compareFuncForCategory = (a, b) => {
-          const categoryA = a.category[0].categoryName
-          const categoryB = b.category[0].categoryName
-          let compareCategory = 0;
+          const categoryA = a.category[0].categoryName.toUpperCase()
+          const categoryB = b.category[0].categoryName.toUpperCase()
+          
           if(categoryA > categoryB) {
-            compareCategory = 1;
+            return 1;
           } else if (categoryA < categoryB) {
-            compareCategory -1;
-          }
-          return compareCategory;
+            return -1;
+          } 
+          return 0;
         }
-        let newResults = await results.sort(compareFuncForCategory)
-  
-  
-          return res.render('main/home', { projectsForChartJsHomeReports: newResults, moment: moment });
+        await results.sort(compareFuncForCategory)
+        
+          return res.render('main/home', { projectsForChartJsHomeReports: results, moment: moment });
     
         }
       } catch (error) {
