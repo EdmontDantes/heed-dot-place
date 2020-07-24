@@ -113,29 +113,37 @@ module.exports = {
 
   reportsHome: async (req, res) => {
     let currUser = await User.findOne( { _id: req.user._id });
-    await Project.find({ owner: currUser._id }).populate('category').populate('tasks.task').exec((err, results) => {
-      if (err) {
-        console.log('AAA',err);
-      } else {
-
-      // console.log(results[0].tasks[0].task.pomodorosDone)
-      let compareFuncForCategory = (a, b) => {
-        const categoryA = a.category[0].categoryName
-        const categoryB = b.category[0].categoryName
-        let compareCategory = 0;
-        if(categoryA > categoryB) {
-          compareCategory = 1;
-        } else if (categoryA < categoryB) {
-          compareCategory -1;
-        }
-        return compareCategory;
-      }
-      let newResults = results.sort(compareFuncForCategory)
-
-
-        return res.render('main/home', { projectsForChartJsHomeReports: newResults, moment: moment });
+    await Project.find({ owner: currUser._id }).populate('category').populate('tasks.task').exec(async (err, results) => {
+      try {
+        
+        if (err) {
+          console.log('AAA',err);
+        } else {
   
+        // console.log(results[0].tasks[0].task.pomodorosDone)
+        let compareFuncForCategory = (a, b) => {
+          const categoryA = a.category[0].categoryName
+          const categoryB = b.category[0].categoryName
+          let compareCategory = 0;
+          if(categoryA > categoryB) {
+            compareCategory = 1;
+          } else if (categoryA < categoryB) {
+            compareCategory -1;
+          }
+          return compareCategory;
+        }
+        let newResults = await results.sort(compareFuncForCategory)
+  
+  
+          return res.render('main/home', { projectsForChartJsHomeReports: newResults, moment: moment });
+    
+        }
+      } catch (error) {
+        let newResultsEmpty = [];
+        req.flash('errors', 'Oh no something is wrong on our end, we can\'t get your reports data');
+        return res.render('main/home', { projectsForChartJsHomeReports: newResultsEmpty, moment: moment });
       }
+      
   
     })
   }
