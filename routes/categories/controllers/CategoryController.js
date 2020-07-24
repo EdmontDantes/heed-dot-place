@@ -2,6 +2,7 @@ const Category = require('../models/Category');
 const User = require('../../users/models/User');
 const userController = require('../../users/controllers/userController');
 const Project = require('../../projects/models/Project');
+const Task = require('../../tasksPomodoro/models/Task');
 
 module.exports = {
   
@@ -141,7 +142,29 @@ module.exports = {
       let currUser = await User.findOne({ _id: req.user._id});
       if(currUser) {
         let removedCategory = await Category.findOneAndRemove({ categoryName: CategoriesDropDownToDELETE, owner: currUser._id})
-        await Project.deleteMany({ category: removedCategory._id});
+        await Project.find({ category: removedCategory._id}).then(async (allFoundProjects) => {
+          console.log('AAA', allFoundProjects);
+          try {
+            allFoundProjects.forEach(async (project) => {
+            console.log('BBB', project)
+            try {
+              await Task.deleteMany({ taskProjectBelongsTo: project._id });
+
+            } catch (error) {
+              req.flash('errors', 'We couldn\'t delete your Category Something is wrong on our end please contact developer or try again');
+              res.redirect(301, `/api/users/projects/all-projects`);
+            }
+
+          });
+          } catch (error) {
+            req.flash('errors', 'We couldn\'t delete your Category Something is wrong on our end please contact developer or try again');
+            res.redirect(301, `/api/users/projects/all-projects`);
+          }
+        }).catch((error) => {
+          req.flash('errors', 'We couldn\'t delete your Category Something is wrong on our end please contact developer or try again');
+          res.redirect(301, `/api/users/projects/all-projects`);
+        });
+        await Project.deleteMany({ category: removedCategory._id });
             
             req.flash('messages', 'You have successfully deleted a category and its child projects');
             return res.redirect(301, '/api/users/projects/all-projects');
