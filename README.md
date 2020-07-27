@@ -21,7 +21,7 @@ Description: a web app that utilizes task management and Pomodoro timer techniqu
   - Passport-local Strategy - [https://github.com/jaredhanson/passport-local](https://github.com/jaredhanson/passport-local)
 
 - Bcryptjs for hashing/salting password for security - [https://github.com/dcodeIO/bcrypt.js/](https://github.com/dcodeIO/bcrypt.js/)
-- easytimer.js library for countdown functionality - [https://github.com/albert-gonzalez/easytimer.js/]](https://github.com/albert-gonzalez/easytimer.js/)
+- easytimer.js library for countdown functionality - [https://github.com/albert-gonzalez/easytimer.js/](https://github.com/albert-gonzalez/easytimer.js/)
 - Chart.js for displaying progress reports to users via visual representation of data - [https://www.chartjs.org/](https://www.chartjs.org/)
 - MongoDB document-based database - [https://www.mongodb.com/](https://www.mongodb.com/)
 - Mongoose - elegant Mongodb object modeling for Node.js - [https://mongoosejs.com/](https://mongoosejs.com/)
