@@ -1,6 +1,6 @@
 # heed-dot-place
 
-
+### project is deployed on heroku [http://heed-dot-place.herokuapp.com/](http://heed-dot-place.herokuapp.com/)
 
 ![heed.place logo](README-assets/logo.png)
 # Project&#39;s Name: heed.place
@@ -96,5 +96,17 @@ once you are done with a task and would like to create more tasks, projects or c
 
 ![step 9 examples of all projects with more data](README-assets/visual-guide-annotated/step-9-example-of-all-projects-with-data-page.png)
 
-![step 9 examples of reports page with more data](README-assets/visual-guide-annotated/step-9-example-of-reports-page-with-data-page.png)
+![step 9 examples of reports page with more data](README-assets/visual-guide-annotated/step-9-example-of-reports-page-with-data-page.png)   
+   
+# How to work with a project:
 
+- clone project
+- setup .env file with 
+  	```
+      PORT = numberOFPort
+      MONGODB_URI = mongodb://localhost/yourdb-name
+      SESSION_SECRET = 'youshouldGetToWorkOrWgateverYorDesiredSecretYouWish'
+    ```
+      
+- npm install in terminal
+- npm run dev
