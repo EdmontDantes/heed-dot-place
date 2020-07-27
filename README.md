@@ -2,16 +2,16 @@
 
 
 
-![heed.place logo](/README-assets/logo.png)
+![heed.place logo](README-assets/logo.png)
 # Project&#39;s Name: heed.place
 
 Description: a web app that utilizes task management and Pomodoro timer technique for better productivity. With Heed-dot-place app you are able to manage your tasks in organized manner and record your pomodoro focus progress and see said progress report in the app to better gauge where you are putting the most of your productive time. Happy focus time.
 
 # Visual representation of Pomodoro technique and how to use it:
 
-![heed.place logo](/README-assets/How_to_use_pomodoro-technique.png)
+![heed.place How to Use pomodoro visual](README-assets/How_to_use_pomodoro-technique.png)
 
-# Technologies to be used:
+# Technologies used in app:
 
 - Bootstrap frontend framework - [https://getbootstrap.com/](https://getbootstrap.com/)
 - Nodje.js javascript runtime - [https://nodejs.org/](https://nodejs.org/)
@@ -37,60 +37,16 @@ Description: a web app that utilizes task management and Pomodoro timer techniqu
 # Assets Used:
 musical alert ringtones for end of pomodoro, short and long break sounds are generously created and provided by Wolf Asylum artist - https://wolfasylum.com/
 
-# General Planned out Structure for the project :
+# Visual Guide on how to use the app:
 
-## Express routes:
+### Step 1:
 
-1. Base route &#39;/&#39; - renders main/index
-2. Base route &#39;/api/users&#39;
-3. &#39;/register&#39; get
-4. &#39;/register&#39; post
-5. &#39;/login&#39; get
-6. &#39;/login&#39; post
-7. &#39;/profile&#39; get
-8. &#39;/update-profile&#39; get
-9. &#39;/update-profile&#39; put
-10. &#39;/update-password&#39; put
-11. Base route &#39;/api/users/projects&#39;
-12. &#39;/projects&#39; get
-13. &#39;/create-project&#39; post
-14. &#39;/update-project&#39; get
-15. &#39;/update-project&#39; put
-16. &#39;/delete-projects&#39; del
-17. Base route &#39;/api/users/projects/tasks&#39;
-18. &#39;/tasks&#39; get
-19. &#39;/create-task&#39; post
-20. &#39;/update-task&#39; put
-21. &#39;/delete-task&#39; delete
+register for an account.
 
-### Total routes excluding base routes: 17
+![step 1 register](README-assets/visual-guide-annotated/step-1-home-to-register.png)
 
-## DataBase Models:
+### Step 2:
 
-1. Users
-2. Projects
-3. Tasks
+input your register information and press Register.
 
-### Total models referenced to each other: 3
-
-# TimeTable for completing the project in 14 days:
-
-Day 1. Scaffolding the project, with setting up all the files, building models, and basic route functionality.
-
-Day 2. Build basic front end scaffolding with bootstrap front-end framework
-
-Day 3. Build a basic users functionality implementing and testing with bootstrap front-end
-
-Day 4. Build routes for profile, update-profile, update-password and test it
-
-Day 5. Build projects routes
-
-Day 6. Build front-end for projects and tasks
-
-Day 7. Build tasks routes.
-
-Day 8-10. Test extensively and focus on front-end functionality including aler
-
-Day 11-12. Start working on implementing a new Reports feature inside of front-end and backend for using Chart.js visual representation of data of users.
-
-Day 13-14. Finish Quality Control and Deploy for production on Heroku web hosting.
+![step 2 register to login](README-assets/visual-guide-annotated/step-2-register-page.png)
