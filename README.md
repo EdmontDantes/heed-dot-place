@@ -50,3 +50,30 @@ register for an account.
 input your register information and press Register.
 
 ![step 2 register to login](README-assets/visual-guide-annotated/step-2-register-page.png)
+
+### Step 3:
+
+input your credentials you registered with and press Sign In button.
+
+![step 3 sign in](README-assets/visual-guide-annotated/step-3-login-page.png)
+
+### Step 4:
+
+once you are logged in you will be redirected to Home/Reports page, and if you are brand new without any data recorded this page will appear to be blank, but don't worry to more you use the app the Home/Reports page will populate your data to show in visual way what you spend time on focusing.
+
+![step 4 home/reports](README-assets/visual-guide-annotated/step-4-logged-home-page.png)
+
+
+### Step 5:
+
+first you need to create a project or first category for a project but since you don't have any categories created you have ability to create simultaneously project and category for it.
+
+![step 5 create project and category for it](README-assets/visual-guide-annotated/step-5-create-project-page.png)
+
+### Step 6:
+
+once you have created a project and parent category for it you can now create a task for said project and start your focus time.
+
+![step 6 all projects add task button](README-assets/visual-guide-annotated/step-6-create-from-all-projects-a-task.png)
+
+![step 6 create task page filling out](README-assets/visual-guide-annotated/step-6-create-task-page.png)
