@@ -31,7 +31,7 @@ Description: a web app that utilizes task management and Pomodoro timer techniqu
 - Express-session session middleware for cookies - [https://www.npmjs.com/package/express-session](https://www.npmjs.com/package/express-session)
 - Momentjs for converting unixTimeStamps to Human-Readable time - [https://momentjs.com/](https://momentjs.com/)
 - Method-override npm package to stay faithful to Restful API specification of GET, POST, PUT, DELETE http verbs - [https://www.npmjs.com/package/method-override](https://www.npmjs.com/package/method-override)
-- Bootstrap colorPicker - https://www.templatemonster.com/blog/tutorial-build-a-color-picker-with-jquery-and-bootstrap/
+- Bootstrap colorPicker - [https://www.templatemonster.com/blog/tutorial-build-a-color-picker-with-jquery-and-bootstrap/](https://www.templatemonster.com/blog/tutorial-build-a-color-picker-with-jquery-and-bootstrap/)
 
 
 # Assets Used:
