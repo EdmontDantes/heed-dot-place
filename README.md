@@ -77,3 +77,24 @@ once you have created a project and parent category for it you can now create a 
 ![step 6 all projects add task button](README-assets/visual-guide-annotated/step-6-create-from-all-projects-a-task.png)
 
 ![step 6 create task page filling out](README-assets/visual-guide-annotated/step-6-create-task-page.png)
+
+### Step 7:
+
+once the task is created you will be taken to task home where there availability of pomodoro timer and its corresponding breaks arrive. Once you are ready to commit to uninterrupted 25 minutes on your task press Start on the pomodoro counter and once you hear musical ringtone and countdown is zero then you should save your pomodoro progress via 'Save Pomodoro' button which will pop up a modal to verify that you want to save your progress.
+
+![step 7 pomodoro counter start](README-assets/visual-guide-annotated/step-7-task-pomodoro-couter-start.png)
+
+![step 7 pomodoro save](README-assets/visual-guide-annotated/step-7-save-progress-pomodoro.png)
+
+### Step 8:
+
+once you are done with a task and would like to create more tasks, projects or catogories go back to all projects menu and navigate from there.
+
+![step 8 walkthrough for all projects](README-assets/visual-guide-annotated/step-8-all-projects-walkthrough-annotations.png)
+
+### Examples:
+
+![step 9 examples of all projects with more data](README-assets/visual-guide-annotated/step-9-example-of-all-projects-with-data-page.png)
+
+![step 9 examples of reports page with more data](README-assets/visual-guide-annotated/step-9-example-of-reports-page-with-data-page.png)
+
