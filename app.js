@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 let MongoStore = require('connect-mongo')(session);
@@ -52,7 +52,7 @@ app.set('view engine', 'ejs');
 
 
 // bring in Morgan installed as Developer package should be deleted for production later
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 // use json configuration for express framework
 app.use(express.json());
